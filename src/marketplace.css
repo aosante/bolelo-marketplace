@@ -57,7 +57,7 @@
   --bannedColorDark: var(--marketplaceColor);
 
   --matterColorDark: #000000;
-  --matterColor: #4a4a4a;
+  --matterColor: #161616;
   --matterColorAnti: #b2b2b2;
   --matterColorNegative: #e7e7e7;
   --matterColorBright: #fcfcfc;
@@ -98,7 +98,7 @@
 
   /* ================ Border radius ================ */
 
-  --borderRadius: 2px;
+  --borderRadius: 6px;
   --borderRadiusMobileSearch: 3px;
 
   /* ================ Transition styles ================ */
@@ -178,7 +178,7 @@
 
     /* Padding is only for <a> elements where button styles are applied,
 		buttons elements should have zero padding */
-    padding: 20px 0 0 0;
+    padding: 13.5px 0 0 0;
 
     /* Borders */
     border: none;
@@ -191,6 +191,7 @@
     /* Text */
     text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
 
     /* Effects */
     transition: all var(--transitionStyleButton);
@@ -199,7 +200,7 @@
     &:hover,
     &:focus {
       outline: none;
-      background-color: var(--marketplaceColorDark);
+      background-color: var(--successColor);
       text-decoration: none;
       box-shadow: var(--boxShadowButton);
     }
@@ -211,7 +212,7 @@
     }
 
     @media (--viewportMedium) {
-      min-height: 65px;
+      min-height: 50px;
     }
   }
   --marketplaceButtonStylesPrimary {

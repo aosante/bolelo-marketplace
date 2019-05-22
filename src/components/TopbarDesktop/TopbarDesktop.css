@@ -62,7 +62,6 @@
 
 /* logo */
 .logoLink {
-  @apply --TopbarDesktop_linkHover;
   flex-shrink: 0;
   padding: 0px 24px 21px 24px;
   height: 100%;

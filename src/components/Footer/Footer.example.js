@@ -1,5 +1,5 @@
 import Footer from './Footer';
-import css from './FooterExample.css';
+import css from './Footer.example.css';
 
 export const Default = {
   component: Footer,

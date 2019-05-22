@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { IconCheckmark } from '../../components';
 import Button, { PrimaryButton, SecondaryButton, InlineTextButton } from './Button';
 
-import css from './ButtonExample.css';
+import css from './Button.example.css';
 
 const preventDefault = e => {
   e.preventDefault();

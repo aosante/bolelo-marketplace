@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Button } from '../../components';
 import ModalInMobile from './ModalInMobile';
-import css from './ModalInMobileExample.css';
+import css from './ModalInMobile.example.css';
 
 const onManageDisableScrolling = (componentId, scrollingDisabled = true) => {
   // We are just checking the value for now
@@ -48,7 +48,6 @@ class ModalInMobileWrapper extends Component {
 export const Empty = {
   component: ModalInMobileWrapper,
   useDefaultWrapperStyles: false,
-  description: 'Modal feature is visible if window’s width is less than 400px.',
   props: {
     id: 'ExampleModalInMobile',
     showAsModalMaxWidth: 400,

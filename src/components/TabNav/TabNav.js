@@ -38,6 +38,8 @@ const TabNav = props => {
   const { className, rootClassName, tabRootClassName, tabs } = props;
   const classes = classNames(rootClassName || css.root, className);
   const tabClasses = tabRootClassName || css.tab;
+  //removing features option from item registration
+  //tabs.splice(1, 2);
   return (
     <nav className={classes}>
       {tabs.map((tab, index) => {

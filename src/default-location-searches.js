@@ -11,7 +11,7 @@ export default [
   {
     id: 'default-helsinki',
     predictionPlace: {
-      address: 'Helsinki, Finland',
+      address: 'HEBIS, Finland',
       bounds: new LatLngBounds(new LatLng(60.29783, 25.25448), new LatLng(59.92248, 24.78287)),
     },
   },

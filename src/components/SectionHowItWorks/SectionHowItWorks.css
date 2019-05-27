@@ -5,6 +5,11 @@
   margin-top: 0;
 }
 
+.number {
+  border: 2px solid red;
+  border-radius: 50px;
+}
+
 .steps {
   display: flex;
   flex-direction: column;

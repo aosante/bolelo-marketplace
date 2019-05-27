@@ -178,7 +178,10 @@
 
     /* Padding is only for <a> elements where button styles are applied,
 		buttons elements should have zero padding */
-    padding: 13.5px 0 0 0;
+    padding: 16.5px 0 0 0;
+    @media (--viewportMedium) {
+      padding: 13.5px 0 0 0;
+    }
 
     /* Borders */
     border: none;
@@ -238,7 +241,7 @@
 
     /* Padding is only for <a> elements where button styles are applied,
    buttons elements should have zero padding */
-    padding: 18px 0 0 0;
+    padding: 19px 0 0 0;
 
     border-width: 1px;
     border-style: solid;

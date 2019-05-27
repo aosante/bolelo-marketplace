@@ -22,6 +22,7 @@ const SectionHowItWorks = props => {
       <div className={css.steps}>
         <div className={css.step}>
           <h2 className={css.stepTitle}>
+            <span className={css.number}>1</span>
             <FormattedMessage id="SectionHowItWorks.part1Title" />
           </h2>
           <p>
@@ -31,6 +32,7 @@ const SectionHowItWorks = props => {
 
         <div className={css.step}>
           <h2 className={css.stepTitle}>
+            <span className={css.number}>2</span>
             <FormattedMessage id="SectionHowItWorks.part2Title" />
           </h2>
           <p>
@@ -40,6 +42,7 @@ const SectionHowItWorks = props => {
 
         <div className={css.step}>
           <h2 className={css.stepTitle}>
+            <span className={css.number}>3</span>
             <FormattedMessage id="SectionHowItWorks.part3Title" />
           </h2>
           <p>

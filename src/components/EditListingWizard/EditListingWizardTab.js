@@ -23,7 +23,6 @@ import css from './EditListingWizard.css';
 
 export const AVAILABILITY = 'availability';
 export const DESCRIPTION = 'description';
-//export const BRAND = 'brand';
 export const FEATURES = 'features';
 export const POLICY = 'policy';
 export const LOCATION = 'location';
@@ -33,7 +32,6 @@ export const PHOTOS = 'photos';
 // EditListingWizardTab component supports these tabs
 export const SUPPORTED_TABS = [
   DESCRIPTION,
-  // BRAND,
   FEATURES,
   POLICY,
   LOCATION,

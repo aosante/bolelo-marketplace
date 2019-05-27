@@ -111,16 +111,17 @@
   background: var(--marketplaceColor);
   content: '';
   display: block;
-  width: 109px;
-  height: 6px;
+  width: 70%;
+  height: 1.7px;
+  margin: 0 auto;
 
   /* Place the bar on top of .sectionContent top margin */
   position: relative;
   top: calc(-1 * var(--LandingPage_sectionMarginTop));
 
   @media (--viewportMedium) {
-    width: 192px;
-    height: 8px;
+    width: 70%;
+    height: 3px;
     top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
   }
 

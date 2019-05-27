@@ -6,8 +6,10 @@
 }
 
 .number {
-  border: 2px solid red;
-  border-radius: 50px;
+  border-radius: 50%;
+  padding: 0.1em 0.65em;
+  background-color: var(--marketplaceColor);
+  color: var(--matterColorLight);
 }
 
 .steps {

@@ -11,36 +11,52 @@ export default [
   {
     id: 'default-helsinki',
     predictionPlace: {
-      address: 'HEBIS, Finland',
-      bounds: new LatLngBounds(new LatLng(60.29783, 25.25448), new LatLng(59.92248, 24.78287)),
+      address: 'Los Angeles, California',
+      bounds: new LatLngBounds(
+        new LatLng(34.99100892, -116.9633698),
+        new LatLng(32.80793209, -119.3504426)
+      ),
     },
   },
   {
     id: 'default-turku',
     predictionPlace: {
-      address: 'Turku, Finland',
-      bounds: new LatLngBounds(new LatLng(60.53045, 22.38197), new LatLng(60.33361, 22.06644)),
+      address: 'New York City, New York',
+      bounds: new LatLngBounds(
+        new LatLng(41.85783084, -72.57892416),
+        new LatLng(39.51731711, -75.38043784)
+      ),
     },
   },
+  //, miami, austin
   {
     id: 'default-tampere',
     predictionPlace: {
-      address: 'Tampere, Finland',
-      bounds: new LatLngBounds(new LatLng(61.83657, 24.11838), new LatLng(61.42728, 23.5422)),
+      address: 'Raleigh, North Carolina',
+      bounds: new LatLngBounds(
+        new LatLng(38.30653843, -75.8435422),
+        new LatLng(33.30230225, -81.44656962)
+      ),
     },
   },
   {
     id: 'default-oulu',
     predictionPlace: {
-      address: 'Oulu, Finland',
-      bounds: new LatLngBounds(new LatLng(65.56434, 26.77069), new LatLng(64.8443, 24.11494)),
+      address: 'Miami, Florida',
+      bounds: new LatLngBounds(
+        new LatLng(26.08774825, -79.8881426),
+        new LatLng(25.39254736, -80.58852102)
+      ),
     },
   },
   {
     id: 'default-ruka',
     predictionPlace: {
-      address: 'Ruka, Finland',
-      bounds: new LatLngBounds(new LatLng(66.16997, 29.16773), new LatLng(66.16095, 29.13572)),
+      address: 'Austin, Texas',
+      bounds: new LatLngBounds(
+        new LatLng(31.63145879, -96.35264456),
+        new LatLng(28.96639539, -99.15415824)
+      ),
     },
   },
 ];

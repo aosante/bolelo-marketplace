@@ -53,17 +53,17 @@ const SectionLocations = props => {
         {locationLink(
           'Los Angeles',
           drillImage,
-          '?address=Helsinki%2C%20Finland&bounds=60.2978389%2C25.254484899999966%2C59.9224887%2C24.782875800000056&origin=60.16985569999999%2C24.93837910000002'
+          '?address=Los%20Angeles%2C%20California&bounds=34.99100892%2C-116.9633698%2C32.80793209%2C-119.3504426'
         )}
         {locationLink(
           'New York',
           ironImage,
-          '?address=Rovaniemi%2C%20Finland&bounds=67.18452510000002%2C27.32667850000007%2C66.1553745%2C24.736871199999996&origin=66.50394779999999%2C25.729390599999988'
+          '?address=New%20York%20City%2C%20New%20York&bounds=41.85783084%2C-72.57892416%2C39.51731711%2C-75.38043784'
         )}
         {locationLink(
-          'Austin',
+          'Raleigh',
           footballImage,
-          '?address=Ruka%2C%20Finland&bounds=66.1704578%2C29.14246849999995%2C66.1614402%2C29.110453699999994&origin=66.16594940000002%2C29.12646110000003'
+          '?address=Raleigh%2C%20North%20Carolina&bounds=38.30653843%2C-75.8435422%2C33.30230225%2C-81.44656962'
         )}
       </div>
     </div>

@@ -86,7 +86,7 @@ const tabCompleted = (tab, listing) => {
     publicData,
   } = listing.attributes;
   const images = listing.images;
-  console.log(publicData);
+  //console.log(publicData);
   switch (tab) {
     case DESCRIPTION:
       return !!(description && title);

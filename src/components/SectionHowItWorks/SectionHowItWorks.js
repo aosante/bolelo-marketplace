@@ -5,6 +5,10 @@ import classNames from 'classnames';
 
 import { NamedLink } from '../../components';
 
+import calendarImage from './img/calendar.png';
+import experienceImage from './img/experience.png';
+import reviewImage from './img/review.png';
+
 import css from './SectionHowItWorks.css';
 
 const SectionHowItWorks = props => {
@@ -14,13 +18,22 @@ const SectionHowItWorks = props => {
   return (
     <div className={classes}>
       <div className={css.title}>
-        <FormattedMessage id="SectionHowItWorks.titleLineOne" />
+        <span>
+          How <span className={css.green}>BOLELO</span> works
+        </span>
         <br />
-        <FormattedMessage id="SectionHowItWorks.titleLineTwo" />
+        {/* <FormattedMessage id="SectionHowItWorks.titleLineTwo" /> */}
       </div>
 
       <div className={css.steps}>
         <div className={css.step}>
+          <div className={css.image}>
+            <img
+              src={calendarImage}
+              style={{ width: '200px', height: '190px' }}
+              alt="Calendar icon"
+            />
+          </div>
           <h2 className={css.stepTitle}>
             <span className={css.number}>1</span>
             <FormattedMessage id="SectionHowItWorks.part1Title" />
@@ -31,6 +44,13 @@ const SectionHowItWorks = props => {
         </div>
 
         <div className={css.step}>
+          <div className={css.image}>
+            <img
+              src={experienceImage}
+              style={{ width: '200px', height: '190px' }}
+              alt="Happy person icon"
+            />
+          </div>
           <h2 className={css.stepTitle}>
             <span className={css.number}>2</span>
             <FormattedMessage id="SectionHowItWorks.part2Title" />
@@ -41,6 +61,9 @@ const SectionHowItWorks = props => {
         </div>
 
         <div className={css.step}>
+          <div className={css.image}>
+            <img src={reviewImage} style={{ width: '200px', height: '190px' }} alt="Reviews icon" />
+          </div>
           <h2 className={css.stepTitle}>
             <span className={css.number}>3</span>
             <FormattedMessage id="SectionHowItWorks.part3Title" />

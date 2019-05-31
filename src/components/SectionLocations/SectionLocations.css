@@ -2,12 +2,23 @@
 
 .title {
   @apply --marketplaceH1FontStyles;
-
-  margin-top: 0;
+  margin-top: 1em;
   max-width: 1035px;
   @media (--viewportMedium) {
     margin-bottom: 23px;
   }
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.green {
+  color: var(--marketplaceColor);
+}
+.blue {
+  color: var(--successColor);
 }
 
 .locations {
@@ -24,6 +35,7 @@
 .location {
   width: 100%;
   margin-top: 25px;
+  text-align: center;
 
   /* Remove link's hover effect */
   &:hover {
@@ -54,10 +66,11 @@
   width: 100%;
   border-radius: 4px;
   transition: var(--transitionStyleButton);
+  box-shadow: 0 0 7px 0 var(--footerColor);
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: var(--boxShadowSectionLocationHover);
+    box-shadow: 0 0 10px 0 var(--marketplaceColorDark);
   }
 }
 
@@ -95,5 +108,5 @@
 }
 
 .locationName {
-  color: var(--marketplaceColor);
+  color: var(--successColor);
 }

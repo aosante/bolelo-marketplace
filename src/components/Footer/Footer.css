@@ -7,7 +7,7 @@
 
   width: 100%;
   padding: 24px 24px 42px 24px;
-  background-color: var(--matterColorBright);
+  background-color: var(--footerColor);
 
   @media (--viewportMedium) {
     padding: 0 24px 33px 24px;
@@ -33,6 +33,10 @@
     border-top-width: 1px;
     border-top-color: var(--matterColorNegative);
   }
+}
+
+h3 {
+  color: var(--marketplaceColorDark);
 }
 
 .content {
@@ -68,7 +72,7 @@
   display: inline-block;
   width: 20px;
   height: 24px;
-  margin-right: 12px;
+  margin-right: 22px;
   text-align: center;
 }
 
@@ -123,7 +127,8 @@
   height: 67px;
 }
 
-.organizationInfo {
+.organizationInfo p {
+  color: var(--matterColorNegative);
 }
 
 .organizationDescription {
@@ -136,7 +141,7 @@
 }
 
 .copyrightLink {
-  color: var(--matterColor);
+  color: var(--matterColorNegative);
   transition: var(--transitionStyleButton);
 
   &:hover {
@@ -151,6 +156,7 @@
   flex-basis: 165px;
   margin-right: 24px;
   margin-bottom: 24px;
+  color: var(--matterColorNegative);
 
   @media (--viewportMedium) {
     padding-top: 2px;
@@ -181,6 +187,7 @@
 
   margin-top: 0;
   margin-bottom: 12px;
+  color: var(--matterColorNegative);
 
   &:hover {
     color: var(--marketplaceColor);
@@ -199,7 +206,7 @@
   flex-basis: 165px;
   margin-right: 24px;
   margin-bottom: 24px;
-
+  color: var(--matterColorNegative);
   @media (--viewportMedium) {
     padding-top: 2px;
     margin-right: 12px;
@@ -294,7 +301,7 @@
   justify-content: space-between;
   align-items: flex-end;
 
-  background-color: var(--matterColorLight);
+  background-color: var(--footerColor);
 
   @media (--viewportMedium) {
     display: none;

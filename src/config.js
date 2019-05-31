@@ -66,7 +66,9 @@ const currencyConfig = currencyConfiguration(currency);
 
 // Listing minimum price in currency sub units, e.g. cents.
 // 0 means no restriction to the price
-const listingMinimumPriceSubUnits = 0;
+/*This was changed from 0 to 0.5 because it is listing minimum price should be at least the same amount as Stripe fee in the country you are operating.
+ If the listing price is lower, Stripe will not process the payment and the booking fails.*/
+const listingMinimumPriceSubUnits = 0.5;
 
 // Sentry DSN (Data Source Name), a client key for authenticating calls to Sentry
 const sentryDsn = process.env.REACT_APP_SENTRY_DSN;
@@ -75,24 +77,27 @@ const sentryDsn = process.env.REACT_APP_SENTRY_DSN;
 const usingSSL = process.env.REACT_APP_SHARETRIBE_USING_SSL === 'true';
 
 // Address information is used in SEO schema for Organization (http://schema.org/PostalAddress)
-const addressCountry = 'FI';
-const addressRegion = 'Helsinki';
-const postalCode = '00100';
-const streetAddress = 'Bulevardi 14';
+const addressCountry = 'US';
+const addressRegion = 'Raleigh';
+const postalCode = '27513';
+const streetAddress = '311 Glenwood Ave';
 
 // Canonical root url is needed in social media sharing and SEO optimization purposes.
 const canonicalRootURL = process.env.REACT_APP_CANONICAL_ROOT_URL;
 
 // Site title is needed in meta tags (bots and social media sharing reads those)
-const siteTitle = 'Saunatime';
+const siteTitle = 'BOLELO';
 
 // Twitter handle is needed in meta tags (twitter:site). Start it with '@' character
+//needs to be changed: waiting to see if account will be created
 const siteTwitterHandle = '@sharetribe';
 
 // Instagram page is used in SEO schema (http://schema.org/Organization)
+//needs to be changed: waiting to see if account will be created
 const siteInstagramPage = null;
 
 // Facebook page is used in SEO schema (http://schema.org/Organization)
+//needs to be changed: waiting to see if account will be created
 const siteFacebookPage = 'https://www.facebook.com/Sharetribe/';
 
 // Facebook counts shares with app or page associated by this id

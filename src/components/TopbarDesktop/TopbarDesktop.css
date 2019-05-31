@@ -29,7 +29,7 @@
     transition: var(--transitionStyleButton);
 
     &:hover {
-      border-bottom: 4px solid var(--marketplaceColor);
+      border-bottom: 4px solid var(--successColor);
       border-radius: 0;
       text-decoration: none;
     }
@@ -125,7 +125,7 @@
   margin-bottom: 0;
 
   &:hover {
-    color: var(--marketplaceColorDark);
+    color: var(--successColor);
   }
 
   @media (--viewportMedium) {
@@ -149,7 +149,7 @@
   color: var(--matterColor);
 
   &:hover {
-    color: var(--matterColorDark);
+    color: var(--successColor);
   }
 
   @media (--viewportMedium) {

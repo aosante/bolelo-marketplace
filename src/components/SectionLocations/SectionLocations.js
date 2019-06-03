@@ -49,15 +49,18 @@ const SectionLocations = props => {
       <div className={css.title}>
         <span className={css.container}>
           <div>
-            <span className={css.blue}>Bo</span>
+            <span className={css.blue}>B</span>
+            <span className={css.green}>o</span>
             rrow
           </div>{' '}
           <div>
-            <span className={css.blue}>Le</span>
+            <span className={css.blue}>L</span>
+            <span className={css.green}>e</span>
             nd
           </div>{' '}
           <div>
-            <span className={css.blue}>Lo</span>
+            <span className={css.blue}>L</span>
+            <span className={css.green}>o</span>
             cal
           </div>
         </span>

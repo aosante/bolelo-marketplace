@@ -14,6 +14,17 @@ way to update this template, but currently, we follow a pattern:
 
 ## Upcoming version 2019-XX-XX
 
+- [fix] Emptying the priceFilter component in the searchPage caused a page breaking error.
+  [#1101](https://github.com/sharetribe/flex-template-web/pull/1101)
+
+## [v2.17.0] 2019-05-23
+
+- [change] Mapbox library dependencies updated to v1.0.0.
+  [#1099](https://github.com/sharetribe/flex-template-web/pull/1099)
+  - Note: Mapbox changed their pricing scheme!
+- [fix] missing provider information (like SSN in US), might cause payment to fail on
+  `CheckoutPage`. This improves related error message.
+  [#1098](https://github.com/sharetribe/flex-template-web/pull/1098)
 - [fix] Menu needs to wait for mounting to calculate dimensions properly.
   [#1096](https://github.com/sharetribe/flex-template-web/pull/1096)
 - [fix] Renamed Component.example.css files to ComponentExample.css to fix bug introduced in one of
@@ -27,6 +38,8 @@ way to update this template, but currently, we follow a pattern:
   but handled separately. [#1088](https://github.com/sharetribe/flex-template-web/pull/1088)
 - [change] Move Stripe SDK call from `StripePaymentForm` to `stripe.duck.js` for consistency.
   [#1086](https://github.com/sharetribe/flex-template-web/pull/1086)
+
+  [v2.17.0]: https://github.com/sharetribe/flex-template-web/compare/v2.16.0...v2.17.0
 
 ## [v2.16.0] 2019-05-08
 

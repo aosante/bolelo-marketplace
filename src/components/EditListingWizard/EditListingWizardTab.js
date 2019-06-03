@@ -26,6 +26,7 @@ export const AVAILABILITY = 'availability';
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const BRAND = 'brand';
+export const COLOR = 'color';
 export const POLICY = 'policy';
 export const LOCATION = 'location';
 export const PRICING = 'pricing';
@@ -36,6 +37,7 @@ export const SUPPORTED_TABS = [
   DESCRIPTION,
   FEATURES,
   BRAND,
+  COLOR,
   POLICY,
   LOCATION,
   PRICING,

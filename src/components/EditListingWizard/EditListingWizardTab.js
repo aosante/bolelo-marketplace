@@ -14,6 +14,8 @@ import {
   EditListingDescriptionPanel,
   EditListingFeaturesPanel,
   EditListingBrandPanel,
+  EditListingColorPanel,
+  EditListingDimensionsPanel,
   EditListingLocationPanel,
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
@@ -27,6 +29,7 @@ export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const BRAND = 'brand';
 export const COLOR = 'color';
+export const DIMENSIONS = 'dimensions';
 export const POLICY = 'policy';
 export const LOCATION = 'location';
 export const PRICING = 'pricing';
@@ -38,6 +41,7 @@ export const SUPPORTED_TABS = [
   FEATURES,
   BRAND,
   COLOR,
+  DIMENSIONS,
   POLICY,
   LOCATION,
   PRICING,
@@ -194,6 +198,34 @@ const EditListingWizardTab = props => {
       return (
         <EditListingBrandPanel
           {...panelProps(BRAND)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
+    case COLOR: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewColor'
+        : 'EditListingWizard.saveEditColor';
+      return (
+        <EditListingColorPanel
+          {...panelProps(COLOR)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
+    case DIMENSIONS: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewDimensions'
+        : 'EditListingWizard.saveEditDimensions';
+      return (
+        <EditListingDimensionsPanel
+          {...panelProps(DIMENSIONS)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);

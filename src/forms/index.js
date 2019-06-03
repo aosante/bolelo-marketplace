@@ -4,6 +4,8 @@ export { default as EditListingAvailabilityForm } from './EditListingAvailabilit
 export { default as EditListingDescriptionForm } from './EditListingDescriptionForm/EditListingDescriptionForm';
 export { default as EditListingFeaturesForm } from './EditListingFeaturesForm/EditListingFeaturesForm';
 export { default as EditListingBrandForm } from './EditListingBrandForm/EditListingBrandForm';
+export { default as EditListingColorForm } from './EditListingColorForm/EditListingColorForm';
+export { default as EditListingDimensionsForm } from './EditListingDimensionsForm/EditListingDimensionsForm';
 export { default as EditListingLocationForm } from './EditListingLocationForm/EditListingLocationForm';
 export { default as EditListingPhotosForm } from './EditListingPhotosForm/EditListingPhotosForm';
 export { default as EditListingPoliciesForm } from './EditListingPoliciesForm/EditListingPoliciesForm';

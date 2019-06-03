@@ -19,10 +19,12 @@ import EditListingWizardTab, {
   DESCRIPTION,
   FEATURES,
   BRAND,
+  COLOR,
   POLICY,
   LOCATION,
   PRICING,
   PHOTOS,
+  DIMENSIONS,
 } from './EditListingWizardTab';
 import css from './EditListingWizard.css';
 
@@ -35,6 +37,7 @@ export const TABS = [
   DESCRIPTION,
   FEATURES,
   BRAND,
+  COLOR,
   POLICY,
   LOCATION,
   PRICING,
@@ -53,6 +56,10 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelFeatures';
   } else if (tab === BRAND) {
     key = 'EditListingWizard.tabLabelBrand';
+  } else if (tab === COLOR) {
+    key = 'EditListingWizard.tabLabelColor';
+  } else if (tab === DIMENSIONS) {
+    key = 'EditListingWizard.tabLabelDimensions';
   } else if (tab === POLICY) {
     key = 'EditListingWizard.tabLabelPolicy';
   } else if (tab === LOCATION) {
@@ -93,12 +100,15 @@ const tabCompleted = (tab, listing) => {
     case FEATURES:
       return !!(publicData && publicData.amenities);
     case BRAND:
-      //add model atribute in here too
       return !!(
         publicData &&
         typeof publicData.brand !== 'undefined' &&
         typeof publicData.model !== 'undefined'
       );
+    case COLOR:
+      return !!(publicData && publicData.color !== 'undefined');
+    case DIMENSIONS:
+      return !!(publicData && publicData.dimensions !== 'undefined');
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:

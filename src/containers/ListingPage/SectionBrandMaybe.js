@@ -8,7 +8,7 @@ import css from './SectionRulesMaybe.css';
 const SectionBrandMaybe = props => {
   const { className, rootClassName, publicData } = props;
   const classes = classNames(rootClassName || css.root, className);
-  return publicData && publicData.rules ? (
+  return publicData && publicData.brand ? (
     <div className={classes}>
       <h2 className={css.title}>
         <FormattedMessage id="ListingPage.brandTitle" />

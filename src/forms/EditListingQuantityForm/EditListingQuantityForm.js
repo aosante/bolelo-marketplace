@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { Form, Button, FieldTextInput } from '../../components';
 
-import css from './EditListingColorForm.css';
+import css from './EditListingQuantityForm.css';
 
-export const EditListingColorFormComponent = props => (
+export const EditListingQuantityFormComponent = props => (
   <FinalForm
     {...props}
     render={fieldRenderProps => {
@@ -26,22 +26,22 @@ export const EditListingColorFormComponent = props => (
         fetchErrors,
       } = fieldRenderProps;
 
-      const colorLabelMessage = intl.formatMessage({
-        id: 'EditListingColorForm.colorLabel',
+      const quantityLabelMessage = intl.formatMessage({
+        id: 'EditListingQuantityForm.quantityLabel',
       });
-      const colorPlaceholderMessage = intl.formatMessage({
-        id: 'EditListingColorForm.colorPlaceholder',
+      const quantityPlaceholderMessage = intl.formatMessage({
+        id: 'EditListingQuantityForm.quantityPlaceholder',
       });
 
       const { updateListingError, showListingsError } = fetchErrors || {};
       const errorMessage = updateListingError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingColorForm.updateFailed" />
+          <FormattedMessage id="EditListingQuantityForm.updateFailed" />
         </p>
       ) : null;
       const errorMessageShowListing = showListingsError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingColorForm.showListingFailed" />
+          <FormattedMessage id="EditListingQuantityForm.showListingFailed" />
         </p>
       ) : null;
 
@@ -55,12 +55,12 @@ export const EditListingColorFormComponent = props => (
           {errorMessage}
           {errorMessageShowListing}
           <FieldTextInput
-            id="color"
-            name="color"
-            className={css.color}
-            type="text"
-            label={colorLabelMessage}
-            placeholder={colorPlaceholderMessage}
+            id="quantity"
+            name="quantity"
+            className={css.quantity}
+            type="number"
+            label={quantityLabelMessage}
+            placeholder={quantityPlaceholderMessage}
           />
 
           <Button
@@ -78,12 +78,12 @@ export const EditListingColorFormComponent = props => (
   />
 );
 
-EditListingColorFormComponent.defaultProps = {
+EditListingQuantityFormComponent.defaultProps = {
   selectedPlace: null,
   updateError: null,
 };
 
-EditListingColorFormComponent.propTypes = {
+EditListingQuantityFormComponent.propTypes = {
   intl: intlShape.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
@@ -96,4 +96,4 @@ EditListingColorFormComponent.propTypes = {
   }),
 };
 
-export default compose(injectIntl)(EditListingColorFormComponent);
+export default compose(injectIntl)(EditListingQuantityFormComponent);

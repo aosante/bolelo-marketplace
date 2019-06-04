@@ -7,6 +7,7 @@ export { default as EditListingBrandForm } from './EditListingBrandForm/EditList
 export { default as EditListingColorForm } from './EditListingColorForm/EditListingColorForm';
 export { default as EditListingDimensionsForm } from './EditListingDimensionsForm/EditListingDimensionsForm';
 export { default as EditListingLocationForm } from './EditListingLocationForm/EditListingLocationForm';
+export { default as EditListingQuantityForm } from './EditListingQuantityForm/EditListingQuantityForm';
 export { default as EditListingInfoForm } from './EditListingInfoForm/EditListingInfoForm';
 export { default as EditListingPhotosForm } from './EditListingPhotosForm/EditListingPhotosForm';
 export { default as EditListingPoliciesForm } from './EditListingPoliciesForm/EditListingPoliciesForm';

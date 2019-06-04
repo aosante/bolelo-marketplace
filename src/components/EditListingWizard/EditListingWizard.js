@@ -24,6 +24,7 @@ import EditListingWizardTab, {
   POLICY,
   INFO,
   LOCATION,
+  QUANTITY,
   PRICING,
   PHOTOS,
 } from './EditListingWizardTab';
@@ -43,6 +44,7 @@ export const TABS = [
   POLICY,
   INFO,
   LOCATION,
+  QUANTITY,
   PRICING,
   ...availabilityMaybe,
   PHOTOS,
@@ -69,6 +71,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelInfo';
   } else if (tab === LOCATION) {
     key = 'EditListingWizard.tabLabelLocation';
+  } else if (tab === QUANTITY) {
+    key = 'EditListingWizard.tabLabelQuantity';
   } else if (tab === PRICING) {
     key = 'EditListingWizard.tabLabelPricing';
   } else if (tab === AVAILABILITY) {

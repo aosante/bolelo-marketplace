@@ -153,6 +153,7 @@ export { default as EditListingBrandPanel } from './EditListingBrandPanel/EditLi
 export { default as EditListingColorPanel } from './EditListingColorPanel/EditListingColorPanel';
 export { default as EditListingDimensionsPanel } from './EditListingDimensionsPanel/EditListingDimensionsPanel';
 export { default as EditListingLocationPanel } from './EditListingLocationPanel/EditListingLocationPanel';
+export { default as EditListingQuantityPanel } from './EditListingQuantityPanel/EditListingQuantityPanel';
 export { default as EditListingPhotosPanel } from './EditListingPhotosPanel/EditListingPhotosPanel';
 export { default as EditListingInfoPanel } from './EditListingInfoPanel/EditListingInfoPanel';
 export { default as EditListingPoliciesPanel } from './EditListingPoliciesPanel/EditListingPoliciesPanel';

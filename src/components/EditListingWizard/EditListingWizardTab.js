@@ -17,6 +17,7 @@ import {
   EditListingColorPanel,
   EditListingDimensionsPanel,
   EditListingLocationPanel,
+  EditListingQuantityPanel,
   EditListingInfoPanel,
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
@@ -34,6 +35,7 @@ export const DIMENSIONS = 'dimensions';
 export const POLICY = 'policy';
 export const INFO = 'info';
 export const LOCATION = 'location';
+export const QUANTITY = 'quantity';
 export const PRICING = 'pricing';
 export const PHOTOS = 'photos';
 
@@ -47,6 +49,7 @@ export const SUPPORTED_TABS = [
   POLICY,
   INFO,
   LOCATION,
+  QUANTITY,
   PRICING,
   AVAILABILITY,
   PHOTOS,
@@ -277,6 +280,8 @@ const EditListingWizardTab = props => {
           }}
         />
       );
+    }
+    case QUANTITY: {
     }
     case PRICING: {
       const submitButtonTranslationKey = isNewListingFlow

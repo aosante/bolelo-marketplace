@@ -17,6 +17,7 @@ import {
   EditListingColorPanel,
   EditListingDimensionsPanel,
   EditListingLocationPanel,
+  EditListingInfoPanel,
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
   EditListingPricingPanel,
@@ -31,6 +32,7 @@ export const BRAND = 'brand';
 export const COLOR = 'color';
 export const DIMENSIONS = 'dimensions';
 export const POLICY = 'policy';
+export const INFO = 'info';
 export const LOCATION = 'location';
 export const PRICING = 'pricing';
 export const PHOTOS = 'photos';
@@ -43,6 +45,7 @@ export const SUPPORTED_TABS = [
   COLOR,
   DIMENSIONS,
   POLICY,
+  INFO,
   LOCATION,
   PRICING,
   AVAILABILITY,
@@ -240,6 +243,20 @@ const EditListingWizardTab = props => {
       return (
         <EditListingPoliciesPanel
           {...panelProps(POLICY)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
+    case INFO: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewInfo'
+        : 'EditListingWizard.saveEditInfo';
+      return (
+        <EditListingInfoPanel
+          {...panelProps(INFO)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);

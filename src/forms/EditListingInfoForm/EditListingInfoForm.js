@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { Form, Button, FieldTextInput } from '../../components';
 
-import css from './EditListingDimensionsForm.css';
+import css from './EditListingInfoForm.css';
 
-export const EditListingDimensionsFormComponent = props => (
+export const EditListingInfoFormComponent = props => (
   <FinalForm
     {...props}
     render={fieldRenderProps => {
@@ -26,22 +26,22 @@ export const EditListingDimensionsFormComponent = props => (
         fetchErrors,
       } = fieldRenderProps;
 
-      const dimensionsLabelMessage = intl.formatMessage({
-        id: 'EditListingDimensionsForm.dimensionsLabel',
+      const infoLabelMessage = intl.formatMessage({
+        id: 'EditListingInfoForm.infoLabel',
       });
-      const dimensionsPlaceholderMessage = intl.formatMessage({
-        id: 'EditListingDimensionsForm.dimensionsPlaceholder',
+      const infoPlaceholderMessage = intl.formatMessage({
+        id: 'EditListingInfoForm.infoPlaceholder',
       });
 
       const { updateListingError, showListingsError } = fetchErrors || {};
       const errorMessage = updateListingError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingDimensionsForm.updateFailed" />
+          <FormattedMessage id="EditListingColorForm.updateFailed" />
         </p>
       ) : null;
       const errorMessageShowListing = showListingsError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingDimensionsForm.showListingFailed" />
+          <FormattedMessage id="EditListingColorForm.showListingFailed" />
         </p>
       ) : null;
 
@@ -55,12 +55,12 @@ export const EditListingDimensionsFormComponent = props => (
           {errorMessage}
           {errorMessageShowListing}
           <FieldTextInput
-            id="dimensions"
-            name="dimensions"
-            className={css.dimensions}
+            id="info"
+            name="info"
+            className={css.info}
             type="textarea"
-            label={dimensionsLabelMessage}
-            placeholder={dimensionsPlaceholderMessage}
+            label={infoLabelMessage}
+            placeholder={infoPlaceholderMessage}
           />
 
           <Button
@@ -78,12 +78,12 @@ export const EditListingDimensionsFormComponent = props => (
   />
 );
 
-EditListingDimensionsFormComponent.defaultProps = {
+EditListingInfoFormComponent.defaultProps = {
   selectedPlace: null,
   updateError: null,
 };
 
-EditListingDimensionsFormComponent.propTypes = {
+EditListingInfoFormComponent.propTypes = {
   intl: intlShape.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
@@ -96,4 +96,4 @@ EditListingDimensionsFormComponent.propTypes = {
   }),
 };
 
-export default compose(injectIntl)(EditListingDimensionsFormComponent);
+export default compose(injectIntl)(EditListingInfoFormComponent);

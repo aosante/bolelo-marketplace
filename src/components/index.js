@@ -154,6 +154,7 @@ export { default as EditListingColorPanel } from './EditListingColorPanel/EditLi
 export { default as EditListingDimensionsPanel } from './EditListingDimensionsPanel/EditListingDimensionsPanel';
 export { default as EditListingLocationPanel } from './EditListingLocationPanel/EditListingLocationPanel';
 export { default as EditListingPhotosPanel } from './EditListingPhotosPanel/EditListingPhotosPanel';
+export { default as EditListingInfoPanel } from './EditListingInfoPanel/EditListingInfoPanel';
 export { default as EditListingPoliciesPanel } from './EditListingPoliciesPanel/EditListingPoliciesPanel';
 export { default as EditListingPricingPanel } from './EditListingPricingPanel/EditListingPricingPanel';
 export { default as EditListingWizard } from './EditListingWizard/EditListingWizard';

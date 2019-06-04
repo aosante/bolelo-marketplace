@@ -20,11 +20,12 @@ import EditListingWizardTab, {
   FEATURES,
   BRAND,
   COLOR,
+  DIMENSIONS,
   POLICY,
+  INFO,
   LOCATION,
   PRICING,
   PHOTOS,
-  DIMENSIONS,
 } from './EditListingWizardTab';
 import css from './EditListingWizard.css';
 
@@ -38,7 +39,9 @@ export const TABS = [
   FEATURES,
   BRAND,
   COLOR,
+  DIMENSIONS,
   POLICY,
+  INFO,
   LOCATION,
   PRICING,
   ...availabilityMaybe,
@@ -62,6 +65,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelDimensions';
   } else if (tab === POLICY) {
     key = 'EditListingWizard.tabLabelPolicy';
+  } else if (tab === INFO) {
+    key = 'EditListingWizard.tabLabelInfo';
   } else if (tab === LOCATION) {
     key = 'EditListingWizard.tabLabelLocation';
   } else if (tab === PRICING) {
@@ -111,6 +116,8 @@ const tabCompleted = (tab, listing) => {
       return !!(publicData && publicData.dimensions !== 'undefined');
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
+    case INFO:
+      return !!(publicData && typeof publicData.info !== 'undefined');
     case LOCATION:
       return !!(geolocation && publicData && publicData.location && publicData.location.address);
     case PRICING:

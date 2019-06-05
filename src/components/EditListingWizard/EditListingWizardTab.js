@@ -282,6 +282,18 @@ const EditListingWizardTab = props => {
       );
     }
     case QUANTITY: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewQuantity'
+        : 'EditListingWizard.saveEditQuantity';
+      return (
+        <EditListingQuantityPanel
+          {...panelProps(QUANTITY)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
     }
     case PRICING: {
       const submitButtonTranslationKey = isNewListingFlow

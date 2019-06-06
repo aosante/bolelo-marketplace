@@ -115,15 +115,17 @@ const tabCompleted = (tab, listing) => {
         typeof publicData.model !== 'undefined'
       );
     case COLOR:
-      return !!(publicData && publicData.color !== 'undefined');
+      return !!(publicData && typeof publicData.color !== 'undefined');
     case DIMENSIONS:
-      return !!(publicData && publicData.dimensions !== 'undefined');
+      return !!(publicData && typeof publicData.dimensions !== 'undefined');
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case INFO:
       return !!(publicData && typeof publicData.info !== 'undefined');
     case LOCATION:
       return !!(geolocation && publicData && publicData.location && publicData.location.address);
+    case QUANTITY:
+      return !!(publicData && typeof publicData.quantity !== 'undefined');
     case PRICING:
       return !!price;
     case AVAILABILITY:

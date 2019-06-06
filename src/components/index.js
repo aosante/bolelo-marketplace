@@ -148,7 +148,7 @@ export { default as PrivacyPolicy } from './PrivacyPolicy/PrivacyPolicy';
 export { default as TermsOfService } from './TermsOfService/TermsOfService';
 export { default as EditListingAvailabilityPanel } from './EditListingAvailabilityPanel/EditListingAvailabilityPanel';
 export { default as EditListingDescriptionPanel } from './EditListingDescriptionPanel/EditListingDescriptionPanel';
-export { default as EditListingFeaturesPanel } from './EditListingFeaturesPanel/EditListingFeaturesPanel';
+export { default as EditListingCategoriesPanel } from './EditListingCategoriesPanel/EditListingCategoriesPanel';
 export { default as EditListingBrandPanel } from './EditListingBrandPanel/EditListingBrandPanel';
 export { default as EditListingColorPanel } from './EditListingColorPanel/EditListingColorPanel';
 export { default as EditListingDimensionsPanel } from './EditListingDimensionsPanel/EditListingDimensionsPanel';

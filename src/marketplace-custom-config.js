@@ -8,36 +8,28 @@
 
 export const amenities = [
   {
-    key: 'towels',
-    label: 'Towels',
+    key: 'household',
+    label: 'Household',
   },
   {
-    key: 'bathroom',
-    label: 'Bathroom',
+    key: 'office',
+    label: 'Office',
   },
   {
-    key: 'swimming_pool',
-    label: 'Swimming pool',
+    key: 'diy_construction',
+    label: 'DIY / Construction',
   },
   {
-    key: 'own_drinks',
-    label: 'Own drinks allowed',
+    key: 'sports_recreation',
+    label: 'Sports / Recreation',
   },
   {
-    key: 'jacuzzi',
-    label: 'Jacuzzi',
+    key: 'special_event',
+    label: 'Special Event',
   },
   {
-    key: 'audiovisual_entertainment',
-    label: 'Audiovisual entertainment',
-  },
-  {
-    key: 'barbeque',
-    label: 'Barbeque',
-  },
-  {
-    key: 'own_food_allowed',
-    label: 'Own food allowed',
+    key: 'miscellaneous',
+    label: 'Miscellaneous',
   },
 ];
 
@@ -64,9 +56,9 @@ export const dateRangeFilterConfig = {
 };
 
 //Testing data extention
-export const capacityOptions = [
-  { key: '1to3', label: '1 to 3' },
-  { key: '4to6', label: '4 to 6' },
-  { key: '7to9', label: '7 to 9' },
-  { key: '10plus', label: '10 plus' },
-];
+// export const capacityOptions = [
+//   { key: '1to3', label: '1 to 3' },
+//   { key: '4to6', label: '4 to 6' },
+//   { key: '7to9', label: '7 to 9' },
+//   { key: '10plus', label: '10 plus' },
+// ];

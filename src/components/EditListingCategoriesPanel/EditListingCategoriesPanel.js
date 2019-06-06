@@ -5,14 +5,14 @@ import { FormattedMessage } from 'react-intl';
 
 import { LISTING_STATE_DRAFT } from '../../util/types';
 import { ensureListing } from '../../util/data';
-import { EditListingFeaturesForm } from '../../forms';
+import { EditListingCategoriesForm } from '../../forms';
 import { ListingLink } from '../../components';
 
-import css from './EditListingFeaturesPanel.css';
+import css from './EditListingCategoriesPanel.css';
 
 const FEATURES_NAME = 'amenities';
 
-const EditListingFeaturesPanel = props => {
+const EditListingCategoriesPanel = props => {
   const {
     rootClassName,
     className,
@@ -32,11 +32,11 @@ const EditListingFeaturesPanel = props => {
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
     <FormattedMessage
-      id="EditListingFeaturesPanel.title"
+      id="EditListingCategoriesPanel.title"
       values={{ listingTitle: <ListingLink listing={listing} /> }}
     />
   ) : (
-    <FormattedMessage id="EditListingFeaturesPanel.createListingTitle" />
+    <FormattedMessage id="EditListingCategoriesPanel.createListingTitle" />
   );
 
   const amenities = publicData && publicData.amenities;
@@ -45,7 +45,7 @@ const EditListingFeaturesPanel = props => {
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
-      <EditListingFeaturesForm
+      <EditListingCategoriesForm
         className={css.form}
         name={FEATURES_NAME}
         initialValues={initialValues}
@@ -67,7 +67,7 @@ const EditListingFeaturesPanel = props => {
   );
 };
 
-EditListingFeaturesPanel.defaultProps = {
+EditListingCategoriesPanel.defaultProps = {
   rootClassName: null,
   className: null,
   listing: null,
@@ -75,7 +75,7 @@ EditListingFeaturesPanel.defaultProps = {
 
 const { bool, func, object, string } = PropTypes;
 
-EditListingFeaturesPanel.propTypes = {
+EditListingCategoriesPanel.propTypes = {
   rootClassName: string,
   className: string,
 
@@ -90,4 +90,4 @@ EditListingFeaturesPanel.propTypes = {
   errors: object.isRequired,
 };
 
-export default EditListingFeaturesPanel;
+export default EditListingCategoriesPanel;

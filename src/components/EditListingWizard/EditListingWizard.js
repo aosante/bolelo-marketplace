@@ -17,7 +17,7 @@ import { Modal, NamedRedirect, Tabs } from '../../components';
 import EditListingWizardTab, {
   AVAILABILITY,
   DESCRIPTION,
-  FEATURES,
+  CATEGORIES,
   BRAND,
   COLOR,
   DIMENSIONS,
@@ -37,7 +37,7 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 // All the other panels can be reordered.
 export const TABS = [
   DESCRIPTION,
-  FEATURES,
+  CATEGORIES,
   BRAND,
   COLOR,
   DIMENSIONS,
@@ -57,8 +57,8 @@ const tabLabel = (intl, tab) => {
   let key = null;
   if (tab === DESCRIPTION) {
     key = 'EditListingWizard.tabLabelDescription';
-  } else if (tab === FEATURES) {
-    key = 'EditListingWizard.tabLabelFeatures';
+  } else if (tab === CATEGORIES) {
+    key = 'EditListingWizard.tabLabelCategories';
   } else if (tab === BRAND) {
     key = 'EditListingWizard.tabLabelBrand';
   } else if (tab === COLOR) {
@@ -106,7 +106,7 @@ const tabCompleted = (tab, listing) => {
   switch (tab) {
     case DESCRIPTION:
       return !!(description && title);
-    case FEATURES:
+    case CATEGORIES:
       return !!(publicData && publicData.amenities);
     case BRAND:
       return !!(

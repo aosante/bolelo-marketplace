@@ -6,12 +6,7 @@ import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import omit from 'lodash/omit';
 
-import {
-  BookingDateRangeFilter,
-  SelectSingleFilter,
-  SelectMultipleFilter,
-  PriceFilter,
-} from '../../components';
+import { BookingDateRangeFilter, SelectMultipleFilter, PriceFilter } from '../../components';
 import routeConfiguration from '../../routeConfiguration';
 import { parseDateFromISO8601, stringifyDateToISO8601 } from '../../util/dates';
 import { createResourceLocatorString } from '../../util/routes';
@@ -23,9 +18,9 @@ const FILTER_DROPDOWN_OFFSET = -14;
 const RADIX = 10;
 
 // resolve initial value for a single value filter
-const initialValue = (queryParams, paramName) => {
-  return queryParams[paramName];
-};
+// const initialValue = (queryParams, paramName) => {
+//   return queryParams[paramName];
+// };
 
 // resolve initial values for a multi value filter
 const initialValues = (queryParams, paramName) => {
@@ -66,7 +61,6 @@ const SearchFiltersComponent = props => {
     listingsAreLoaded,
     resultsCount,
     searchInProgress,
-    categoryFilter,
     amenitiesFilter,
     priceFilter,
     dateRangeFilter,
@@ -80,21 +74,17 @@ const SearchFiltersComponent = props => {
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
 
-  const categoryLabel = intl.formatMessage({
-    id: 'SearchFilters.categoryLabel',
-  });
-
-  const amenitiesLabel = intl.formatMessage({
-    id: 'SearchFilters.amenitiesLabel',
+  const categoriesLabel = intl.formatMessage({
+    id: 'SearchFilters.categoriesLabel',
   });
 
   const initialAmenities = amenitiesFilter
     ? initialValues(urlQueryParams, amenitiesFilter.paramName)
     : null;
 
-  const initialCategory = categoryFilter
-    ? initialValue(urlQueryParams, categoryFilter.paramName)
-    : null;
+  // const initialCategory = categoryFilter
+  //   ? initialValue(urlQueryParams, categoryFilter.paramName)
+  //   : null;
 
   const initialPriceRange = priceFilter
     ? initialPriceRangeValue(urlQueryParams, priceFilter.paramName)
@@ -113,15 +103,15 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
-  const handleSelectOption = (urlParam, option) => {
-    // query parameters after selecting the option
-    // if no option is passed, clear the selection for the filter
-    const queryParams = option
-      ? { ...urlQueryParams, [urlParam]: option }
-      : omit(urlQueryParams, urlParam);
+  // const handleSelectOption = (urlParam, option) => {
+  //   // query parameters after selecting the option
+  //   // if no option is passed, clear the selection for the filter
+  //   const queryParams = option
+  //     ? { ...urlQueryParams, [urlParam]: option }
+  //     : omit(urlQueryParams, urlParam);
 
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  };
+  //   history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  // };
 
   const handlePrice = (urlParam, range) => {
     const { minPrice, maxPrice } = range || {};
@@ -147,24 +137,24 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
-  const categoryFilterElement = categoryFilter ? (
-    <SelectSingleFilter
-      urlParam={categoryFilter.paramName}
-      label={categoryLabel}
-      onSelect={handleSelectOption}
-      showAsPopup
-      options={categoryFilter.options}
-      initialValue={initialCategory}
-      contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
-    />
-  ) : null;
+  // const categoryFilterElement = categoryFilter ? (
+  //   <SelectSingleFilter
+  //     urlParam={categoryFilter.paramName}
+  //     label={categoryLabel}
+  //     onSelect={handleSelectOption}
+  //     showAsPopup
+  //     options={categoryFilter.options}
+  //     initialValue={initialCategory}
+  //     contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
+  //   />
+  // ) : null;
 
   const amenitiesFilterElement = amenitiesFilter ? (
     <SelectMultipleFilter
       id={'SearchFilters.amenitiesFilter'}
       name="amenities"
       urlParam={amenitiesFilter.paramName}
-      label={amenitiesLabel}
+      label={categoriesLabel}
       onSubmit={handleSelectOptions}
       showAsPopup
       options={amenitiesFilter.options}
@@ -217,7 +207,6 @@ const SearchFiltersComponent = props => {
   return (
     <div className={classes}>
       <div className={css.filters}>
-        {categoryFilterElement}
         {amenitiesFilterElement}
         {priceFilterElement}
         {dateRangeFilterElement}

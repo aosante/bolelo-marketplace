@@ -11,27 +11,6 @@ export default [
   {
     id: 'default-helsinki',
     predictionPlace: {
-      address: 'Los Angeles, California',
-      bounds: new LatLngBounds(
-        new LatLng(34.99100892, -116.9633698),
-        new LatLng(32.80793209, -119.3504426)
-      ),
-    },
-  },
-  {
-    id: 'default-turku',
-    predictionPlace: {
-      address: 'New York City, New York',
-      bounds: new LatLngBounds(
-        new LatLng(41.85783084, -72.57892416),
-        new LatLng(39.51731711, -75.38043784)
-      ),
-    },
-  },
-  //, miami, austin
-  {
-    id: 'default-tampere',
-    predictionPlace: {
       address: 'Raleigh, North Carolina',
       bounds: new LatLngBounds(
         new LatLng(38.30653843, -75.8435422),
@@ -40,22 +19,43 @@ export default [
     },
   },
   {
+    id: 'default-turku',
+    predictionPlace: {
+      address: 'Charlotte, North Carolina',
+      bounds: new LatLngBounds(
+        new LatLng(35.39313300000001, -80.67010399999998),
+        new LatLng(35.0131739, -81.00955390000001)
+      ),
+    },
+  },
+  //, miami, austin
+  {
+    id: 'default-tampere',
+    predictionPlace: {
+      address: 'Durham, North Carolina',
+      bounds: new LatLngBounds(
+        new LatLng(36.1369289, -78.76217200000002),
+        new LatLng(35.8667249, -79.00765000000001)
+      ),
+    },
+  },
+  {
     id: 'default-oulu',
     predictionPlace: {
-      address: 'Miami, Florida',
+      address: 'Greensboro, North Carolina',
       bounds: new LatLngBounds(
-        new LatLng(26.08774825, -79.8881426),
-        new LatLng(25.39254736, -80.58852102)
+        new LatLng(36.2153239, -79.65986599999997),
+        new LatLng(35.985195, -80.00689090000003)
       ),
     },
   },
   {
     id: 'default-ruka',
     predictionPlace: {
-      address: 'Austin, Texas',
+      address: 'Winston-Salem, North Carolina',
       bounds: new LatLngBounds(
-        new LatLng(31.63145879, -96.35264456),
-        new LatLng(28.96639539, -99.15415824)
+        new LatLng(36.212599, -80.1009689),
+        new LatLng(35.996545, -80.38594690000002)
       ),
     },
   },

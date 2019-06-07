@@ -8,9 +8,9 @@ import { NamedLink } from '../../components';
 
 import css from './SectionLocations.css';
 
-import drillImage from './images/drill.jpg';
-import ironImage from './images/iron.jpg';
-import footballImage from './images/football.jpg';
+import grinderImage from './images/grinder.jpg';
+import ladderImage from './images/ladder.jpg';
+import tentImage from './images/tent.jpg';
 
 class LocationImage extends Component {
   render() {
@@ -67,19 +67,19 @@ const SectionLocations = props => {
       </div>
       <div className={css.locations}>
         {locationLink(
-          'Los Angeles',
-          drillImage,
-          '?address=Los%20Angeles%2C%20California&bounds=34.99100892%2C-116.9633698%2C32.80793209%2C-119.3504426'
-        )}
-        {locationLink(
-          'New York',
-          ironImage,
-          '?address=New%20York%20City%2C%20New%20York&bounds=41.85783084%2C-72.57892416%2C39.51731711%2C-75.38043784'
-        )}
-        {locationLink(
           'Raleigh',
-          footballImage,
-          '?address=Raleigh%2C%20North%20Carolina&bounds=38.30653843%2C-75.8435422%2C33.30230225%2C-81.44656962'
+          grinderImage,
+          '?address=Raleigh%2C%20North%20Carolina&bounds=38.30653843%2C-75.8435422%2C33.30230225%2C-81.446569626'
+        )}
+        {locationLink(
+          'Charlotte',
+          tentImage,
+          '?address=Charlotte%2C%20North%20Carolina&bounds=35.39313300000001%2C-80.67010399999998%2C35.0131739%2C-81.00955390000001'
+        )}
+        {locationLink(
+          'Durham',
+          ladderImage,
+          '?address=Durham%2C%20North%20Carolina&bounds=36.1369289%2C-78.76217200000002%2C35.8667249%2C-79.00765000000001'
         )}
       </div>
     </div>

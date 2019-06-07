@@ -60,6 +60,7 @@
 
   @media (--viewportLarge) {
     display: none;
+    border: 2px solid red;
   }
 }
 
@@ -69,7 +70,7 @@
   height: 27px;
 
   @media (--viewportLarge) {
-    display: block;
+    /* display: block; */
   }
 }
 

@@ -9,6 +9,12 @@ import { ensureTransaction } from './data';
  * so we need to understand what those strings mean.
  */
 
+//The following are transitions added due to the new transition process
+//---------------------------------------------------------------------------------
+export const TRANSITION_CANCEL_REQUEST = 'transition/cancel-request';
+export const TRANSITION_CUSTOMER_CANCEL = 'transition/customer-cancel';
+//---------------------------------------------------------------------------------
+
 // When a customer makes a booking to a listing, a transaction is
 // created with the initial request transition.
 export const TRANSITION_REQUEST = 'transition/request';
@@ -95,7 +101,7 @@ const stateDescription = {
   // id is defined only to support Xstate format.
   // However if you have multiple transaction processes defined,
   // it is best to keep them in sync with transaction process aliases.
-  id: 'preauth-with-nightly-booking/release-1',
+  id: 'preauth-with-daily-booking/release-1',
 
   // This 'initial' state is a starting point for new transaction
   initial: STATE_INITIAL,
@@ -119,6 +125,7 @@ const stateDescription = {
         [TRANSITION_DECLINE]: STATE_DECLINED,
         [TRANSITION_EXPIRE]: STATE_DECLINED,
         [TRANSITION_ACCEPT]: STATE_ACCEPTED,
+        [TRANSITION_CANCEL_REQUEST]: STATE_CANCELED,
       },
     },
 
@@ -127,6 +134,7 @@ const stateDescription = {
       on: {
         [TRANSITION_CANCEL]: STATE_CANCELED,
         [TRANSITION_COMPLETE]: STATE_DELIVERED,
+        [TRANSITION_CUSTOMER_CANCEL]: STATE_CANCELED,
       },
     },
 
@@ -275,6 +283,8 @@ export const getReview2Transition = isCustomer =>
 export const isRelevantPastTransition = transition => {
   return [
     TRANSITION_ACCEPT,
+    TRANSITION_CUSTOMER_CANCEL,
+    TRANSITION_CANCEL_REQUEST,
     TRANSITION_CANCEL,
     TRANSITION_COMPLETE,
     TRANSITION_DECLINE,

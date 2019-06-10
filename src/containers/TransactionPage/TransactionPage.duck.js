@@ -12,6 +12,7 @@ import {
   txIsInFirstReviewBy,
   TRANSITION_ACCEPT,
   TRANSITION_DECLINE,
+  TRANSITION_CANCEL_REQUEST,
 } from '../../util/transaction';
 import * as log from '../../util/log';
 import {
@@ -82,6 +83,8 @@ const initialState = {
   sendReviewError: null,
   timeSlots: null,
   fetchTimeSlotsError: null,
+  cancelRequestInProgress: false,
+  cancelRequestError: null,
 };
 
 // Merge entity arrays using ids, so that conflicting items in newer array (b) overwrite old values (a).
@@ -335,6 +338,7 @@ export const declineSale = id => (dispatch, getState, sdk) => {
       dispatch(addMarketplaceEntities(response));
       dispatch(declineSaleSuccess());
       dispatch(fetchCurrentUserNotifications());
+      console.log(response);
       return response;
     })
     .catch(e => {
@@ -345,6 +349,10 @@ export const declineSale = id => (dispatch, getState, sdk) => {
       });
       throw e;
     });
+};
+
+export const cancelRequest = id => (dispatch, getState, sdk) => {
+  return sdk.transactions.show({ id }).then(res => console.log(res.data.data));
 };
 
 const fetchMessages = (txId, page) => (dispatch, getState, sdk) => {

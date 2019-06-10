@@ -30,6 +30,7 @@ import DetailCardHeadingsMaybe from './DetailCardHeadingsMaybe';
 import DetailCardImage from './DetailCardImage';
 import FeedSection from './FeedSection';
 import SaleActionButtonsMaybe from './SaleActionButtonsMaybe';
+import SaleCustomerActionButtonMaybe from './SaleCustomerActionButtonMaybe';
 import PanelHeading, {
   HEADING_ENQUIRED,
   HEADING_REQUESTED,
@@ -86,6 +87,8 @@ export class TransactionPanelComponent extends Component {
     this.onSendMessageFormBlur = this.onSendMessageFormBlur.bind(this);
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.scrollToMessage = this.scrollToMessage.bind(this);
+
+    console.log(props);
   }
 
   componentWillMount() {
@@ -173,11 +176,14 @@ export class TransactionPanelComponent extends Component {
       onDeclineSale,
       acceptInProgress,
       declineInProgress,
+      cancelRequestInProgress,
       acceptSaleError,
       declineSaleError,
+      cancelRequestError,
       onSubmitBookingRequest,
       timeSlots,
       fetchTimeSlotsError,
+      onCancelRequest,
     } = this.props;
 
     const currentTransaction = ensureTransaction(transaction);
@@ -197,7 +203,7 @@ export class TransactionPanelComponent extends Component {
     const isProviderDeleted = isProviderLoaded && currentProvider.attributes.deleted;
 
     const stateDataFn = tx => {
-      console.log(txIsRequested(tx), txIsEnquired(tx));
+      // console.log(txIsRequested(tx), txIsEnquired(tx));
       if (txIsEnquired(tx)) {
         return {
           headingState: HEADING_ENQUIRED,
@@ -208,6 +214,7 @@ export class TransactionPanelComponent extends Component {
           headingState: HEADING_REQUESTED,
           showDetailCardHeadings: isCustomer,
           showSaleButtons: isProvider && !isCustomerBanned,
+          showCancelButton: isCustomer && !isCustomerBanned,
         };
       } else if (txIsAccepted(tx)) {
         return {
@@ -236,7 +243,6 @@ export class TransactionPanelComponent extends Component {
       }
     };
     const stateData = stateDataFn(currentTransaction);
-    console.log(stateData);
 
     const deletedListingTitle = intl.formatMessage({
       id: 'TransactionPanel.deletedListingTitle',
@@ -282,6 +288,15 @@ export class TransactionPanelComponent extends Component {
         declineSaleError={declineSaleError}
         onAcceptSale={() => onAcceptSale(currentTransaction.id)}
         onDeclineSale={() => onDeclineSale(currentTransaction.id)}
+      />
+    );
+
+    const cancelButton = (
+      <SaleCustomerActionButtonMaybe
+        showButtons={stateData.showCancelButton}
+        cancelRequestInProgress={cancelRequestInProgress}
+        cancelRequestError={cancelRequestError}
+        onCancelRequest={() => onCancelRequest(currentTransaction.id)}
       />
     );
 
@@ -366,6 +381,10 @@ export class TransactionPanelComponent extends Component {
               <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
             )}
 
+            {stateData.showCancelButton ? (
+              <div className={css.mobileActionButtons}>{cancelButton}</div>
+            ) : null}
+
             {stateData.showSaleButtons ? (
               <div className={css.mobileActionButtons}>{saleButtons}</div>
             ) : null}
@@ -412,6 +431,9 @@ export class TransactionPanelComponent extends Component {
 
               {stateData.showSaleButtons ? (
                 <div className={css.desktopActionButtons}>{saleButtons}</div>
+              ) : null}
+              {stateData.showCancelButton ? (
+                <div className={css.desktopActionButtons}>{cancelButton}</div>
               ) : null}
             </div>
           </div>
@@ -475,10 +497,13 @@ TransactionPanelComponent.propTypes = {
   // Sale related props
   onAcceptSale: func.isRequired,
   onDeclineSale: func.isRequired,
+  onCancelRequest: func.isRequired,
+  cancelRequestInProgress: bool.isRequired,
   acceptInProgress: bool.isRequired,
   declineInProgress: bool.isRequired,
   acceptSaleError: propTypes.error,
   declineSaleError: propTypes.error,
+  cancelRequestError: propTypes.error,
 
   // from injectIntl
   intl: intlShape,

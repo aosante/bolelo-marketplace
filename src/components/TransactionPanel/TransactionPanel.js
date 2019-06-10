@@ -197,6 +197,7 @@ export class TransactionPanelComponent extends Component {
     const isProviderDeleted = isProviderLoaded && currentProvider.attributes.deleted;
 
     const stateDataFn = tx => {
+      console.log(txIsRequested(tx), txIsEnquired(tx));
       if (txIsEnquired(tx)) {
         return {
           headingState: HEADING_ENQUIRED,
@@ -235,6 +236,7 @@ export class TransactionPanelComponent extends Component {
       }
     };
     const stateData = stateDataFn(currentTransaction);
+    console.log(stateData);
 
     const deletedListingTitle = intl.formatMessage({
       id: 'TransactionPanel.deletedListingTitle',

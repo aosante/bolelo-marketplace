@@ -28,6 +28,7 @@ import {
   acceptSale,
   declineSale,
   cancelRequest,
+  cancelBooking,
   loadData,
   setInitialValues,
   sendMessage,
@@ -76,6 +77,9 @@ export const TransactionPageComponent = props => {
     onCancelRequest,
     cancelRequestInProgress,
     cancelRequestError,
+    onCancelBooking,
+    cancelBookingInProgress,
+    cancelBookingError,
   } = props;
 
   const currentTransaction = ensureTransaction(transaction);
@@ -207,6 +211,9 @@ export const TransactionPageComponent = props => {
       onCancelRequest={onCancelRequest}
       cancelRequestInProgress={cancelRequestInProgress}
       cancelRequestError={cancelRequestError}
+      onCancelBooking={onCancelBooking}
+      cancelBookingInProgress={cancelBookingInProgress}
+      cancelBookingError={cancelBookingError}
     />
   ) : (
     loadingOrFailedFetching
@@ -255,10 +262,13 @@ TransactionPageComponent.propTypes = {
   acceptSaleError: propTypes.error,
   declineSaleError: propTypes.error,
   cancelRequestError: propTypes.error,
+  cancelBookingError: propTypes.error,
   acceptInProgress: bool.isRequired,
   declineInProgress: bool.isRequired,
   onAcceptSale: func.isRequired,
   onDeclineSale: func.isRequired,
+  onCancelRequest: func.isRequired,
+  onCancelBooking: func.isRequired,
   scrollingDisabled: bool.isRequired,
   transaction: propTypes.transaction,
   fetchMessagesError: propTypes.error,
@@ -274,6 +284,7 @@ TransactionPageComponent.propTypes = {
   fetchTimeSlotsError: propTypes.error,
   callSetInitialValues: func.isRequired,
   cancelRequestInProgress: bool.isRequired,
+  cancelBookingInProgress: bool.isRequired,
 
   // from withRouter
   history: shape({
@@ -293,9 +304,11 @@ const mapStateToProps = state => {
     acceptSaleError,
     declineSaleError,
     cancelRequestError,
+    cancelBookingError,
     acceptInProgress,
     declineInProgress,
     cancelRequestInProgress,
+    cancelBookingInProgress,
     transactionRef,
     fetchMessagesInProgress,
     fetchMessagesError,
@@ -321,9 +334,11 @@ const mapStateToProps = state => {
     acceptSaleError,
     declineSaleError,
     cancelRequestError,
+    cancelBookingError,
     acceptInProgress,
     declineInProgress,
     cancelRequestInProgress,
+    cancelBookingInProgress,
     scrollingDisabled: isScrollingDisabled(state),
     transaction,
     fetchMessagesInProgress,
@@ -346,6 +361,7 @@ const mapDispatchToProps = dispatch => {
     onAcceptSale: transactionId => dispatch(acceptSale(transactionId)),
     onDeclineSale: transactionId => dispatch(declineSale(transactionId)),
     onCancelRequest: transactionId => dispatch(cancelRequest(transactionId)),
+    onCancelBooking: transactionId => dispatch(cancelBooking(transactionId)),
     onShowMoreMessages: txId => dispatch(fetchMoreMessages(txId)),
     onSendMessage: (txId, message) => dispatch(sendMessage(txId, message)),
     onManageDisableScrolling: (componentId, disableScrolling) =>

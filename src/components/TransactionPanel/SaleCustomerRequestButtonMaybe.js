@@ -7,7 +7,7 @@ import css from './TransactionPanel.css';
 
 // Functional component as a helper to build ActionButtons for
 // provider when state is preauthorized
-const SaleCustomerActionButtonMaybe = props => {
+const SaleCustomerRequestButtonMaybe = props => {
   const {
     className,
     rootClassName,
@@ -43,4 +43,4 @@ const SaleCustomerActionButtonMaybe = props => {
   ) : null;
 };
 
-export default SaleCustomerActionButtonMaybe;
+export default SaleCustomerRequestButtonMaybe;

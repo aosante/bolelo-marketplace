@@ -13,6 +13,7 @@ import {
   TRANSITION_ACCEPT,
   TRANSITION_DECLINE,
   TRANSITION_CANCEL_REQUEST,
+  TRANSITION_CUSTOMER_CANCEL,
 } from '../../util/transaction';
 import * as log from '../../util/log';
 import {
@@ -48,6 +49,10 @@ export const DECLINE_SALE_ERROR = 'app/TransactionPage/DECLINE_SALE_ERROR';
 export const CANCEL_BOOKING_REQUEST = 'app/TransactionPage/CANCEL_BOOKING_REQUEST';
 export const CANCEL_BOOKING_REQUEST_SUCCESS = 'app/TransactionPage/CANCEL_BOOKING_REQUEST_SUCCESS';
 export const CANCEL_BOOKING_REQUEST_ERROR = 'app/TransactionPage/CANCEL_BOOKING_REQUEST_ERROR';
+
+export const CANCEL_BOOKING = 'app/TransactionPage/CANCEL_BOOKING';
+export const CANCEL_BOOKING_SUCCESS = 'app/TransactionPage/CANCEL_BOOKING_SUCCESS';
+export const CANCEL_BOOKING_ERROR = 'app/TransactionPage/CANCEL_BOOKING_ERROR';
 //--------------------------------------------------------------------------------
 
 export const FETCH_MESSAGES_REQUEST = 'app/TransactionPage/FETCH_MESSAGES_REQUEST';
@@ -91,6 +96,8 @@ const initialState = {
   fetchTimeSlotsError: null,
   cancelRequestInProgress: false,
   cancelRequestError: null,
+  cancelBookingInProgress: false,
+  cancelBookingError: null,
 };
 
 // Merge entity arrays using ids, so that conflicting items in newer array (b) overwrite old values (a).
@@ -131,6 +138,20 @@ export default function checkoutPageReducer(state = initialState, action = {}) {
       return { ...state, declineInProgress: false };
     case DECLINE_SALE_ERROR:
       return { ...state, declineInProgress: false, declineSaleError: payload };
+
+    case CANCEL_BOOKING_REQUEST:
+      return { ...state, cancelRequestInProgress: true, cancelRequestError: null };
+    case CANCEL_BOOKING_REQUEST_SUCCESS:
+      return { ...state, cancelRequestInProgress: false };
+    case CANCEL_BOOKING_REQUEST_ERROR:
+      return { ...state, cancelRequestInProgress: true };
+
+    case CANCEL_BOOKING:
+      return { ...state, cancelBookingInProgress: true, cancelBookingError: null };
+    case CANCEL_BOOKING_SUCCESS:
+      return { ...state, cancelBookingInProgress: false };
+    case CANCEL_BOOKING_ERROR:
+      return { ...state, cancelBookingInProgress: true };
 
     case FETCH_MESSAGES_REQUEST:
       return { ...state, fetchMessagesInProgress: true, fetchMessagesError: null };
@@ -208,6 +229,25 @@ const acceptSaleError = e => ({ type: ACCEPT_SALE_ERROR, error: true, payload: e
 const declineSaleRequest = () => ({ type: DECLINE_SALE_REQUEST });
 const declineSaleSuccess = () => ({ type: DECLINE_SALE_SUCCESS });
 const declineSaleError = e => ({ type: DECLINE_SALE_ERROR, error: true, payload: e });
+
+//--------------------------------------------------------------------------------------------
+const cancelBookingRequest = () => ({ type: CANCEL_BOOKING_REQUEST });
+const cancelBookingRequestSuccess = () => ({ type: CANCEL_BOOKING_REQUEST_SUCCESS });
+const cancelBookingRequestError = e => ({
+  type: CANCEL_BOOKING_REQUEST_ERROR,
+  error: true,
+  payload: e,
+});
+
+//cancelRental() named differently because of conficting names
+const cancelRental = () => ({ type: CANCEL_BOOKING });
+const cancelBookingSuccess = () => ({ type: CANCEL_BOOKING_SUCCESS });
+const cancelBookingError = e => ({
+  type: CANCEL_BOOKING_ERROR,
+  error: true,
+  payload: e,
+});
+//--------------------------------------------------------------------------------------------
 
 const fetchMessagesRequest = () => ({ type: FETCH_MESSAGES_REQUEST });
 const fetchMessagesSuccess = (messages, pagination) => ({
@@ -358,11 +398,24 @@ export const declineSale = id => (dispatch, getState, sdk) => {
 };
 
 export const cancelRequest = id => (dispatch, getState, sdk) => {
-  // return sdk.transactions.show({ id }).then(res => console.log(res));
-  // console.log(TRANSITION_CANCEL_REQUEST);
+  return sdk.transactions.show({ id }).then(res => console.log(res.data.data.attributes));
   return sdk.transactions
     .transition({ id, transition: TRANSITION_CANCEL_REQUEST, params: {} }, { expand: true })
-    .then(response => console.log(response))
+    .then(response => {
+      console.log(response);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+};
+
+export const cancelBooking = id => (dispatch, getState, sdk) => {
+  dispatch(cancelRental());
+  return sdk.transactions
+    .transition({ id, transition: TRANSITION_CUSTOMER_CANCEL, params: {} }, { expand: true })
+    .then(response => {
+      console.log(response);
+    })
     .catch(e => {
       console.log(e);
     });

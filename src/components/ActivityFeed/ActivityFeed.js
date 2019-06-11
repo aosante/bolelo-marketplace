@@ -9,6 +9,8 @@ import { ensureTransaction, ensureUser, ensureListing } from '../../util/data';
 import {
   TRANSITION_ACCEPT,
   TRANSITION_CANCEL,
+  TRANSITION_CANCEL_REQUEST,
+  TRANSITION_CUSTOMER_CANCEL,
   TRANSITION_COMPLETE,
   TRANSITION_DECLINE,
   TRANSITION_EXPIRE,
@@ -144,6 +146,10 @@ const resolveTransitionMessage = (
         <FormattedMessage id="ActivityFeed.transitionExpire" values={{ displayName }} />
       );
     case TRANSITION_CANCEL:
+      return <FormattedMessage id="ActivityFeed.transitionCancel" />;
+    case TRANSITION_CANCEL_REQUEST:
+      return <FormattedMessage id="ActivityFeed.transitionCancelRequest" />;
+    case TRANSITION_CUSTOMER_CANCEL:
       return <FormattedMessage id="ActivityFeed.transitionCancel" />;
     case TRANSITION_COMPLETE:
       // Show the leave a review link if the state is delivered and if the current user is the first to leave a review

@@ -30,7 +30,8 @@ import DetailCardHeadingsMaybe from './DetailCardHeadingsMaybe';
 import DetailCardImage from './DetailCardImage';
 import FeedSection from './FeedSection';
 import SaleActionButtonsMaybe from './SaleActionButtonsMaybe';
-import SaleCustomerActionButtonMaybe from './SaleCustomerActionButtonMaybe';
+import SaleCustomerRequestButtonMaybe from './SaleCustomerRequestButtonMaybe';
+import SaleCustomerCancelButtonMaybe from './SaleCustomerCancelButtonMaybe';
 import PanelHeading, {
   HEADING_ENQUIRED,
   HEADING_REQUESTED,
@@ -87,8 +88,6 @@ export class TransactionPanelComponent extends Component {
     this.onSendMessageFormBlur = this.onSendMessageFormBlur.bind(this);
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.scrollToMessage = this.scrollToMessage.bind(this);
-
-    console.log(props);
   }
 
   componentWillMount() {
@@ -177,14 +176,21 @@ export class TransactionPanelComponent extends Component {
       acceptInProgress,
       declineInProgress,
       cancelRequestInProgress,
+      cancelBookingInProgress,
       acceptSaleError,
       declineSaleError,
       cancelRequestError,
+      cancelBookingError,
       onSubmitBookingRequest,
       timeSlots,
       fetchTimeSlotsError,
       onCancelRequest,
+      onCancelBooking,
     } = this.props;
+
+    /*transaction has the start and end dates, which can be used to enable or disable 
+    booking cancellation (up to 24hrs before booking period starts)*/
+    //console.log(transaction.booking.attributes.start);
 
     const currentTransaction = ensureTransaction(transaction);
     const currentListing = ensureListing(currentTransaction.listing);
@@ -203,7 +209,7 @@ export class TransactionPanelComponent extends Component {
     const isProviderDeleted = isProviderLoaded && currentProvider.attributes.deleted;
 
     const stateDataFn = tx => {
-      // console.log(txIsRequested(tx), txIsEnquired(tx));
+      //console.log(txIsCanceled(tx));
       if (txIsEnquired(tx)) {
         return {
           headingState: HEADING_ENQUIRED,
@@ -221,6 +227,7 @@ export class TransactionPanelComponent extends Component {
           headingState: HEADING_ACCEPTED,
           showDetailCardHeadings: isCustomer,
           showAddress: isCustomer,
+          showCancelBookingButton: isCustomer && !isCustomerBanned,
         };
       } else if (txIsDeclined(tx)) {
         return {
@@ -292,11 +299,20 @@ export class TransactionPanelComponent extends Component {
     );
 
     const cancelButton = (
-      <SaleCustomerActionButtonMaybe
+      <SaleCustomerRequestButtonMaybe
         showButtons={stateData.showCancelButton}
         cancelRequestInProgress={cancelRequestInProgress}
         cancelRequestError={cancelRequestError}
         onCancelRequest={() => onCancelRequest(currentTransaction.id)}
+      />
+    );
+
+    const cancelBookingButton = (
+      <SaleCustomerCancelButtonMaybe
+        showButtons={stateData.showCancelBookingButton}
+        cancelBookingInProgress={cancelBookingInProgress}
+        cancelBookingError={cancelBookingError}
+        onCancelBooking={() => onCancelBooking(currentTransaction.id)}
       />
     );
 
@@ -388,6 +404,15 @@ export class TransactionPanelComponent extends Component {
             {stateData.showSaleButtons ? (
               <div className={css.mobileActionButtons}>{saleButtons}</div>
             ) : null}
+
+            {stateData.showCancelBookingButton ? (
+              <div className={css.mobileActionButtons}>
+                {cancelBookingButton}
+                <p className={css.policyNote}>
+                  *Rentals can be cancelled up to 24hrs before rental period starts
+                </p>{' '}
+              </div>
+            ) : null}
           </div>
 
           <div className={css.asideDesktop}>
@@ -434,6 +459,14 @@ export class TransactionPanelComponent extends Component {
               ) : null}
               {stateData.showCancelButton ? (
                 <div className={css.desktopActionButtons}>{cancelButton}</div>
+              ) : null}
+              {stateData.showCancelBookingButton ? (
+                <div className={css.desktopActionButtons}>
+                  {cancelBookingButton}{' '}
+                  <p className={css.policyNote}>
+                    *Rentals can be cancelled up to 24hrs before rental period starts
+                  </p>{' '}
+                </div>
               ) : null}
             </div>
           </div>
@@ -498,6 +531,7 @@ TransactionPanelComponent.propTypes = {
   onAcceptSale: func.isRequired,
   onDeclineSale: func.isRequired,
   onCancelRequest: func.isRequired,
+  onCancelBooking: func.isRequired,
   cancelRequestInProgress: bool.isRequired,
   acceptInProgress: bool.isRequired,
   declineInProgress: bool.isRequired,

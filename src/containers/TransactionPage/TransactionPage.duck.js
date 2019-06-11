@@ -44,6 +44,12 @@ export const DECLINE_SALE_REQUEST = 'app/TransactionPage/DECLINE_SALE_REQUEST';
 export const DECLINE_SALE_SUCCESS = 'app/TransactionPage/DECLINE_SALE_SUCCESS';
 export const DECLINE_SALE_ERROR = 'app/TransactionPage/DECLINE_SALE_ERROR';
 
+//--------------------------------------------------------------------------------
+export const CANCEL_BOOKING_REQUEST = 'app/TransactionPage/CANCEL_BOOKING_REQUEST';
+export const CANCEL_BOOKING_REQUEST_SUCCESS = 'app/TransactionPage/CANCEL_BOOKING_REQUEST_SUCCESS';
+export const CANCEL_BOOKING_REQUEST_ERROR = 'app/TransactionPage/CANCEL_BOOKING_REQUEST_ERROR';
+//--------------------------------------------------------------------------------
+
 export const FETCH_MESSAGES_REQUEST = 'app/TransactionPage/FETCH_MESSAGES_REQUEST';
 export const FETCH_MESSAGES_SUCCESS = 'app/TransactionPage/FETCH_MESSAGES_SUCCESS';
 export const FETCH_MESSAGES_ERROR = 'app/TransactionPage/FETCH_MESSAGES_ERROR';
@@ -352,7 +358,14 @@ export const declineSale = id => (dispatch, getState, sdk) => {
 };
 
 export const cancelRequest = id => (dispatch, getState, sdk) => {
-  return sdk.transactions.show({ id }).then(res => console.log(res.data.data));
+  // return sdk.transactions.show({ id }).then(res => console.log(res));
+  // console.log(TRANSITION_CANCEL_REQUEST);
+  return sdk.transactions
+    .transition({ id, transition: TRANSITION_CANCEL_REQUEST, params: {} }, { expand: true })
+    .then(response => console.log(response))
+    .catch(e => {
+      console.log(e);
+    });
 };
 
 const fetchMessages = (txId, page) => (dispatch, getState, sdk) => {

@@ -209,6 +209,14 @@ export const acceptOrDeclineInProgress = state => {
   return state.TransactionPage.acceptInProgress || state.TransactionPage.declineInProgress;
 };
 
+export const cancelingRequestInProgress = state => {
+  return state.TransactionPage.cancelRequestInProgress;
+};
+
+export const cancelingBookingInProgress = state => {
+  return state.TransactionPage.cancelBookingInProgress;
+};
+
 // ================ Action creators ================ //
 export const setInitialValues = initialValues => ({
   type: SET_INITAL_VALUES,
@@ -398,26 +406,51 @@ export const declineSale = id => (dispatch, getState, sdk) => {
 };
 
 export const cancelRequest = id => (dispatch, getState, sdk) => {
-  return sdk.transactions.show({ id }).then(res => console.log(res.data.data.attributes));
+  //return sdk.transactions.show({ id }).then(res => console.log(res.data.data.attributes));
+  if (cancelingRequestInProgress(getState())) {
+    return Promise.reject(new Error('Request cancellation already in progress'));
+  }
+  dispatch(cancelBookingRequest());
   return sdk.transactions
     .transition({ id, transition: TRANSITION_CANCEL_REQUEST, params: {} }, { expand: true })
     .then(response => {
+      dispatch(addMarketplaceEntities(response));
+      dispatch(cancelBookingRequestSuccess());
+      dispatch(fetchCurrentUserNotifications());
       console.log(response);
+      return response;
     })
     .catch(e => {
-      console.log(e);
+      dispatch(cancelBookingRequestError(storableError(e)));
+      log.error(e, 'cancel-request-failed', {
+        txId: id,
+        transition: TRANSITION_CANCEL_REQUEST,
+      });
+      throw e;
     });
 };
 
 export const cancelBooking = id => (dispatch, getState, sdk) => {
+  if (cancelingBookingInProgress(getState())) {
+    return Promise.reject(new Error('Booking cancellation already in progress'));
+  }
   dispatch(cancelRental());
   return sdk.transactions
     .transition({ id, transition: TRANSITION_CUSTOMER_CANCEL, params: {} }, { expand: true })
     .then(response => {
+      dispatch(addMarketplaceEntities(response));
+      dispatch(cancelBookingSuccess());
+      dispatch(fetchCurrentUserNotifications());
       console.log(response);
+      return response;
     })
     .catch(e => {
-      console.log(e);
+      dispatch(cancelBookingError(storableError(e)));
+      log.error(e, 'customer-cancel-failed', {
+        txId: id,
+        transaction: TRANSITION_CUSTOMER_CANCEL,
+      });
+      throw e;
     });
 };
 

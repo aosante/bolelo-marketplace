@@ -189,7 +189,8 @@ export class TransactionPanelComponent extends Component {
     } = this.props;
 
     /*transaction has the start and end dates, which can be used to enable or disable 
-    booking cancellation (up to 24hrs before booking period starts)*/
+    booking cancellation (up to 24hrs before booking period starts). The object holding this data will be passed
+    down as props to the saleCustomerCancelButtonMaybe Component*/
     //console.log(transaction.booking.attributes.start);
 
     const currentTransaction = ensureTransaction(transaction);

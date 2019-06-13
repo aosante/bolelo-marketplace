@@ -8,9 +8,11 @@ import { NamedLink } from '../../components';
 
 import css from './SectionLocations.css';
 
-import grinderImage from './images/grinder.jpg';
-import ladderImage from './images/ladder.jpg';
-import tentImage from './images/tent.jpg';
+import mixerImage from './images/household.jpg';
+import officeImage from './images/office.jpg';
+import diyImage from './images/ladder.jpg';
+import sportsImage from './images/sports.jpg';
+import specialEventImage from './images/specialEvent.jpg';
 
 class LocationImage extends Component {
   render() {
@@ -67,19 +69,29 @@ const SectionLocations = props => {
       </div>
       <div className={css.locations}>
         {locationLink(
-          'Raleigh',
-          grinderImage,
-          '?address=Raleigh%2C%20North%20Carolina&bounds=38.30653843%2C-75.8435422%2C33.30230225%2C-81.446569626'
+          'Household',
+          mixerImage,
+          's?address=North%20Carolina%2C%20USA&bounds=36.5881568%2C-75.40011900000002%2C33.7528778%2C-84.32186899999999'
         )}
         {locationLink(
-          'Charlotte',
-          tentImage,
-          '?address=Charlotte%2C%20North%20Carolina&bounds=35.39313300000001%2C-80.67010399999998%2C35.0131739%2C-81.00955390000001'
+          'Office',
+          officeImage,
+          's?address=North%20Carolina%2C%20USA&bounds=36.5881568%2C-75.40011900000002%2C33.7528778%2C-84.32186899999999'
         )}
         {locationLink(
-          'Durham',
-          ladderImage,
-          '?address=Durham%2C%20North%20Carolina&bounds=36.1369289%2C-78.76217200000002%2C35.8667249%2C-79.00765000000001'
+          'DIY',
+          diyImage,
+          's?address=North%20Carolina%2C%20USA&bounds=36.5881568%2C-75.40011900000002%2C33.7528778%2C-84.32186899999999'
+        )}
+        {locationLink(
+          'Sports',
+          sportsImage,
+          's?address=North%20Carolina%2C%20USA&bounds=36.5881568%2C-75.40011900000002%2C33.7528778%2C-84.32186899999999'
+        )}
+        {locationLink(
+          'Special Event',
+          specialEventImage,
+          's?address=North%20Carolina%2C%20USA&bounds=36.5881568%2C-75.40011900000002%2C33.7528778%2C-84.32186899999999'
         )}
       </div>
     </div>

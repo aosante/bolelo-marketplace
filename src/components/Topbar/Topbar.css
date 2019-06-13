@@ -33,7 +33,7 @@
   align-items: center;
 
   /* fill */
-  background-color: var(--matterColorLight);
+  background-color: var(--footerColor);
 
   /* shadows */
   box-shadow: var(--boxShadow);
@@ -140,10 +140,10 @@
 
 /* Icon component styles */
 .rootMenuIcon {
-  fill: var(--matterColor);
+  fill: var(--matterColorNegative);
 }
 .rootSearchIcon {
-  stroke: var(--matterColor);
+  stroke: var(--matterColorNegative);
 }
 
 .searchContainer {

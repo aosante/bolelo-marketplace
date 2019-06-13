@@ -50,7 +50,7 @@
   padding: 0 12px 0 0;
 
   /* fill */
-  background-color: var(--matterColorLight);
+  background-color: var(--footerColor);
 
   /* shadows */
   box-shadow: var(--boxShadowLight);
@@ -63,24 +63,28 @@
 /* logo */
 .logoLink {
   flex-shrink: 0;
-  padding: 5px 24px 21px 24px;
+  padding: 0px 15px 21px;
   height: 100%;
 
   @media (--viewportLarge) {
-    padding: 7px 36px 21px 36px;
+    padding: 0px 15px 21px;
+    overflow: hidden;
   }
 }
 
 .logo {
   /* If height is increased, change link paddings accordingly */
-  height: 57px;
+  height: 160px;
+  width: auto;
+  max-width: 150px;
+  transform: translateY(-50px);
 
   /* Good aspect ratio should be less than 160/27 (width/height) */
   /* NOTE: extremely wide logos, need special handling. */
-  width: auto;
+  /* width: auto;
   max-width: 220px;
-  object-fit: contain;
-  object-position: left center;
+  object-fit: cover;
+  object-position: left center; */
 }
 
 /* Search */
@@ -90,7 +94,7 @@
   margin-right: 24px;
   border-left-style: solid;
   border-left-width: 1px;
-  border-left-color: var(--matterColorNegative);
+  border-left-color: var(--marketplaceColor);
 
   @media (--viewportLarge) {
     padding-left: 0;
@@ -100,15 +104,17 @@
 .search {
   @apply --marketplaceH4FontStyles;
   @apply --TopbarDesktop_label;
-  color: var(--matterColor);
+  color: var(--marketplaceColor);
 }
 
 .topbarSearchWithLeftPadding {
   padding-left: 24px;
   height: var(--topbarHeightDesktop);
+  /* transform: translateX(-25px); */
 
   @media (--viewportLarge) {
     padding-left: 34px;
+    ?border-left: 1px solid var(--marketplaceColor);
   }
 }
 
@@ -146,7 +152,7 @@
   padding: 0 12px 0 12px;
   margin-top: 0;
   margin-bottom: 0;
-  color: var(--matterColor);
+  color: var(--matterColorNegative);
 
   &:hover {
     color: var(--successColor);

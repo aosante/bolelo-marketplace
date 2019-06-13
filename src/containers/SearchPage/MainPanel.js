@@ -75,6 +75,7 @@ class MainPanel extends Component {
 
     return (
       <div className={classes}>
+        {/* add category instructions here */}
         <SearchFilters
           className={css.searchFilters}
           urlQueryParams={urlQueryParams}

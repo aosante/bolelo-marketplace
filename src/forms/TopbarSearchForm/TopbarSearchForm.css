@@ -75,7 +75,7 @@
   display: flex;
   width: 24px;
   align-self: stretch;
-  background-color: var(--matterColorLight);
+  background-color: var(--footerColor);
 }
 
 .desktopInput {
@@ -88,6 +88,7 @@
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 10px;
+  color: #ffffff;
 
   /* Search text gets ellipsis if it's too wide */
   text-overflow: ellipsis;
@@ -106,7 +107,7 @@
 
   &:hover::placeholder,
   &:focus::placeholder {
-    color: var(--matterColor);
+    color: var(--marketplaceColor);
   }
 
   /* Placeholder text might be too wide */

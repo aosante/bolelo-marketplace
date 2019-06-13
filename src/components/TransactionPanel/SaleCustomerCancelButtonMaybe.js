@@ -15,9 +15,25 @@ const SaleCustomerCancelButtonMaybe = props => {
     cancelBookingInProgress,
     cancelBookingError,
     onCancelBooking,
+    startDate,
   } = props;
 
-  const buttonsDisabled = cancelBookingInProgress;
+  const currentDate = new Date();
+
+  const getHoursToStart = (start, now) => {
+    return Math.abs(start - now) / 36e5;
+  };
+
+  const cantCancelBooking = _ => {
+    let cantCancel = false;
+    const hoursToStart = getHoursToStart(startDate, currentDate);
+    if (hoursToStart < 24) cantCancel = true;
+    return cantCancel;
+  };
+
+  const buttonsDisabled = cancelBookingInProgress || cantCancelBooking();
+
+  console.log(buttonsDisabled);
 
   const cancelErrorMessage = cancelBookingError ? (
     <p className={css.actionError}>

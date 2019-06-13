@@ -75,7 +75,7 @@ class MainPanel extends Component {
 
     return (
       <div className={classes}>
-        {/* add category instructions here */}
+        <p style={{ marginLeft: '1.5em' }}>Select your category and start searching!</p>
         <SearchFilters
           className={css.searchFilters}
           urlQueryParams={urlQueryParams}

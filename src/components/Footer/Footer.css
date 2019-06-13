@@ -235,6 +235,7 @@ h3 {
   flex-basis: 109px;
   margin-right: 24px;
   margin-bottom: 24px;
+  margin-top: 20px;
 
   @media (--viewportMedium) {
     display: flex;

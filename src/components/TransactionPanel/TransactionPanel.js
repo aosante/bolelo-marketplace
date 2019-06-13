@@ -191,7 +191,7 @@ export class TransactionPanelComponent extends Component {
     /*transaction has the start and end dates, which can be used to enable or disable 
     booking cancellation (up to 24hrs before booking period starts). The object holding this data will be passed
     down as props to the saleCustomerCancelButtonMaybe Component*/
-    //console.log(transaction.booking.attributes.start);
+    const startDate = transaction.booking.attributes.start;
 
     const currentTransaction = ensureTransaction(transaction);
     const currentListing = ensureListing(currentTransaction.listing);
@@ -314,6 +314,7 @@ export class TransactionPanelComponent extends Component {
         cancelBookingInProgress={cancelBookingInProgress}
         cancelBookingError={cancelBookingError}
         onCancelBooking={() => onCancelBooking(currentTransaction.id)}
+        startDate={startDate}
       />
     );
 
@@ -410,7 +411,8 @@ export class TransactionPanelComponent extends Component {
               <div className={css.mobileActionButtons}>
                 {cancelBookingButton}
                 <p className={css.policyNote}>
-                  *Rentals can be cancelled up to 24hrs before rental period starts
+                  *Rentals can be cancelled for a full refund up to 24hrs before rental period
+                  starts. After that, entire fee is forfeited.
                 </p>{' '}
               </div>
             ) : null}
@@ -465,7 +467,8 @@ export class TransactionPanelComponent extends Component {
                 <div className={css.desktopActionButtons}>
                   {cancelBookingButton}{' '}
                   <p className={css.policyNote}>
-                    *Rentals can be cancelled up to 24hrs before rental period starts
+                    *Rentals can be cancelled for a full refund up to 24hrs before rental period
+                    starts. After that, entire fee is forfeited.
                   </p>{' '}
                 </div>
               ) : null}

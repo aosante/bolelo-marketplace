@@ -66,6 +66,7 @@ const BookingPanel = props => {
     history,
     location,
     intl,
+    publicData,
   } = props;
 
   const price = listing.attributes.price;
@@ -125,6 +126,7 @@ const BookingPanel = props => {
             isOwnListing={isOwnListing}
             timeSlots={timeSlots}
             fetchTimeSlotsError={fetchTimeSlotsError}
+            publicData={publicData}
           />
         ) : null}
       </ModalInMobile>

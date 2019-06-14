@@ -448,6 +448,7 @@ export class ListingPageComponent extends Component {
                     onManageDisableScrolling={onManageDisableScrolling}
                   />
                 </div>
+                {/* pass publicData as a prop so it can be used in the bookingForm when requesting rent */}
                 <BookingPanel
                   className={css.bookingPanel}
                   listing={currentListing}
@@ -460,6 +461,7 @@ export class ListingPageComponent extends Component {
                   onManageDisableScrolling={onManageDisableScrolling}
                   timeSlots={timeSlots}
                   fetchTimeSlotsError={fetchTimeSlotsError}
+                  publicData={publicData}
                 />
               </div>
             </div>

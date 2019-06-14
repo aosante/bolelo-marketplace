@@ -43,11 +43,9 @@
   @apply --backgroundImage;
   display: flex;
   flex-direction: column;
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: auto;
   border-radius: 0;
-  border: 3px solid var(--marketplaceColor);
-  margin: 15px auto 0;
 
   /* Text positioning is done with paddings */
 }
@@ -62,14 +60,14 @@
   /* Special viewport for adjusting the heroContent's placement */
 
   @media only screen and (min-width: 1025px) and (max-width: 1366px) {
-    padding: 0 36px 0 36px;
+    /* padding: 0 36px 0 36px; */
   }
 
   @media only screen and (min-width: 1367px) {
     margin: 0 auto;
     max-width: calc(1052px + 36px + 36px);
     width: 100%;
-    padding: 0 36px 0 36px;
+    /* padding: 0 36px 0 36px; */
   }
 }
 

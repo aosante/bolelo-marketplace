@@ -12,7 +12,6 @@ import {
   ModalInMobile,
   Button,
   PriceFilter,
-  SelectSingleFilter,
   SelectMultipleFilter,
   BookingDateRangeFilter,
 } from '../../components';
@@ -181,7 +180,6 @@ class SearchFiltersMobileComponent extends Component {
       onMapIconClick,
       onManageDisableScrolling,
       selectedFiltersCount,
-      categoryFilter,
       amenitiesFilter,
       priceFilter,
       dateRangeFilter,
@@ -206,24 +204,24 @@ class SearchFiltersMobileComponent extends Component {
     const filtersButtonClasses =
       selectedFiltersCount > 0 ? css.filtersButtonSelected : css.filtersButton;
 
-    const categoryLabel = intl.formatMessage({
-      id: 'SearchFiltersMobile.categoryLabel',
-    });
-    const initialCategory = categoryFilter ? this.initialValue(categoryFilter.paramName) : null;
+    // const categoryLabel = intl.formatMessage({
+    //   id: 'SearchFiltersMobile.categoryLabel',
+    // });
+    // const initialCategory = categoryFilter ? this.initialValue(categoryFilter.paramName) : null;
 
-    const categoryFilterElement = categoryFilter ? (
-      <SelectSingleFilter
-        urlParam={categoryFilter.paramName}
-        label={categoryLabel}
-        onSelect={this.handleSelectSingle}
-        liveEdit
-        options={categoryFilter.options}
-        initialValue={initialCategory}
-        intl={intl}
-      />
-    ) : null;
+    // const categoryFilterElement = categoryFilter ? (
+    //   <SelectSingleFilter
+    //     urlParam={categoryFilter.paramName}
+    //     label={categoryLabel}
+    //     onSelect={this.handleSelectSingle}
+    //     liveEdit
+    //     options={categoryFilter.options}
+    //     initialValue={initialCategory}
+    //     intl={intl}
+    //   />
+    // ) : null;
 
-    const amenitiesLabel = intl.formatMessage({ id: 'SearchFiltersMobile.amenitiesLabel' });
+    const categoriesLabel = intl.formatMessage({ id: 'SearchFiltersMobile.categoryLabel' });
 
     const initialAmenities = this.initialValues(amenitiesFilter.paramName);
 
@@ -232,7 +230,7 @@ class SearchFiltersMobileComponent extends Component {
         id="SearchFiltersMobile.amenitiesFilter"
         name="amenities"
         urlParam={amenitiesFilter.paramName}
-        label={amenitiesLabel}
+        label={categoriesLabel}
         onSubmit={this.handleSelectMultiple}
         liveEdit
         options={amenitiesFilter.options}
@@ -299,7 +297,6 @@ class SearchFiltersMobileComponent extends Component {
           </div>
           {this.state.isFiltersOpenOnMobile ? (
             <div className={css.filtersWrapper}>
-              {categoryFilterElement}
               {amenitiesFilterElement}
               {priceFilterElement}
               {dateRangeFilterElement}

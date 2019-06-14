@@ -53,17 +53,23 @@ const SectionLocations = props => {
           <div>
             <span className={css.blue}>B</span>
             <span className={css.green}>o</span>
-            rrow
+            <span className={css.blue}>r</span>
+            <span className={css.green}>r</span>
+            <span className={css.blue}>o</span>
+            <span className={css.green}>w</span>
           </div>{' '}
           <div>
             <span className={css.blue}>L</span>
             <span className={css.green}>e</span>
-            nd
+            <span className={css.blue}>n</span>
+            <span className={css.green}>d</span>
           </div>{' '}
           <div>
             <span className={css.blue}>L</span>
             <span className={css.green}>o</span>
-            cal
+            <span className={css.blue}>c</span>
+            <span className={css.green}>a</span>
+            <span className={css.blue}>l</span>
           </div>
         </span>
       </div>

@@ -3,7 +3,7 @@
 .title {
   @apply --marketplaceH1FontStyles;
   margin-top: 1em;
-  max-width: 1035px;
+  /* max-width: 1035px; */
   @media (--viewportMedium) {
     margin-bottom: 23px;
   }
@@ -12,9 +12,17 @@
 .container {
   display: flex;
   justify-content: space-around;
-  box-shadow: 0 0 8px 0 var(--marketplaceColor);
   padding: 0.5em;
-  border-radius: 5px;
+  margin-top: 0.5em;
+}
+
+.container div {
+  padding-bottom: 0.25em;
+  -webkit-box-shadow: 0 8px 15px -15px var(--marketplaceColorDark);
+  -moz-box-shadow: 0 8px 15px -15px var(--marketplaceColorDark);
+  box-shadow: 0 8px 15px -15px var(--marketplaceColorDark);
+  width: 100%;
+  text-align: center;
 }
 
 .green {
@@ -27,8 +35,7 @@
 .locations {
   display: flex;
   flex-direction: column;
-  margin-top: 32px;
-
+  margin-top: 52px;
   @media (--viewportMedium) {
     flex-direction: row;
     margin-top: 57px;
@@ -96,7 +103,6 @@
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  object-fit: cover;
 }
 
 .linkText {
@@ -111,5 +117,5 @@
 }
 
 .locationName {
-  color: var(--successColor);
+  color: var(--footerColor);
 }

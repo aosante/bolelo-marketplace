@@ -9,7 +9,7 @@ import { required, bookingDatesRequired, composeValidators } from '../../util/va
 import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
 import config from '../../config';
-import { Form, PrimaryButton, FieldDateRangeInput, FieldSelect } from '../../components';
+import { Form, PrimaryButton, FieldDateRangeInput } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 
 import css from './BookingDatesForm.css';
@@ -91,10 +91,10 @@ export class BookingDatesFormComponent extends Component {
           } = fieldRenderProps;
           const { startDate, endDate } = values && values.bookingDates ? values.bookingDates : {};
           //function to resolve input's value from form's value object
-          const selectedQuantity =
-            values && values.additionalItems && values.additionalItems.find(i => i === 'quantity')
-              ? quantity
-              : null;
+          // const selectedQuantity =
+          //   values && values.additionalItems && values.additionalItems.find(i => i === 'quantity')
+          //     ? quantity
+          //     : null;
 
           const bookingStartLabel = intl.formatMessage({
             id: 'BookingDatesForm.bookingStartTitle',
@@ -127,7 +127,7 @@ export class BookingDatesFormComponent extends Component {
                   // NOTE: If unitType is `line-item/units`, a new picker
                   // for the quantity should be added to the form.
                   quantity: 1,
-                  availableQuantity: selectedQuantity,
+                  // availableQuantity: selectedQuantity,
                 }
               : null;
           const bookingInfo = bookingData ? (
@@ -158,14 +158,14 @@ export class BookingDatesFormComponent extends Component {
           const submitButtonClasses = classNames(
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
-          const availableQuantityLabel = intl.formatMessage({
-            id: 'BookingDatesForm.quantity',
-          });
-          const quantityRequired = required(
-            intl.formatMessage({
-              id: 'EditListingDescriptionForm.quantityRequired',
-            })
-          );
+          // const availableQuantityLabel = intl.formatMessage({
+          //   id: 'BookingDatesForm.quantity',
+          // });
+          // const quantityRequired = required(
+          //   intl.formatMessage({
+          //     id: 'EditListingDescriptionForm.quantityRequired',
+          //   })
+          // );
 
           return (
             <Form onSubmit={handleSubmit} className={classes}>
@@ -190,7 +190,7 @@ export class BookingDatesFormComponent extends Component {
                   bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
                 )}
               />
-              {quantity ? (
+              {/* {quantity ? (
                 <div className={css.quantity}>
                   <FieldSelect
                     name={'additionalItems'}
@@ -199,7 +199,7 @@ export class BookingDatesFormComponent extends Component {
                     validate={quantityRequired}
                   />
                 </div>
-              ) : null}
+              ) : null} */}
               {bookingInfo}
               <p className={css.smallPrint}>
                 <FormattedMessage

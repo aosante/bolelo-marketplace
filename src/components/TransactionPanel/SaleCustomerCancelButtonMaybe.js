@@ -33,8 +33,6 @@ const SaleCustomerCancelButtonMaybe = props => {
 
   const buttonsDisabled = cancelBookingInProgress || cantCancelBooking();
 
-  console.log(buttonsDisabled);
-
   const cancelErrorMessage = cancelBookingError ? (
     <p className={css.actionError}>
       <FormattedMessage id="TransactionPanel.cancelBookingFailed" />

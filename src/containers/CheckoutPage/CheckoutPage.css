@@ -134,7 +134,6 @@
 .avatarWrapper {
   /* Position (over the listing image)*/
   margin-left: 24px;
-  margin-top: -31px;
 
   /* Rendering context to the same lavel as listing image */
   position: relative;

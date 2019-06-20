@@ -39,9 +39,14 @@ import css from './BookingDatesForm.css';
 
 const { Money, UUID } = sdkTypes;
 
-const estimatedTotalPrice = (unitPrice, unitCount) => {
+const estimatedTotalPrice = (unitPrice, unitCount, itemQuantity) => {
   const numericPrice = convertMoneyToNumber(unitPrice);
-  const numericTotalPrice = new Decimal(numericPrice).times(unitCount).toNumber();
+  const numericTotalPrice = itemQuantity
+    ? new Decimal(numericPrice)
+        .times(unitCount)
+        .times(itemQuantity)
+        .toNumber()
+    : new Decimal(numericPrice).times(unitCount).toNumber();
   return new Money(
     convertUnitToSubUnit(numericTotalPrice, unitDivisor(unitPrice.currency)),
     unitPrice.currency
@@ -51,10 +56,18 @@ const estimatedTotalPrice = (unitPrice, unitCount) => {
 // When we cannot speculatively initiate a transaction (i.e. logged
 // out), we must estimate the booking breakdown. This function creates
 // an estimated transaction object for that use case.
-const estimatedTransaction = (unitType, bookingStart, bookingEnd, unitPrice, quantity) => {
+const estimatedTransaction = (
+  unitType,
+  bookingStart,
+  bookingEnd,
+  unitPrice,
+  quantity,
+  itemQuantity
+) => {
   const now = new Date();
   const isNightly = unitType === LINE_ITEM_NIGHT;
   const isDaily = unitType === LINE_ITEM_DAY;
+  const selectedQuantity = parseInt(itemQuantity);
 
   const unitCount = isNightly
     ? nightsBetween(bookingStart, bookingEnd)
@@ -62,7 +75,7 @@ const estimatedTransaction = (unitType, bookingStart, bookingEnd, unitPrice, qua
     ? daysBetween(bookingStart, bookingEnd)
     : quantity;
 
-  const totalPrice = estimatedTotalPrice(unitPrice, unitCount);
+  const totalPrice = estimatedTotalPrice(unitPrice, unitCount, selectedQuantity);
 
   // bookingStart: "Fri Mar 30 2018 12:00:00 GMT-1100 (SST)" aka "Fri Mar 30 2018 23:00:00 GMT+0000 (UTC)"
   // Server normalizes night/day bookings to start from 00:00 UTC aka "Thu Mar 29 2018 13:00:00 GMT-1100 (SST)"
@@ -79,6 +92,16 @@ const estimatedTransaction = (unitType, bookingStart, bookingEnd, unitPrice, qua
       .startOf('day')
       .toDate()
   );
+
+  // const quantityLineItemTotal = selectedQuantity * unitPrice;
+  // const quantityLineItem = {
+  //   code: LINE_ITEM_SELECTED_QUANTITY,
+  //   includeFor: ['customer', 'provider'],
+  //   unitPrice: unitPrice,
+  //   quantity: selectedQuantity,
+  //   lineTotal: quantityLineItemTotal,
+  // };
+  // const quantityLineItemMaybe = selectedQuantity ? [quantityLineItem] : [];
 
   return {
     id: new UUID('estimated-transaction'),
@@ -119,7 +142,7 @@ const estimatedTransaction = (unitType, bookingStart, bookingEnd, unitPrice, qua
 };
 
 const EstimatedBreakdownMaybe = props => {
-  const { unitType, unitPrice, startDate, endDate, quantity } = props.bookingData;
+  const { unitType, unitPrice, startDate, endDate, quantity, itemQuantity } = props.bookingData;
   const isUnits = unitType === LINE_ITEM_UNITS;
   const quantityIfUsingUnits = !isUnits || Number.isInteger(quantity);
   const canEstimatePrice = startDate && endDate && unitPrice && quantityIfUsingUnits;
@@ -127,8 +150,9 @@ const EstimatedBreakdownMaybe = props => {
     return null;
   }
 
-  const tx = estimatedTransaction(unitType, startDate, endDate, unitPrice, quantity);
+  const tx = estimatedTransaction(unitType, startDate, endDate, unitPrice, quantity, itemQuantity);
 
+  //itemQuantity is passed in to show in th booking breakkdown
   return (
     <BookingBreakdown
       className={css.receipt}
@@ -136,6 +160,7 @@ const EstimatedBreakdownMaybe = props => {
       unitType={unitType}
       transaction={tx}
       booking={tx.booking}
+      itemQuantity={itemQuantity}
     />
   );
 };

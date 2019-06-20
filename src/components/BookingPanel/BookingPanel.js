@@ -98,17 +98,14 @@ const BookingPanel = props => {
   const classes = classNames(rootClassName || css.root, className);
   const titleClasses = classNames(titleClassName || css.bookingTitle);
   //submit handler function to convert value from select input to selected quantity for the listing
-  // const handleSubmit = values => {
-  //   return console.log(values);
-  //   const selectedQuantity =
-  //     values && values.additionalItems && values.additionalItems[0] === 'quantity'
-  //       ? quantity
-  //       : null;
-  //   onSubmit({
-  //     ...values,
-  //     quantity: selectedQuantity,
-  //   });
-  // };
+  const handleSubmit = values => {
+    //return console.log(values);
+    const selectedQuantity = values && values.additionalItems ? quantity : null;
+    onSubmit({
+      ...values,
+      quantity: selectedQuantity,
+    });
+  };
 
   return (
     <div className={classes}>
@@ -136,7 +133,8 @@ const BookingPanel = props => {
             className={css.bookingForm}
             submitButtonWrapperClassName={css.bookingDatesSubmitButtonWrapper}
             unitType={unitType}
-            onSubmit={onSubmit}
+            // pass handleSubmit instead of onSubmit
+            onSubmit={handleSubmit}
             price={price}
             isOwnListing={isOwnListing}
             timeSlots={timeSlots}

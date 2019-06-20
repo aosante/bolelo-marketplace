@@ -21,6 +21,8 @@ import {
   transactionInitiateOrderStripeErrors,
 } from '../../util/errors';
 import { formatMoney } from '../../util/currency';
+import { nightsBetween, daysBetween } from '../../util/dates';
+import { types as sdkTypes } from '../../util/sdkLoader';
 import {
   AvatarMedium,
   BookingBreakdown,
@@ -45,6 +47,7 @@ import { storeData, storedData, clearData } from './CheckoutPageSessionHelpers';
 import css from './CheckoutPage.css';
 
 const STORAGE_KEY = 'CheckoutPage';
+const { Money } = sdkTypes;
 
 export class CheckoutPageComponent extends Component {
   constructor(props) {
@@ -64,6 +67,38 @@ export class CheckoutPageComponent extends Component {
     if (window) {
       this.loadInitialData();
     }
+  }
+
+  /**
+   * Constructs a request params object that can be used when creating bookings
+   * using custom pricing.
+   * @param {} params An object that contains bookingStart, bookingEnd and listing
+   * @return a params object for custom pricing bookings
+   */
+  customPricingParams(params) {
+    const { bookingStart, bookingEnd, listing, ...rest } = params;
+    const { amount, currency } = listing.attributes.price;
+
+    const unitType = config.bookingUnitType;
+    const isNightly = unitType === LINE_ITEM_NIGHT;
+
+    const quantity = isNightly
+      ? nightsBetween(bookingStart, bookingEnd)
+      : daysBetween(bookingStart, bookingEnd);
+
+    return {
+      listingId: listing.id,
+      bookingStart,
+      bookingEnd,
+      lineItems: [
+        {
+          code: unitType,
+          unitPrice: new Money(amount, currency),
+          quantity,
+        },
+      ],
+      ...rest,
+    };
   }
 
   /**
@@ -118,7 +153,7 @@ export class CheckoutPageComponent extends Component {
       pageData.bookingDates.bookingEnd;
 
     if (hasData) {
-      const listingId = pageData.listing.id;
+      //const listingId = pageData.listing.id;
       const { bookingStart, bookingEnd } = pageData.bookingDates;
 
       // Convert picked date to date that will be converted on the API as
@@ -129,11 +164,13 @@ export class CheckoutPageComponent extends Component {
       // Fetch speculated transaction for showing price in booking breakdown
       // NOTE: if unit type is line-item/units, quantity needs to be added.
       // The way to pass it to checkout page is through pageData.bookingData
-      fetchSpeculatedTransaction({
-        listingId,
-        bookingStart: bookingStartForAPI,
-        bookingEnd: bookingEndForAPI,
-      });
+      fetchSpeculatedTransaction(
+        this.customPricingParams({
+          listing,
+          bookingStart: bookingStartForAPI,
+          bookingEnd: bookingEndForAPI,
+        })
+      );
     }
 
     this.setState({ pageData: pageData || {}, dataLoaded: true });
@@ -159,12 +196,12 @@ export class CheckoutPageComponent extends Component {
     // Create order aka transaction
     // NOTE: if unit type is line-item/units, quantity needs to be added.
     // The way to pass it to checkout page is through pageData.bookingData
-    const requestParams = {
-      listingId: this.state.pageData.listing.id,
+    const requestParams = this.customPricingParams({
+      listing: this.state.pageData.listing,
       cardToken,
       bookingStart: speculatedTransaction.booking.attributes.start,
       bookingEnd: speculatedTransaction.booking.attributes.end,
-    };
+    });
 
     const enquiredTransaction = this.state.pageData.enquiredTransaction;
 
@@ -263,6 +300,11 @@ export class CheckoutPageComponent extends Component {
       return <NamedRedirect name="ListingPage" params={params} />;
     }
 
+    let itemQuantity;
+    if (this.props.bookingData) {
+      itemQuantity = this.props.bookingData.additionalItems;
+    }
+
     // Show breakdown only when transaction and booking are loaded
     // (i.e. have an id)
     const breakdown =
@@ -273,6 +315,7 @@ export class CheckoutPageComponent extends Component {
           unitType={config.bookingUnitType}
           transaction={currentTransaction}
           booking={currentBooking}
+          itemQuantity={itemQuantity}
         />
       ) : null;
 

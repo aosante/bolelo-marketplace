@@ -15,6 +15,7 @@ import {
 import LineItemUnitPriceMaybe from './LineItemUnitPriceMaybe';
 import LineItemBookingPeriod from './LineItemBookingPeriod';
 import LineItemUnitsMaybe from './LineItemUnitsMaybe';
+import LineItemQuantityMaybe from './LineItemQuantityMaybe';
 import LineItemSubTotalMaybe from './LineItemSubTotalMaybe';
 import LineItemCustomerCommissionMaybe from './LineItemCustomerCommissionMaybe';
 import LineItemCustomerCommissionRefundMaybe from './LineItemCustomerCommissionRefundMaybe';
@@ -27,7 +28,16 @@ import LineItemUnknownItemsMaybe from './LineItemUnknownItemsMaybe';
 import css from './BookingBreakdown.css';
 
 export const BookingBreakdownComponent = props => {
-  const { rootClassName, className, userRole, unitType, transaction, booking, intl } = props;
+  const {
+    rootClassName,
+    className,
+    userRole,
+    unitType,
+    transaction,
+    booking,
+    intl,
+    itemQuantity,
+  } = props;
 
   const isCustomer = userRole === 'customer';
   const isProvider = userRole === 'provider';
@@ -43,6 +53,7 @@ export const BookingBreakdownComponent = props => {
   return (
     <div className={classes}>
       <LineItemUnitPriceMaybe transaction={transaction} unitType={unitType} intl={intl} />
+      <LineItemQuantityMaybe itemQuantity={itemQuantity} />
       <LineItemBookingPeriod transaction={transaction} booking={booking} unitType={unitType} />
       <LineItemUnitsMaybe transaction={transaction} unitType={unitType} />
 

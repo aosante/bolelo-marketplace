@@ -31,7 +31,12 @@ import Decimal from 'decimal.js';
 import { types as sdkTypes } from '../../util/sdkLoader';
 import { dateFromLocalToAPI, nightsBetween, daysBetween } from '../../util/dates';
 import { TRANSITION_REQUEST, TX_TRANSITION_ACTOR_CUSTOMER } from '../../util/transaction';
-import { LINE_ITEM_DAY, LINE_ITEM_NIGHT, LINE_ITEM_UNITS } from '../../util/types';
+import {
+  LINE_ITEM_DAY,
+  LINE_ITEM_NIGHT,
+  LINE_ITEM_UNITS,
+  LINE_ITEM_SELECTED_QUANTITY,
+} from '../../util/types';
 import { unitDivisor, convertMoneyToNumber, convertUnitToSubUnit } from '../../util/currency';
 import { BookingBreakdown } from '../../components';
 
@@ -93,15 +98,17 @@ const estimatedTransaction = (
       .toDate()
   );
 
-  // const quantityLineItemTotal = selectedQuantity * unitPrice;
-  // const quantityLineItem = {
-  //   code: LINE_ITEM_SELECTED_QUANTITY,
-  //   includeFor: ['customer', 'provider'],
-  //   unitPrice: unitPrice,
-  //   quantity: selectedQuantity,
-  //   lineTotal: quantityLineItemTotal,
-  // };
-  // const quantityLineItemMaybe = selectedQuantity ? [quantityLineItem] : [];
+  const quantityLineItemTotal = selectedQuantity * unitPrice.amount;
+  const quantityLineItem = {
+    code: LINE_ITEM_SELECTED_QUANTITY,
+    includeFor: ['customer', 'provider'],
+    unitPrice: unitPrice,
+    quantity: new Decimal(selectedQuantity),
+    lineTotal: new Money(quantityLineItemTotal, 'USD'),
+    reversal: false,
+  };
+
+  const quantityLineItemMaybe = selectedQuantity ? [quantityLineItem] : [];
 
   return {
     id: new UUID('estimated-transaction'),
@@ -113,6 +120,7 @@ const estimatedTransaction = (
       payinTotal: totalPrice,
       payoutTotal: totalPrice,
       lineItems: [
+        ...quantityLineItemMaybe,
         {
           code: unitType,
           includeFor: ['customer', 'provider'],

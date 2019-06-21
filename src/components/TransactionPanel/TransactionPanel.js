@@ -10,7 +10,12 @@ import {
   txIsRequested,
   txHasBeenDelivered,
 } from '../../util/transaction';
-import { LINE_ITEM_NIGHT, LINE_ITEM_DAY, propTypes } from '../../util/types';
+import {
+  LINE_ITEM_NIGHT,
+  LINE_ITEM_DAY,
+  LINE_ITEM_SELECTED_QUANTITY,
+  propTypes,
+} from '../../util/types';
 import {
   ensureListing,
   ensureTransaction,
@@ -331,7 +336,9 @@ export class TransactionPanelComponent extends Component {
     });
 
     const classes = classNames(rootClassName || css.root, className);
-
+    const itemQuantity = currentTransaction.attributes.lineItems
+      .find(item => item.code === LINE_ITEM_SELECTED_QUANTITY)
+      .quantity.d[0].toString();
     return (
       <div className={classes}>
         <div className={css.container}>
@@ -455,6 +462,7 @@ export class TransactionPanelComponent extends Component {
                 className={css.breakdownContainer}
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
+                itemQuantity={itemQuantity}
               />
 
               {stateData.showSaleButtons ? (

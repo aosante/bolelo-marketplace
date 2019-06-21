@@ -99,8 +99,8 @@ const BookingPanel = props => {
   const titleClasses = classNames(titleClassName || css.bookingTitle);
   //submit handler function to convert value from select input to selected quantity for the listing
   const handleSubmit = values => {
-    //return console.log(values);
-    const selectedQuantity = values && values.additionalItems ? quantity : null;
+    // return console.log(values);
+    const selectedQuantity = values && values.additionalItems ? values.additionalItems : null;
     onSubmit({
       ...values,
       quantity: selectedQuantity,

@@ -7,7 +7,12 @@ import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import routeConfiguration from '../../routeConfiguration';
 import { pathByRouteName, findRouteByRouteName } from '../../util/routes';
-import { propTypes, LINE_ITEM_NIGHT, LINE_ITEM_DAY } from '../../util/types';
+import {
+  propTypes,
+  LINE_ITEM_NIGHT,
+  LINE_ITEM_DAY,
+  LINE_ITEM_SELECTED_QUANTITY,
+} from '../../util/types';
 import { ensureListing, ensureUser, ensureTransaction, ensureBooking } from '../../util/data';
 import { dateFromLocalToAPI } from '../../util/dates';
 import { createSlug } from '../../util/urlHelpers';
@@ -76,7 +81,8 @@ export class CheckoutPageComponent extends Component {
    * @return a params object for custom pricing bookings
    */
   customPricingParams(params) {
-    const { bookingStart, bookingEnd, listing, ...rest } = params;
+    const { bookingStart, bookingEnd, listing, selectedQuantity, ...rest } = params;
+
     const { amount, currency } = listing.attributes.price;
 
     const unitType = config.bookingUnitType;
@@ -86,11 +92,24 @@ export class CheckoutPageComponent extends Component {
       ? nightsBetween(bookingStart, bookingEnd)
       : daysBetween(bookingStart, bookingEnd);
 
+    const selectedQuantityLineItem = selectedQuantity
+      ? {
+          code: LINE_ITEM_SELECTED_QUANTITY,
+          unitPrice: new Money(amount, currency),
+          quantity: selectedQuantity,
+        }
+      : null;
+
+    const selectedQuantityLineItemMaybe = selectedQuantityLineItem
+      ? [selectedQuantityLineItem]
+      : [];
+
     return {
       listingId: listing.id,
       bookingStart,
       bookingEnd,
       lineItems: [
+        ...selectedQuantityLineItemMaybe,
         {
           code: unitType,
           unitPrice: new Money(amount, currency),
@@ -160,6 +179,7 @@ export class CheckoutPageComponent extends Component {
       // a noon of correct year-month-date combo in UTC
       const bookingStartForAPI = dateFromLocalToAPI(bookingStart);
       const bookingEndForAPI = dateFromLocalToAPI(bookingEnd);
+      const selectedQuantity = pageData.bookingData.quantity;
 
       // Fetch speculated transaction for showing price in booking breakdown
       // NOTE: if unit type is line-item/units, quantity needs to be added.
@@ -169,6 +189,7 @@ export class CheckoutPageComponent extends Component {
           listing,
           bookingStart: bookingStartForAPI,
           bookingEnd: bookingEndForAPI,
+          selectedQuantity,
         })
       );
     }
@@ -193,6 +214,14 @@ export class CheckoutPageComponent extends Component {
       dispatch,
     } = this.props;
 
+    const selectedQuantityLineItem = speculatedTransaction.attributes.lineItems.find(
+      item => item.code === LINE_ITEM_SELECTED_QUANTITY
+    );
+    const selectedQuantity = selectedQuantityLineItem
+      ? selectedQuantityLineItem.quantity.d[0]
+      : null;
+    // return console.log(selectedQuantityLineItem.quantity.d[0]);
+
     // Create order aka transaction
     // NOTE: if unit type is line-item/units, quantity needs to be added.
     // The way to pass it to checkout page is through pageData.bookingData
@@ -201,6 +230,7 @@ export class CheckoutPageComponent extends Component {
       cardToken,
       bookingStart: speculatedTransaction.booking.attributes.start,
       bookingEnd: speculatedTransaction.booking.attributes.end,
+      selectedQuantity,
     });
 
     const enquiredTransaction = this.state.pageData.enquiredTransaction;

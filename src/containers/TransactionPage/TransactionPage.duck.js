@@ -417,7 +417,6 @@ export const cancelRequest = id => (dispatch, getState, sdk) => {
       dispatch(addMarketplaceEntities(response));
       dispatch(cancelBookingRequestSuccess());
       dispatch(fetchCurrentUserNotifications());
-      console.log(response);
       return response;
     })
     .catch(e => {

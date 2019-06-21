@@ -216,6 +216,8 @@
   "EditListingQuantityForm.quantityPlaceholder": "Type in the available quantity",
   "EditListingQuantityForm.showListingFailed": "Fetching listing data failed",
   "EditListingQuantityForm.updateFailed": "Failed to update listing. Please try again.",
+  "EditListingQuantityForm.quantityRequired": "You need to specifiy a quantity of at least 1",
+  "EditListingQuantityForm.minimumQuantity": "You must add at least 1 item",
   "EditListingQuantityPanel.createListingTitle": "Available Quantity",
   "EditListingQuantityPanel.title": "Edit the available quantity of {listingTitle}",
   "EditListingInfoForm.infoLabel": "Additonal Info",

@@ -54,6 +54,10 @@ export const requiredFieldArrayCheckbox = message => value => {
   return hasSelectedValues ? VALID : message;
 };
 
+export const minQuantity = message => value => {
+  return value > 0 ? VALID : message;
+};
+
 export const minLength = (message, minimumLength) => value => {
   const hasLength = value && typeof value.length === 'number';
   return hasLength && value.length >= minimumLength ? VALID : message;

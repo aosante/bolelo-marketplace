@@ -6,6 +6,7 @@ import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { Form, Button, FieldTextInput } from '../../components';
+import { required, minQuantity, composeValidators } from '../../util/validators';
 
 import css from './EditListingQuantityForm.css';
 
@@ -31,6 +32,14 @@ export const EditListingQuantityFormComponent = props => (
       });
       const quantityPlaceholderMessage = intl.formatMessage({
         id: 'EditListingQuantityForm.quantityPlaceholder',
+      });
+
+      const quantityRequiredMesssage = intl.formatMessage({
+        id: 'EditListingQuantityForm.quantityRequired',
+      });
+
+      const minimumQuantityMesssage = intl.formatMessage({
+        id: 'EditListingQuantityForm.minimumQuantity',
       });
 
       const { updateListingError, showListingsError } = fetchErrors || {};
@@ -61,6 +70,10 @@ export const EditListingQuantityFormComponent = props => (
             type="number"
             label={quantityLabelMessage}
             placeholder={quantityPlaceholderMessage}
+            validate={composeValidators(
+              required(quantityRequiredMesssage),
+              minQuantity(minimumQuantityMesssage)
+            )}
           />
 
           <Button

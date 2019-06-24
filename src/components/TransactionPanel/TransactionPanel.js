@@ -205,11 +205,6 @@ export class TransactionPanelComponent extends Component {
     const isCustomer = transactionRole === 'customer';
     const isProvider = transactionRole === 'provider';
 
-    console.log(currentListing);
-    const testObj = {
-      test: 'This is a test object',
-    };
-
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;
     const iscustomerLoaded = !!currentCustomer.id;
@@ -304,7 +299,7 @@ export class TransactionPanelComponent extends Component {
         declineInProgress={declineInProgress}
         acceptSaleError={acceptSaleError}
         declineSaleError={declineSaleError}
-        onAcceptSale={() => onAcceptSale(currentTransaction.id, testObj)}
+        onAcceptSale={() => onAcceptSale(currentTransaction.id)}
         onDeclineSale={() => onDeclineSale(currentTransaction.id)}
       />
     );
@@ -341,9 +336,15 @@ export class TransactionPanelComponent extends Component {
     });
 
     const classes = classNames(rootClassName || css.root, className);
-    const itemQuantity = currentTransaction.attributes.lineItems
-      .find(item => item.code === LINE_ITEM_SELECTED_QUANTITY)
-      .quantity.d[0].toString();
+    const daysTotal = currentTransaction.attributes.lineItems.find(
+      item => item.code === LINE_ITEM_DAY
+    ).lineTotal.amount;
+    const quantityFraction = currentTransaction.attributes.lineItems.find(
+      item => item.code === LINE_ITEM_SELECTED_QUANTITY
+    ).lineTotal.amount;
+    const totalAmount = daysTotal + quantityFraction;
+    const itemQuantity = (totalAmount / daysTotal).toString();
+
     return (
       <div className={classes}>
         <div className={css.container}>

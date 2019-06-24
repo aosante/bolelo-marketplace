@@ -92,11 +92,27 @@ export class CheckoutPageComponent extends Component {
       ? nightsBetween(bookingStart, bookingEnd)
       : daysBetween(bookingStart, bookingEnd);
 
+    let modifiedAmount;
+    if (selectedQuantity === '1') {
+      modifiedAmount = 0;
+    } else if (selectedQuantity % 2 === 0) {
+      modifiedAmount = (amount * selectedQuantity * quantity) / selectedQuantity;
+    } else if (selectedQuantity % 2 !== 0 && selectedQuantity !== 1) {
+      modifiedAmount = ((amount * selectedQuantity * quantity) / selectedQuantity) * 2;
+    }
+
+    //esto si selectedQuantity es par y mayor que 3
+    if (selectedQuantity % 2 === 0 && selectedQuantity > 3) {
+      modifiedAmount = modifiedAmount * (selectedQuantity - 1);
+    } else if (selectedQuantity % 2 !== 0 && selectedQuantity > 3) {
+      modifiedAmount = (modifiedAmount * (selectedQuantity - 1)) / 2;
+    }
+
     const selectedQuantityLineItem = selectedQuantity
       ? {
           code: LINE_ITEM_SELECTED_QUANTITY,
-          unitPrice: new Money(amount, currency),
-          quantity: selectedQuantity,
+          unitPrice: new Money(modifiedAmount / 2, currency),
+          quantity: 2,
         }
       : null;
 
@@ -180,7 +196,6 @@ export class CheckoutPageComponent extends Component {
       const bookingStartForAPI = dateFromLocalToAPI(bookingStart);
       const bookingEndForAPI = dateFromLocalToAPI(bookingEnd);
       const selectedQuantity = pageData.bookingData.quantity;
-
       // Fetch speculated transaction for showing price in booking breakdown
       // NOTE: if unit type is line-item/units, quantity needs to be added.
       // The way to pass it to checkout page is through pageData.bookingData
@@ -198,6 +213,7 @@ export class CheckoutPageComponent extends Component {
   }
 
   handleSubmit(values) {
+    const { bookingData } = this.props;
     if (this.state.submitting) {
       return;
     }
@@ -214,13 +230,10 @@ export class CheckoutPageComponent extends Component {
       dispatch,
     } = this.props;
 
-    const selectedQuantityLineItem = speculatedTransaction.attributes.lineItems.find(
-      item => item.code === LINE_ITEM_SELECTED_QUANTITY
-    );
-    const selectedQuantity = selectedQuantityLineItem
-      ? selectedQuantityLineItem.quantity.d[0]
-      : null;
-    // return console.log(selectedQuantityLineItem.quantity.d[0]);
+    // const selectedQuantityLineItem = speculatedTransaction.attributes.lineItems.find(
+    //   item => item.code === LINE_ITEM_SELECTED_QUANTITY
+    // );
+    const selectedQuantity = bookingData.quantity;
 
     // Create order aka transaction
     // NOTE: if unit type is line-item/units, quantity needs to be added.

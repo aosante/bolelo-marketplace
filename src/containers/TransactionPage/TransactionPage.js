@@ -358,7 +358,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAcceptSale: transactionId => dispatch(acceptSale(transactionId)),
+    onAcceptSale: (transactionId, test) => dispatch(acceptSale(transactionId, test)),
     onDeclineSale: transactionId => dispatch(declineSale(transactionId)),
     onCancelRequest: transactionId => dispatch(cancelRequest(transactionId)),
     onCancelBooking: transactionId => dispatch(cancelBooking(transactionId)),

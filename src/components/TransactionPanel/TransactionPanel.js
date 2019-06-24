@@ -205,6 +205,11 @@ export class TransactionPanelComponent extends Component {
     const isCustomer = transactionRole === 'customer';
     const isProvider = transactionRole === 'provider';
 
+    console.log(currentListing);
+    const testObj = {
+      test: 'This is a test object',
+    };
+
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;
     const iscustomerLoaded = !!currentCustomer.id;
@@ -299,7 +304,7 @@ export class TransactionPanelComponent extends Component {
         declineInProgress={declineInProgress}
         acceptSaleError={acceptSaleError}
         declineSaleError={declineSaleError}
-        onAcceptSale={() => onAcceptSale(currentTransaction.id)}
+        onAcceptSale={() => onAcceptSale(currentTransaction.id, testObj)}
         onDeclineSale={() => onDeclineSale(currentTransaction.id)}
       />
     );

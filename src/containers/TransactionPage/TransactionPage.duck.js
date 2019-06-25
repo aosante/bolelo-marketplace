@@ -407,51 +407,72 @@ export const declineSale = id => (dispatch, getState, sdk) => {
 };
 
 export const cancelRequest = id => (dispatch, getState, sdk) => {
-  //return sdk.transactions.show({ id }).then(res => console.log(res.data.data.attributes));
-  if (cancelingRequestInProgress(getState())) {
-    return Promise.reject(new Error('Request cancellation already in progress'));
-  }
-  dispatch(cancelBookingRequest());
-  return sdk.transactions
-    .transition({ id, transition: TRANSITION_CANCEL_REQUEST, params: {} }, { expand: true })
-    .then(response => {
-      dispatch(addMarketplaceEntities(response));
-      dispatch(cancelBookingRequestSuccess());
-      dispatch(fetchCurrentUserNotifications());
-      return response;
-    })
-    .catch(e => {
-      dispatch(cancelBookingRequestError(storableError(e)));
-      log.error(e, 'cancel-request-failed', {
-        txId: id,
-        transition: TRANSITION_CANCEL_REQUEST,
-      });
-      throw e;
-    });
+  swal({
+    title: 'Are you sure?',
+    text:
+      'This request will be offically cancelled and chosen dates will become available for others',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  }).then(willDelete => {
+    if (willDelete) {
+      if (cancelingRequestInProgress(getState())) {
+        return Promise.reject(new Error('Request cancellation already in progress'));
+      }
+      dispatch(cancelBookingRequest());
+      return sdk.transactions
+        .transition({ id, transition: TRANSITION_CANCEL_REQUEST, params: {} }, { expand: true })
+        .then(response => {
+          dispatch(addMarketplaceEntities(response));
+          dispatch(cancelBookingRequestSuccess());
+          dispatch(fetchCurrentUserNotifications());
+          return response;
+        })
+        .catch(e => {
+          dispatch(cancelBookingRequestError(storableError(e)));
+          log.error(e, 'cancel-request-failed', {
+            txId: id,
+            transition: TRANSITION_CANCEL_REQUEST,
+          });
+          throw e;
+        });
+    }
+  });
 };
 
 export const cancelBooking = id => (dispatch, getState, sdk) => {
-  if (cancelingBookingInProgress(getState())) {
-    return Promise.reject(new Error('Booking cancellation already in progress'));
-  }
-  dispatch(cancelRental());
-  return sdk.transactions
-    .transition({ id, transition: TRANSITION_CUSTOMER_CANCEL, params: {} }, { expand: true })
-    .then(response => {
-      dispatch(addMarketplaceEntities(response));
-      dispatch(cancelBookingSuccess());
-      dispatch(fetchCurrentUserNotifications());
-      console.log(response);
-      return response;
-    })
-    .catch(e => {
-      dispatch(cancelBookingError(storableError(e)));
-      log.error(e, 'customer-cancel-failed', {
-        txId: id,
-        transaction: TRANSITION_CUSTOMER_CANCEL,
-      });
-      throw e;
-    });
+  swal({
+    title: 'Are you sure? This action cannot be undone',
+    text:
+      'This rental will be offically cancelled and chosen dates will become available for others',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  }).then(willDelete => {
+    if (willDelete) {
+      if (cancelingBookingInProgress(getState())) {
+        return Promise.reject(new Error('Booking cancellation already in progress'));
+      }
+      dispatch(cancelRental());
+      return sdk.transactions
+        .transition({ id, transition: TRANSITION_CUSTOMER_CANCEL, params: {} }, { expand: true })
+        .then(response => {
+          dispatch(addMarketplaceEntities(response));
+          dispatch(cancelBookingSuccess());
+          dispatch(fetchCurrentUserNotifications());
+          console.log(response);
+          return response;
+        })
+        .catch(e => {
+          dispatch(cancelBookingError(storableError(e)));
+          log.error(e, 'customer-cancel-failed', {
+            txId: id,
+            transaction: TRANSITION_CUSTOMER_CANCEL,
+          });
+          throw e;
+        });
+    }
+  });
 };
 
 const fetchMessages = (txId, page) => (dispatch, getState, sdk) => {

@@ -157,7 +157,7 @@ const EstimatedBreakdownMaybe = props => {
   if (!canEstimatePrice) {
     return null;
   }
-
+  //console.log(itemQuantity);
   const tx = estimatedTransaction(unitType, startDate, endDate, unitPrice, quantity, itemQuantity);
 
   //itemQuantity is passed in to show in th booking breakkdown

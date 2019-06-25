@@ -51,7 +51,7 @@
 /* Firefox doesn't support image aspect ratio inside flexbox */
 .aspectWrapper {
   padding-bottom: 66.6667%; /* 3:2 Aspect Ratio */
-  background-color: var(--matterColorNegative); /* Loading BG color */
+  background-color: var(--matterColorLight); /* Loading BG color */
 }
 
 .rootForImage {
@@ -65,6 +65,7 @@
 
   @media (--viewportLarge) {
     border-radius: 2px 2px 0 0;
+    padding: 35px;
   }
 }
 

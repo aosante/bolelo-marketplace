@@ -90,8 +90,7 @@ export class BookingDatesFormComponent extends Component {
           } = fieldRenderProps;
           const { startDate, endDate } = values && values.bookingDates ? values.bookingDates : {};
           //function to resolve input's value from form's value object
-          const selectedQuantity =
-            values && values.additionalItems ? values.additionalItems[0] : null;
+          const selectedQuantity = values && values.additionalItems ? values.additionalItems : null;
 
           const bookingStartLabel = intl.formatMessage({
             id: 'BookingDatesForm.bookingStartTitle',

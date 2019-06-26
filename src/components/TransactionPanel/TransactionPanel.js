@@ -197,6 +197,8 @@ export class TransactionPanelComponent extends Component {
     booking cancellation (up to 24hrs before booking period starts). The object holding this data will be passed
     down as props to the saleCustomerCancelButtonMaybe Component*/
     const startDate = transaction.booking.attributes.start;
+    const createdAtDate = transaction.attributes.createdAt;
+    //I also need to send the createdAt attribute that comes from transaction
 
     const currentTransaction = ensureTransaction(transaction);
     const currentListing = ensureListing(currentTransaction.listing);
@@ -204,6 +206,9 @@ export class TransactionPanelComponent extends Component {
     const currentCustomer = ensureUser(currentTransaction.customer);
     const isCustomer = transactionRole === 'customer';
     const isProvider = transactionRole === 'provider';
+
+    console.log(transaction);
+    console.log(currentTransaction);
 
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;

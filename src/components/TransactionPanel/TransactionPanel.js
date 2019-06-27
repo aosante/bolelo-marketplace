@@ -433,8 +433,8 @@ export class TransactionPanelComponent extends Component {
               <div className={css.mobileActionButtons}>
                 {cancelBookingButton}
                 <p className={css.policyNote}>
-                  *Rentals can be cancelled for a full refund up to 24hrs before rental period
-                  starts. After that, entire fee is forfeited.
+                  *Rentals can be cancelled for a full refund by 6pm on the eve of the booking start
+                  date. After that, entire fee is forfeited.
                 </p>{' '}
               </div>
             ) : null}
@@ -490,8 +490,8 @@ export class TransactionPanelComponent extends Component {
                 <div className={css.desktopActionButtons}>
                   {cancelBookingButton}{' '}
                   <p className={css.policyNote}>
-                    *Rentals can be cancelled for a full refund up to 24hrs before rental period
-                    starts. After that, entire fee is forfeited.
+                    *Rentals can be cancelled for a full refund by 6pm on the eve of the booking
+                    start date. After that, entire fee is forfeited.
                   </p>{' '}
                 </div>
               ) : null}

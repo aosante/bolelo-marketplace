@@ -208,7 +208,6 @@ export class TransactionPanelComponent extends Component {
     const isProvider = transactionRole === 'provider';
 
     console.log(transaction);
-    console.log(currentTransaction);
 
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;
@@ -325,6 +324,7 @@ export class TransactionPanelComponent extends Component {
         cancelBookingError={cancelBookingError}
         onCancelBooking={() => onCancelBooking(currentTransaction.id)}
         startDate={startDate}
+        createdAtDate={createdAtDate}
       />
     );
 

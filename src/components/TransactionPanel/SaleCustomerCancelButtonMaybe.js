@@ -18,9 +18,9 @@ const SaleCustomerCancelButtonMaybe = props => {
     startDate,
   } = props;
 
-  /*Start date is always one day before, so I need to add one day, and set the hour to the hour that lives in
-  the createdat attribute in the transaction (which needs to come from props)
-  in order to make the calculation*/
+  //startDate comes in as one day before, so one day needs to be added to calculate hours
+  const realStartingDate = new Date(startDate);
+  realStartingDate.setDate(realStartingDate.getDate() + 1);
 
   const currentDate = new Date();
 
@@ -30,7 +30,7 @@ const SaleCustomerCancelButtonMaybe = props => {
 
   const cantCancelBooking = _ => {
     let cantCancel = false;
-    const hoursToStart = getHoursToStart(startDate, currentDate);
+    const hoursToStart = getHoursToStart(realStartingDate, currentDate);
     if (hoursToStart < 24) cantCancel = true;
     return cantCancel;
   };

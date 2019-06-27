@@ -35,53 +35,50 @@ const AboutPage = () => {
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
-          <h1 className={css.pageTitle}>Experience the unique Finnish home sauna.</h1>
+          <h1 className={css.pageTitle}>About Us</h1>
           <img className={css.coverImage} src={image} alt="My first ice cream." />
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>Did you know that Finland has 3.2 million saunas - almost one sauna per person!</p>
+              <p>So, what do we do with all the stuff we’ve bought but rarely use?
+              </p>
             </div>
 
             <div className={css.contentMain}>
               <h2>
-                Most of the Finnish saunas are located at the homes of individuals - indeed, most
-                people in Finland live in an apartment with sauna in it. In addition, lots of people
-                have lakeside summer cottages, which also typically come with a separate sauna
-                building near the waterfront.
+                Some of the items we probably forgot we even have.  We bought it because we needed it but now it sits in our garage, attic, shed, etc.
+                How about, this one item you really need but you are not quite ready to make the purchase?
               </h2>
 
               <p>
-                To truly experience a Finnish sauna, you need to look beyond the public saunas, and
-                instead visit a real home or cottage sauna. Saunatime makes this possible for
-                everyone. All our saunas are owned by individuals willing to let tourists and other
-                curious visitors to enter their sacred spaces.
-              </p>
-
-              <h3 className={css.subtitle}>Are you a sauna owner?</h3>
-
-              <p>
-                Saunatime offers you a good way to earn some extra cash! If you're not using your
-                sauna every evening, why not rent it to other people while it's free. And even if
-                you are using your sauna every evening (we understand, it's so good), why not invite
-                other people to join you when the sauna is already warm! A shared sauna experience
-                is often a more fulfilling one.
-              </p>
-
-              <h3 id="contact" className={css.subtitle}>
-                Create your own marketplace like Saunatime
-              </h3>
-              <p>
-                Saunatime is brought to you by the good folks at{' '}
-                <ExternalLink href="http://sharetribe.com">Sharetribe</ExternalLink>. Would you like
-                to create your own marketplace platform a bit like Saunatime? Or perhaps a mobile
-                app? With Sharetribe it's really easy. If you have a marketplace idea in mind, do
-                get in touch!
+                We live in a diverse, caring community of friendly neighbors who are willing to share.
+                We are all aware of our ever-changing commodity-driven culture and our need to buy everything.
+                We can promote healthy community via sharing between a neighbor to another friendly neighbor.
+                Bolelo solves these two-part problems with our easy to use sharing market place platform.
+                Bolelo links Borrowers and Lenders for a simple sharing transaction.
               </p>
               <p>
-                You can also checkout our{' '}
-                <ExternalLink href={siteFacebookPage}>Facebook</ExternalLink> and{' '}
-                <ExternalLink href={siteTwitterPage}>Twitter</ExternalLink>.
+                Why buy when you can Borrow?
+                Why buy when you only use seldom and have no place to store it?
+              </p>
+              <p>
+                It's definitely better for your wallet
+                It promotes less clutter around the house and better for our environment.
+                It can help generate extra $$ to help pay your expenses all while promoting sharing culture.
+              </p>
+
+              <h3 className={css.subtitle}>So, Just BOLELO it! </h3>
+
+              <p>
+                We started this site because we needed the answers to the questions above.
+                If you are like many people we meet then you too have probably thought the same.
+                We hope you will find the site to be useful.  Please share BOLELO with your friends.
+                Help us create a better community and less wasteful environment that we can pass down to our children.
+              </p>
+
+              <p>
+                We have chosen to donate 5% of proceeds to 501 (c) 3 non-profits, LBSKF (30-0162842), based in Raleigh North Carolina.
+                This is a small group of good people (all volunteers) doing many great things for the community.
               </p>
             </div>
           </div>

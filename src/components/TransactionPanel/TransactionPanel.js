@@ -207,8 +207,6 @@ export class TransactionPanelComponent extends Component {
     const isCustomer = transactionRole === 'customer';
     const isProvider = transactionRole === 'provider';
 
-    console.log(transaction);
-
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;
     const iscustomerLoaded = !!currentCustomer.id;

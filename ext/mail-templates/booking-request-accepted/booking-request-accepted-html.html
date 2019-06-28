@@ -1,4 +1,3 @@
-
 {{~#*inline "format-money"~}}
 {{money-amount money}} {{money.currency}}
 {{~/inline~}}
@@ -8,48 +7,99 @@
 {{~/inline~}}
 
 <html>
-  <body>
-    <h1>Your booking request was accepted!</h1>
 
-    {{#with transaction}}
-    <p>{{provider.display-name}} has accepted your booking request for {{listing.title}} from {{> format-date date=booking.start}} to {{> format-date date=booking.end}}.</p>
+<body>
+  <h1>Congratulations {{customer.display-name}}!</h1>
 
-    <p>We have charged {{> format-money money=payin-total}} from your credit card. Here's your receipt.</p>
+  {{#with transaction}}
+  <p>Your BOLELO transaction for {{listing.title}} from {{> format-date date=booking.start}} to
+    {{> format-date date=booking.end}} is now approved & confirmed. Please contact {{provider.display-name}} through the
+    platform's chat if you see any discrepancies.</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th style="text-align: left;">Payment</th>
-        </tr>
-      </thead>
-      <tbody>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left;">Item & Reservation details</th>
+      </tr>
+    </thead>
+    <tbody>
       {{#each tx-line-items}}
-        {{#contains include-for "customer"}}
-          <tr>
-            {{#eq "line-item/day" code}}
-            <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "day" "days"}}</td>
-            <td style="padding-left: 20px;">{{> format-money money=line-total}}</td>
-            {{/eq}}
-            {{#eq "line-item/night" code}}
-            <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "night" "nights"}}</td>
-            <td style="padding-left: 20px;">{{> format-money money=line-total}}</td>
-            {{/eq}}
-          </tr>
-        {{/contains}}
+      {{#contains include-for "customer"}}
+      <tr>
+        {{#eq "line-item/day" code}}
+        <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "day" "days"}} &times;
+          item quantity</td>
+        <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
+        {{/eq}}
+        {{#eq "line-item/night" code}}
+        <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "night" "nights"}}
+          &times; item quantity</td>
+        <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
+        {{/eq}}
+      </tr>
+      {{/contains}}
       {{/each}}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th style="text-align: left;">Payment total</th>
-          <th style="text-align: left; padding-left: 20px;">{{> format-money money=payin-total}}</th>
-        </tr>
-      </tfoot>
-    </table>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th style="text-align: left;">Payment total</th>
+        <th style="text-align: left; padding-left: 20px;">{{> format-money money=payin-total}}</th>
+      </tr>
+    </tfoot>
+  </table>
 
-    {{/with}}
+  <p>For a positive BOLELO experience, personal safety of both parties and the item in the transaction, note the
+    following:</p>
 
-    <hr />
+  <h4>MEET</h4>
+  <ol>
+    <li>Safety comes first. Agree on a safe location to accept delivery. If meeting away from home, choose a public
+      location that is highly traveled and well lit. When possible, have a family/friend present or let a family/friend
+      know of your plans.
+    </li>
+    <li>Be prepared to confirm your identity. {{ provider.display-name }} will ask to see your driver’s license and
+      write down information or take a photo of it. If you are not able to provide an adequate form of ID,
+      {{ provider.display-name }} has the right to refuse the transaction and your fee will be refunded.
+    </li>
+    <li>Document and agree on missing pieces or broken parts, cosmetic defects. Take a photo/video.</li>
+    <li>If applicable, ask to demonstrate its function. {{ provider.display-name }} will likely take a photo/video with
+      a time stamp at its full operation to verify that everything is in working condition before releasing the item.
+    </li>
+    <li>You must confirm receipt of the item and agree on the return date, time and location through the platform's
+      console.</li>
+  </ol>
 
-    <p>You have received this email notification because you are a member of {{marketplace.name}}. If you no longer wish to receive these emails, please contact {{marketplace.name}} team.</p>
-  </body>
+  <h4>PAYMENT</h4>
+  <ol>
+    <li>Payment will be deposited into {{ provider.display-name }}'s account.</li>
+  </ol>
+
+  <h4>RETURN</h4>
+  <ol>
+    <li>Notify {{ provider.display-name }} in advance if there's any trouble in use, damage, etc.</li>
+    <li>{{ provider.display-name }} will inspect the item for damages. Only wear and tear from normal use is acceptable.
+    </li>
+    <li>If a problem is found, seek a good neighborly way to find a resolution amicably. If the item is damaged, lost or
+      stolen under your care, be prepared to fix/repair and/or pay for the replacement.
+    </li>
+  </ol>
+
+  <h4>REVIEW</h4>
+  <ol>
+    <li>Be sure to rate your experience with {{ provider.display-name }}.</li>
+  </ol>
+
+  <h4>CANCEL</h4>
+  <p>To receive a full refund, you must<a href="{{ marketplace.url }}/sale/{{url-encode id}}/details"> CANCEL </a>the
+    booking by 6 pm on the eve of the booking start date. You will forfeit 100% of the fee if you miss this deadline.
+  </p>
+
+  {{/with}}
+
+  <hr />
+
+  <p>You have received this email notification because you are a member of {{marketplace.name}}. If you no longer wish
+    to receive these emails, please contact {{marketplace.name}} team.</p>
+</body>
+
 </html>

@@ -10,7 +10,7 @@ import {
   autocompletePlaceSelected,
   composeValidators,
 } from '../../util/validators';
-import { Form, LocationAutocompleteInputField, Button, FieldTextInput } from '../../components';
+import { Form, LocationAutocompleteInputField, Button } from '../../components';
 
 import css from './EditListingLocationForm.css';
 
@@ -41,11 +41,6 @@ export const EditListingLocationFormComponent = props => (
       });
       const addressNotRecognizedMessage = intl.formatMessage({
         id: 'EditListingLocationForm.addressNotRecognized',
-      });
-
-      const buildingMessage = intl.formatMessage({ id: 'EditListingLocationForm.building' });
-      const buildingPlaceholderMessage = intl.formatMessage({
-        id: 'EditListingLocationForm.buildingPlaceholder',
       });
 
       const { updateListingError, showListingsError } = fetchErrors || {};
@@ -89,14 +84,9 @@ export const EditListingLocationFormComponent = props => (
             )}
           />
 
-          <FieldTextInput
-            className={css.building}
-            type="text"
-            name="building"
-            id="building"
-            label={buildingMessage}
-            placeholder={buildingPlaceholderMessage}
-          />
+          <p>
+            <FormattedMessage id="EditListingLocationForm.addressNote" />
+          </p>
 
           <Button
             className={css.submitButton}

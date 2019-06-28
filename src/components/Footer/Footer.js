@@ -23,7 +23,7 @@ const renderSocialMediaLinks = intl => {
   const goToInsta = intl.formatMessage({ id: 'Footer.goToInstagram' });
   const goToTwitter = intl.formatMessage({ id: 'Footer.goToTwitter' });
 
-  const fbLink = siteFacebookPage ? (
+  const fbLink = siteFacebookPage ? ( 
     <ExternalLink key="linkToFacebook" href={siteFacebookPage} className={css.icon} title={goToFb}>
       <IconSocialMediaFacebook />
     </ExternalLink>
@@ -93,12 +93,12 @@ const Footer = props => {
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink name="LandingPage" className={css.link}>
+                  <NamedLink name="FaqPage" className={css.link}>
                     <FormattedMessage id="Footer.toFAQPage" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink name="LandingPage" className={css.link}>
+                  <NamedLink name="HelpPage" className={css.link}>
                     <FormattedMessage id="Footer.toHelpPage" />
                   </NamedLink>
                 </li>
@@ -191,6 +191,11 @@ const Footer = props => {
                   <li>
                     <NamedLink name="BorrowerAgreementPage" className={css.legalLink}>
                       <FormattedMessage id="Footer.borrowerAgreement" />
+                    </NamedLink>
+                  </li>
+                  <li>
+                    <NamedLink name="LenderAgreementPage" className={css.legalLink}>
+                      <FormattedMessage id="Footer.lenderAgreement" />
                     </NamedLink>
                   </li>
                 </ul>

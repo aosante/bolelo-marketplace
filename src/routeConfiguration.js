@@ -23,7 +23,9 @@ import {
   TermsOfServicePage,
   TransactionPage,
   HelpPage,
-  BorrowerAgreementPage
+  BorrowerAgreementPage,
+  LenderAgreementPage,
+  FaqPage
 } from './containers';
 
 // routeConfiguration needs to initialize containers first
@@ -267,9 +269,19 @@ const routeConfiguration = () => {
       component: props => <BorrowerAgreementPage {...props} />,
     },
     {
+      path: '/lender-agreement',
+      name: 'LenderAgreementPage',
+      component: props => <LenderAgreementPage {...props} />,
+    },
+    {
       path: '/help',
       name: 'HelpPage',
       component: props => <HelpPage {...props} />,
+    },
+    {
+      path: '/faq',
+      name: 'FaqPage',
+      component: props => <FaqPage {...props} />,
     },
     {
       path: '/styleguide',

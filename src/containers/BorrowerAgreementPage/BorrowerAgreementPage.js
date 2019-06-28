@@ -12,41 +12,41 @@ import {
   LayoutWrapperSideNav,
   LayoutWrapperTopbar,
   LayoutWrapperFooter,
+  BorrowerAgreement,
   Footer,
-  TermsOfService,
 } from '../../components';
 import config from '../../config';
 
-import css from './TermsOfServicePage.css';
+import css from './BorrowerAgreementPage.css';
 
-const TermsOfServicePageComponent = props => {
+const BorrowerAgreementPageComponent = props => {
   const { scrollingDisabled, intl } = props;
 
   const tabs = [
     {
-      text: intl.formatMessage({ id: 'TermsOfServicePage.privacyTabTitle' }),
+      text: intl.formatMessage({ id: 'PrivacyPolicyPage.privacyTabTitle' }),
       selected: false,
       linkProps: {
         name: 'PrivacyPolicyPage',
       },
     },
     {
-      text: intl.formatMessage({ id: 'TermsOfServicePage.tosTabTitle' }),
-      selected: true,
+      text: intl.formatMessage({ id: 'PrivacyPolicyPage.tosTabTitle' }),
+      selected: false,
       linkProps: {
         name: 'TermsOfServicePage',
       },
     },
     {
-      text: intl.formatMessage({ id: 'LegalTbs.borrowerAgreement' }),
-      selected: false,
-      linkProps: {
-        name: 'BorrowerAgreementPage',
+        text: intl.formatMessage({ id: 'LegalTbs.borrowerAgreement' }),
+        selected: true,
+        linkProps: {
+          name: 'BorrowerAgreementPage',
+        },
       },
-    },
   ];
   const siteTitle = config.siteTitle;
-  const schemaTitle = intl.formatMessage({ id: 'TermsOfServicePage.schemaTitle' }, { siteTitle });
+  const schemaTitle = intl.formatMessage({ id: 'BorrowerAgreementPage.schemaTitle' }, { siteTitle });
   const schema = {
     '@context': 'http://schema.org',
     '@type': 'WebPage',
@@ -56,15 +56,15 @@ const TermsOfServicePageComponent = props => {
     <Page title={schemaTitle} scrollingDisabled={scrollingDisabled} schema={schema}>
       <LayoutSideNavigation>
         <LayoutWrapperTopbar>
-          <TopbarContainer currentPage="TermsOfServicePage" />
+          <TopbarContainer currentPage="BorrowerAgreementPage" />
         </LayoutWrapperTopbar>
         <LayoutWrapperSideNav tabs={tabs} />
         <LayoutWrapperMain>
           <div className={css.content}>
             <h1 className={css.heading}>
-              <FormattedMessage id="TermsOfServicePage.heading" />
+              <FormattedMessage id="BorrowerAgreementPage.heading" />
             </h1>
-            <TermsOfService />
+            <BorrowerAgreement />
           </div>
         </LayoutWrapperMain>
         <LayoutWrapperFooter>
@@ -77,7 +77,7 @@ const TermsOfServicePageComponent = props => {
 
 const { bool } = PropTypes;
 
-TermsOfServicePageComponent.propTypes = {
+BorrowerAgreementPageComponent.propTypes = {
   scrollingDisabled: bool.isRequired,
 
   // from injectIntl
@@ -90,9 +90,9 @@ const mapStateToProps = state => {
   };
 };
 
-const TermsOfServicePage = compose(
+const BorrowerAgreementPage = compose(
   connect(mapStateToProps),
   injectIntl
-)(TermsOfServicePageComponent);
+)(BorrowerAgreementPageComponent);
 
-export default TermsOfServicePage;
+export default BorrowerAgreementPage;

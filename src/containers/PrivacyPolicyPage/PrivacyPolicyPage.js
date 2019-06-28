@@ -37,6 +37,14 @@ const PrivacyPolicyPageComponent = props => {
         name: 'TermsOfServicePage',
       },
     },
+    ,
+    {
+      text: intl.formatMessage({ id: 'LegalTbs.borrowerAgreement' }),
+      selected: false,
+      linkProps: {
+        name: 'BorrowerAgreementPage',
+      },
+    },
   ];
   const siteTitle = config.siteTitle;
   const schemaTitle = intl.formatMessage({ id: 'PrivacyPolicyPage.schemaTitle' }, { siteTitle });

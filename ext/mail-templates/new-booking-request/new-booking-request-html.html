@@ -36,15 +36,6 @@
         </td>
         <td style="text-align: right; padding-left: 20px">{{> format-money money=payin-total}}</td>
         {{/eq}}
-
-        {{#eq "line-item/night" code}}
-        <td>
-          {{> format-money money=unit-price}} &times; {{number quantity}}
-          {{inflect quantity "night" "nights"}} &times; item quantity
-        </td>
-        <td style="text-align: right; padding-left: 20px">{{> format-money money=payin-total}}</td>
-        {{/eq}}
-
         {{#eq "line-item/provider-commission" code}}
         <td>{{ marketplace.name }} fee:</td>
         <td style="text-align: right; padding-left: 20px;">
@@ -67,7 +58,7 @@
 
   <h4>PAYMENT</h4>
   <p>The borrower has made only a Pre-authorization of payment.
-    To ensure the integrity of the BOLELO process, Funds will only be released to you once the booking is
+    To ensure the integrity of the BOLELO process, funds will only be released to you once the booking is
     approved by the lender and delivery is finalized.
   </p>
 

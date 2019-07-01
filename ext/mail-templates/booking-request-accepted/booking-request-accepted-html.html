@@ -18,6 +18,7 @@
     {{> format-date date=booking.end}} is now approved & confirmed. Please contact {{provider.display-name}} through the
     {{marketplace.name}} platform if you see any discrepancies.</p>
 
+  <!-- cpopy table from default -->
   <table>
     <thead>
       <tr>
@@ -31,11 +32,6 @@
         {{#eq "line-item/day" code}}
         <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "day" "days"}} &times;
           item quantity</td>
-        <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
-        {{/eq}}
-        {{#eq "line-item/night" code}}
-        <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "night" "nights"}}
-          &times; item quantity</td>
         <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
         {{/eq}}
       </tr>

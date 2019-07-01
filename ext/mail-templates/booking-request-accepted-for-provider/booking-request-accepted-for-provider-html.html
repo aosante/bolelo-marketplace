@@ -1,0 +1,130 @@
+{{~#*inline "format-money"~}}
+{{money-amount money}} {{money.currency}}
+{{~/inline~}}
+
+{{~#*inline "format-date"~}}
+{{date date format="MMM d, YYYY"}}
+{{~/inline~}}
+
+<html>
+<!-- done -->
+<!-- proofreading pending -->
+<!-- edit cancel section if lender will be able to cancel booking -->
+
+<body>
+  <h1>Congratulations {{provider.display-name}}!</h1>
+
+  {{#with transaction}}
+  <p>Your BOLELO transaction for {{listing.title}} from {{> format-date date=booking.start}} to
+    {{> format-date date=booking.end}} is now confirmed. Please contact {{customer.display-name}} through the
+    {{marketplace.name}} platform if you see any discrepancies.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left;">Booking request details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each tx-line-items}}
+      {{#contains include-for "provider"}}
+      <tr>
+        {{#eq "line-item/day" code}}
+        <td>
+          {{> format-money money=unit-price}} &times; {{number quantity}}
+          {{inflect quantity "day" "days"}} &times; item quantity
+        </td>
+        <td style="text-align: right; padding-left: 20px">{{> format-money money=payin-total}}</td>
+        {{/eq}}
+
+        {{#eq "line-item/night" code}}
+        <td>
+          {{> format-money money=unit-price}} &times; {{number quantity}}
+          {{inflect quantity "night" "nights"}} &times; item quantity
+        </td>
+        <td style="text-align: right; padding-left: 20px">{{> format-money money=payin-total}}</td>
+        {{/eq}}
+
+        {{#eq "line-item/provider-commission" code}}
+        <td>{{ marketplace.name }} fee:</td>
+        <td style="text-align: right; padding-left: 20px;">
+          {{> format-money money=line-total}}
+        </td>
+        {{/eq}}
+      </tr>
+      {{/contains}}
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th style="text-align: left;">You earn</th>
+        <th style="text-align: left; padding-left: 20px;">
+          {{> format-money money=payout-total}}
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p>For a positive BOLELO experience, personal safety of both parties and the item in the transaction, note the
+    following:</p>
+
+  <h4>ITEM PREPARATION</h4>
+  <ol>
+    <li>Clean item if necessary.</li>
+    <li>Double check to make sure it is in safe and proper working order.</li>
+    <li>Gather all necesarry accessories, if any.</li>
+    <li>Do you have any written/video instructions on how to operate/use, for {{customer.display-name}}?
+      Please be prepared to demonstrate usage, if applicable.
+    </li>
+  </ol>
+
+  <h4>MEET</h4>
+  <ol>
+    <li>Safety comes first. Agree on a safe location for the delivery. If meeting away from home, choose a public
+      location that is highly traveled and well lit. When possible, have a family/friend present or let a family/friend
+      know of your plans.
+    </li>
+    <li>Confirm identity. Ask for driver's licence and write down information or take a photo.</li>
+    <li>Show item. Document and agree on missing pieces or broken parts, cosmetic defects. Take a photo/video.</li>
+    <li>If applicable, demonstrate its function. Take a photo/video with a time stamp at its full operation.</li>
+    <li>{{customer.display-name}} has the right to refuse the transaction and seek a refund if the item being delivered
+      does not accurately match the description of the information on the post. </li>
+  </ol>
+
+  <h4>FUNDS</h4>
+  <ol>
+    <li>Payment minus BOLELO fee (15%) will be deposited into your account. Any tax liability from this transaction is
+      the responsibility of the Lender.</li>
+  </ol>
+
+  <h4>RETURN</h4>
+  <ol>
+    <li>Inspect the item for damages. Wear and tear from normal use should be expected.</li>
+    <li>If a problem is found, seek a good neighborly way to find resolution amicably. A reasonable time to report a
+      problem is within 24 hours of the transaction. </li>
+    <li>File a CLAIM for the insured items, if there’s damage to your item and a simple resolution cannot be found.</li>
+  </ol>
+
+  <h4>REVIEW</h4>
+  <ol>
+    <li>Be sure to rate your experience with {{customer.display-name}}.</li>
+  </ol>
+
+  <h4>CANCEL</h4>
+  <ol>
+    <li>Please note, {{customer.display-name}} can cancel the booking until 6 pm on the eve of the booking start date
+      and receive a full refund. {{customer.display-name}} will forfeit 100% of the fee if they miss this deadline.</li>
+    <li>You can also CANCEL and send a full refund. To do so, you must contact the {{marketplace.name}} team. In the
+      event of such an incident, as a courtesy, we ask you to contact {{customer.display-name}} directly to remedy and
+      seek resolution.</li>
+  </ol>
+
+  {{/with}}
+
+  <hr />
+
+  <p>You have received this email notification because you are a member of {{marketplace.name}}. If you no longer wish
+    to receive these emails, please contact the {{marketplace.name}} team.</p>
+</body>
+
+</html>

@@ -37,7 +37,6 @@ const PrivacyPolicyPageComponent = props => {
         name: 'TermsOfServicePage',
       },
     },
-    ,
     {
       text: intl.formatMessage({ id: 'LegalTbs.borrowerAgreement' }),
       selected: false,

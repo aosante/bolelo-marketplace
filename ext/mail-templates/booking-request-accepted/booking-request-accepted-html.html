@@ -7,6 +7,8 @@
 {{~/inline~}}
 
 <html>
+<!-- done -->
+<!-- proofreading pending -->
 
 <body>
   <h1>Congratulations {{customer.display-name}}!</h1>
@@ -14,7 +16,7 @@
   {{#with transaction}}
   <p>Your BOLELO transaction for {{listing.title}} from {{> format-date date=booking.start}} to
     {{> format-date date=booking.end}} is now approved & confirmed. Please contact {{provider.display-name}} through the
-    platform's chat if you see any discrepancies.</p>
+    {{marketplace.name}} platform if you see any discrepancies.</p>
 
   <table>
     <thead>
@@ -57,12 +59,12 @@
       location that is highly traveled and well lit. When possible, have a family/friend present or let a family/friend
       know of your plans.
     </li>
-    <li>Be prepared to confirm your identity. {{ provider.display-name }} will ask to see your driver’s license and
+    <li>Be prepared to confirm your identity. {{provider.display-name}} will ask to see your driver’s license and
       write down information or take a photo of it. If you are not able to provide an adequate form of ID,
-      {{ provider.display-name }} has the right to refuse the transaction and your fee will be refunded.
+      {{provider.display-name}} has the right to refuse the transaction and your fee will be refunded.
     </li>
     <li>Document and agree on missing pieces or broken parts, cosmetic defects. Take a photo/video.</li>
-    <li>If applicable, ask to demonstrate its function. {{ provider.display-name }} will likely take a photo/video with
+    <li>If applicable, ask to demonstrate its function. {{provider.display-name}} will likely take a photo/video with
       a time stamp at its full operation to verify that everything is in working condition before releasing the item.
     </li>
     <li>You must confirm receipt of the item and agree on the return date, time and location through the platform's
@@ -71,13 +73,13 @@
 
   <h4>PAYMENT</h4>
   <ol>
-    <li>Payment will be deposited into {{ provider.display-name }}'s account.</li>
+    <li>Payment will be deposited into {{provider.display-name}}'s account.</li>
   </ol>
 
   <h4>RETURN</h4>
   <ol>
-    <li>Notify {{ provider.display-name }} in advance if there's any trouble in use, damage, etc.</li>
-    <li>{{ provider.display-name }} will inspect the item for damages. Only wear and tear from normal use is acceptable.
+    <li>Notify {{provider.display-name}} in advance if there's any trouble in use, damage, etc.</li>
+    <li>{{provider.display-name}} will inspect the item for damages. Only wear and tear from normal use is acceptable.
     </li>
     <li>If a problem is found, seek a good neighborly way to find a resolution amicably. If the item is damaged, lost or
       stolen under your care, be prepared to fix/repair and/or pay for the replacement.
@@ -86,7 +88,7 @@
 
   <h4>REVIEW</h4>
   <ol>
-    <li>Be sure to rate your experience with {{ provider.display-name }}.</li>
+    <li>Be sure to rate your experience with {{provider.display-name}}.</li>
   </ol>
 
   <h4>CANCEL</h4>
@@ -99,7 +101,7 @@
   <hr />
 
   <p>You have received this email notification because you are a member of {{marketplace.name}}. If you no longer wish
-    to receive these emails, please contact {{marketplace.name}} team.</p>
+    to receive these emails, please contact the {{marketplace.name}} team.</p>
 </body>
 
 </html>

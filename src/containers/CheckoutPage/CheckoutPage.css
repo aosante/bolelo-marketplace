@@ -110,7 +110,7 @@
 .aspectWrapper {
   position: relative;
   padding-bottom: 66.6667%; /* 3:2 Aspect Ratio */
-  background-color: var(--matterColorNegative); /* Loading BG color */
+  background-color: var(--matterColorLight); /* Loading BG color */
 
   @media (--viewportLarge) {
     display: none;
@@ -128,6 +128,7 @@
 
   @media (--viewportLarge) {
     border-radius: 2px 2px 0 0;
+    padding: 45px;
   }
 }
 
@@ -140,6 +141,7 @@
 
   /* Layout */
   display: block;
+  margin-top: 10px;
 
   @media (--viewportLarge) {
     margin-left: 48px;
@@ -293,7 +295,7 @@
 .detailsAspectWrapper {
   position: relative;
   padding-bottom: 66.6667%; /* 3:2 Aspect Ratio */
-  background-color: var(--matterColorNegative); /* Loading BG color */
+  background-color: var(--matterColorLight); /* Loading BG color */
 }
 
 .detailsHeadings {

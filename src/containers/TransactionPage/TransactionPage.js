@@ -29,6 +29,7 @@ import {
   declineSale,
   cancelRequest,
   cancelBooking,
+  cancelBookingProvider,
   loadData,
   setInitialValues,
   sendMessage,
@@ -78,6 +79,7 @@ export const TransactionPageComponent = props => {
     cancelRequestInProgress,
     cancelRequestError,
     onCancelBooking,
+    onCancelBookingProvider,
     cancelBookingInProgress,
     cancelBookingError,
   } = props;
@@ -166,10 +168,10 @@ export const TransactionPageComponent = props => {
       <FormattedMessage id={`${fetchErrorMessage}`} />
     </p>
   ) : (
-    <p className={css.loading}>
-      <FormattedMessage id={`${loadingMessage}`} />
-    </p>
-  );
+      <p className={css.loading}>
+        <FormattedMessage id={`${loadingMessage}`} />
+      </p>
+    );
 
   const initialMessageFailed = !!(
     initialMessageFailedToTransaction &&
@@ -212,12 +214,13 @@ export const TransactionPageComponent = props => {
       cancelRequestInProgress={cancelRequestInProgress}
       cancelRequestError={cancelRequestError}
       onCancelBooking={onCancelBooking}
+      onCancelBookingProvider={onCancelBookingProvider}
       cancelBookingInProgress={cancelBookingInProgress}
       cancelBookingError={cancelBookingError}
     />
   ) : (
-    loadingOrFailedFetching
-  );
+      loadingOrFailedFetching
+    );
 
   return (
     <Page
@@ -269,6 +272,7 @@ TransactionPageComponent.propTypes = {
   onDeclineSale: func.isRequired,
   onCancelRequest: func.isRequired,
   onCancelBooking: func.isRequired,
+  onCancelBookingProvider: func.isRequired,
   scrollingDisabled: bool.isRequired,
   transaction: propTypes.transaction,
   fetchMessagesError: propTypes.error,
@@ -362,6 +366,7 @@ const mapDispatchToProps = dispatch => {
     onDeclineSale: transactionId => dispatch(declineSale(transactionId)),
     onCancelRequest: transactionId => dispatch(cancelRequest(transactionId)),
     onCancelBooking: transactionId => dispatch(cancelBooking(transactionId)),
+    onCancelBookingProvider: transactionId => dispatch(cancelBookingProvider(transactionId)),
     onShowMoreMessages: txId => dispatch(fetchMoreMessages(txId)),
     onSendMessage: (txId, message) => dispatch(sendMessage(txId, message)),
     onManageDisableScrolling: (componentId, disableScrolling) =>

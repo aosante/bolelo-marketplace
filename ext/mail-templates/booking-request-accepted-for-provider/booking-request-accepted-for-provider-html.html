@@ -9,7 +9,6 @@
 <html>
 <!-- done -->
 <!-- proofreading pending -->
-<!-- edit cancel section if lender will be able to cancel booking -->
 
 <body>
   <h1>Congratulations {{provider.display-name}}!</h1>
@@ -114,7 +113,8 @@
   <ol>
     <li>Please note, {{customer.display-name}} can cancel the booking until 6 pm on the eve of the booking start date
       and receive a full refund. {{customer.display-name}} will forfeit 100% of the fee if they miss this deadline.</li>
-    <li>You can also CANCEL and send a full refund. To do so, you must contact the {{marketplace.name}} team. In the
+    <li>You can also <a href="{{ marketplace.url }}/sale/{{url-encode id}}/details">CANCEL</a> and send a full refund.
+      In the
       event of such an incident, as a courtesy, we ask you to contact {{customer.display-name}} directly to remedy and
       seek resolution.</li>
   </ol>

@@ -1,0 +1,38 @@
+{{~#*inline "format-money"~}} {{money-amount money}} {{ money.currency }}
+{{~/inline~}}
+
+{{~#*inline "format-date"~}}
+{{date date format="MMM d, YYYY"}}
+{{~/inline~}}
+
+<!-- sent to the provider when an accepted booking is cancelled -->
+<html>
+<!-- done -->
+<!-- proofreading pending -->
+
+<body>
+  <h1>The booking for {{listing.title}} has been cancelled</h1>
+
+  {{#with transaction}}
+  <p>
+    {{provider.display-name}} has canceled the booking for {{listing.title}} from
+    {{> format-date date=booking.start}} to {{> format-date date=booking.end}}.
+  </p>
+
+  <p>
+    The amount of {{> format-money money=payin-total}} will be refunded to you. If you wish to know the reason for the
+    cancellation, please
+    contact {{provider.display-name}} through the {{marketplace.name}} platform.
+  </p>
+
+  {{/with}}
+
+  <hr />
+
+  <p>
+    You have received this email notification because you are a member of {{marketplace.name}}.
+    If you no longer wish to receive these emails, please contact the {{marketplace.name}} team.
+  </p>
+</body>
+
+</html>

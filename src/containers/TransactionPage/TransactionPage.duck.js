@@ -475,6 +475,10 @@ export const cancelBooking = id => (dispatch, getState, sdk) => {
   });
 };
 
+export const cancelBookingProvider = id => (dispatch, getState, sdk) => {
+  console.log('Provider cancelling booking');
+}
+
 const fetchMessages = (txId, page) => (dispatch, getState, sdk) => {
   const paging = { page, per_page: MESSAGES_PAGE_SIZE };
   dispatch(fetchMessagesRequest());

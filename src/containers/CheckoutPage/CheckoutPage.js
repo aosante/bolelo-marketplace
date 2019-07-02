@@ -110,10 +110,10 @@ export class CheckoutPageComponent extends Component {
 
     const selectedQuantityLineItem = selectedQuantity
       ? {
-          code: LINE_ITEM_SELECTED_QUANTITY,
-          unitPrice: new Money(modifiedAmount / 2, currency),
-          quantity: 2,
-        }
+        code: LINE_ITEM_SELECTED_QUANTITY,
+        unitPrice: new Money(modifiedAmount / 2, currency),
+        quantity: 2,
+      }
       : null;
 
     const selectedQuantityLineItemMaybe = selectedQuantityLineItem
@@ -245,6 +245,8 @@ export class CheckoutPageComponent extends Component {
       bookingEnd: speculatedTransaction.booking.attributes.end,
       selectedQuantity,
     });
+
+    console.log(requestParams);
 
     const enquiredTransaction = this.state.pageData.enquiredTransaction;
 
@@ -496,8 +498,8 @@ export class CheckoutPageComponent extends Component {
     const unitTranslationKey = isNightly
       ? 'CheckoutPage.perNight'
       : isDaily
-      ? 'CheckoutPage.perDay'
-      : 'CheckoutPage.perUnit';
+        ? 'CheckoutPage.perDay'
+        : 'CheckoutPage.perUnit';
 
     const price = currentListing.attributes.price;
     const formattedPrice = formatMoney(intl, price);

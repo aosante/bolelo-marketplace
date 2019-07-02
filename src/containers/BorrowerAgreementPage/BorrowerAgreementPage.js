@@ -38,12 +38,19 @@ const BorrowerAgreementPageComponent = props => {
       },
     },
     {
-        text: intl.formatMessage({ id: 'LegalTbs.borrowerAgreement' }),
-        selected: true,
-        linkProps: {
-          name: 'BorrowerAgreementPage',
-        },
+      text: intl.formatMessage({ id: 'LegalTbs.borrowerAgreement' }),
+      selected: true,
+      linkProps: {
+        name: 'BorrowerAgreementPage',
       },
+    },
+    {
+      text: intl.formatMessage({ id: 'LegalTbs.lenderAgreement' }),
+      selected: false,
+      linkProps: {
+        name: 'LenderAgreementPage',
+      },
+    },
   ];
   const siteTitle = config.siteTitle;
   const schemaTitle = intl.formatMessage({ id: 'BorrowerAgreementPage.schemaTitle' }, { siteTitle });

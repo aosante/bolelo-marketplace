@@ -81,9 +81,9 @@ export class CheckoutPageComponent extends Component {
    * @return a params object for custom pricing bookings
    */
   customPricingParams(params) {
-    const { bookingStart, bookingEnd, listing, selectedQuantity, ...rest } = params;
+    const { bookingStart, bookingEnd, listingReload, selectedQuantity, ...rest } = params;
 
-    const { amount, currency } = listing.attributes.price;
+    const { amount, currency } = listingReload.attributes.price;
 
     const unitType = config.bookingUnitType;
     const isNightly = unitType === LINE_ITEM_NIGHT;
@@ -121,7 +121,7 @@ export class CheckoutPageComponent extends Component {
       : [];
 
     return {
-      listingId: listing.id,
+      listingId: listingReload.id,
       bookingStart,
       bookingEnd,
       lineItems: [
@@ -199,9 +199,10 @@ export class CheckoutPageComponent extends Component {
       // Fetch speculated transaction for showing price in booking breakdown
       // NOTE: if unit type is line-item/units, quantity needs to be added.
       // The way to pass it to checkout page is through pageData.bookingData
+      const listingReload = pageData.listing;
       fetchSpeculatedTransaction(
         this.customPricingParams({
-          listing,
+          listingReload,
           bookingStart: bookingStartForAPI,
           bookingEnd: bookingEndForAPI,
           selectedQuantity,
@@ -307,8 +308,9 @@ export class CheckoutPageComponent extends Component {
       isTransactionInitiateListingNotFoundError(initiateOrderError);
 
     const isLoading = !this.state.dataLoaded || speculateTransactionInProgress;
+    
 
-    const { listing, bookingDates, enquiredTransaction } = this.state.pageData;
+    const { listing, bookingDates, enquiredTransaction, bookingData } = this.state.pageData;
     const currentTransaction = ensureTransaction(speculatedTransaction, {}, null);
     const currentBooking = ensureBooking(currentTransaction.booking);
     const currentListing = ensureListing(listing);
@@ -343,10 +345,6 @@ export class CheckoutPageComponent extends Component {
       return <NamedRedirect name="ListingPage" params={params} />;
     }
 
-    let itemQuantity;
-    if (this.props.bookingData) {
-      itemQuantity = this.props.bookingData.additionalItems;
-    }
 
     // Show breakdown only when transaction and booking are loaded
     // (i.e. have an id)
@@ -358,7 +356,7 @@ export class CheckoutPageComponent extends Component {
           unitType={config.bookingUnitType}
           transaction={currentTransaction}
           booking={currentBooking}
-          itemQuantity={itemQuantity}
+          itemQuantity={bookingData.quantity}
         />
       ) : null;
 

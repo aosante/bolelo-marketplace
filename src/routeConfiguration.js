@@ -332,6 +332,7 @@ const routeConfiguration = () => {
       auth: true,
       authPage: 'LoginPage',
       component: props => <EmailVerificationPage {...props} />,
+      loadData: EmailVerificationPage.loadData,
     },
   ];
 };

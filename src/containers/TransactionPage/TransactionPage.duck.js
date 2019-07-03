@@ -15,6 +15,7 @@ import {
   TRANSITION_DECLINE,
   TRANSITION_CANCEL_REQUEST,
   TRANSITION_CUSTOMER_CANCEL,
+  TRANSITION_PROVIDER_CANCEL,
 } from '../../util/transaction';
 import * as log from '../../util/log';
 import {
@@ -248,7 +249,7 @@ const cancelBookingRequestError = e => ({
   payload: e,
 });
 
-//cancelRental() named differently because of conficting names
+//cancelRental() instead of cancelBooking() because of conficting names
 const cancelRental = () => ({ type: CANCEL_BOOKING });
 const cancelBookingSuccess = () => ({ type: CANCEL_BOOKING_SUCCESS });
 const cancelBookingError = e => ({
@@ -460,7 +461,6 @@ export const cancelBooking = id => (dispatch, getState, sdk) => {
           dispatch(addMarketplaceEntities(response));
           dispatch(cancelBookingSuccess());
           dispatch(fetchCurrentUserNotifications());
-          console.log(response);
           return response;
         })
         .catch(e => {
@@ -476,8 +476,39 @@ export const cancelBooking = id => (dispatch, getState, sdk) => {
 };
 
 export const cancelBookingProvider = id => (dispatch, getState, sdk) => {
-  console.log('Provider cancelling booking');
-}
+  swal({
+    title: 'Are you sure? This action cannot be undone',
+    text:
+      'This rental will be offically cancelled and chosen dates will become available for others',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  }).then(willDelete => {
+    if (willDelete) {
+      if (cancelingBookingInProgress(getState())) {
+        return Promise.reject(new Error('Booking cancellation already in progress'));
+      }
+      dispatch(cancelRental());
+      return sdk.transactions
+        .transition({ id, transition: TRANSITION_PROVIDER_CANCEL, params: {} }, { expand: true })
+        .then(response => {
+          dispatch(addMarketplaceEntities(response));
+          dispatch(cancelBookingSuccess());
+          dispatch(fetchCurrentUserNotifications());
+          console.log(response);
+          return response;
+        })
+        .catch(e => {
+          dispatch(cancelBookingError(storableError(e)));
+          log.error(e, 'provider-cancel-failed', {
+            txId: id,
+            transaction: TRANSITION_PROVIDER_CANCEL,
+          });
+          throw e;
+        });
+    }
+  });
+};
 
 const fetchMessages = (txId, page) => (dispatch, getState, sdk) => {
   const paging = { page, per_page: MESSAGES_PAGE_SIZE };

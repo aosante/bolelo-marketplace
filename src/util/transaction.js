@@ -13,6 +13,7 @@ import { ensureTransaction } from './data';
 //---------------------------------------------------------------------------------
 export const TRANSITION_CANCEL_REQUEST = 'transition/cancel-request';
 export const TRANSITION_CUSTOMER_CANCEL = 'transition/customer-cancel';
+export const TRANSITION_PROVIDER_CANCEL = 'transition/provider-cancel';
 //---------------------------------------------------------------------------------
 
 // When a customer makes a booking to a listing, a transaction is
@@ -135,6 +136,7 @@ const stateDescription = {
         [TRANSITION_CANCEL]: STATE_CANCELED,
         [TRANSITION_COMPLETE]: STATE_DELIVERED,
         [TRANSITION_CUSTOMER_CANCEL]: STATE_CANCELED,
+        [TRANSITION_PROVIDER_CANCEL]: STATE_CANCELED,
       },
     },
 

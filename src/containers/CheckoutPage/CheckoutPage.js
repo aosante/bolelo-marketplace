@@ -81,9 +81,9 @@ export class CheckoutPageComponent extends Component {
    * @return a params object for custom pricing bookings
    */
   customPricingParams(params) {
-    const { bookingStart, bookingEnd, listingReload, selectedQuantity, ...rest } = params;
+    const { bookingStart, bookingEnd, listing, selectedQuantity, ...rest } = params;
 
-    const { amount, currency } = listingReload.attributes.price;
+    const { amount, currency } = listing.attributes.price;
 
     const unitType = config.bookingUnitType;
     const isNightly = unitType === LINE_ITEM_NIGHT;
@@ -121,7 +121,7 @@ export class CheckoutPageComponent extends Component {
       : [];
 
     return {
-      listingId: listingReload.id,
+      listingId: listing.id,
       bookingStart,
       bookingEnd,
       lineItems: [
@@ -199,10 +199,10 @@ export class CheckoutPageComponent extends Component {
       // Fetch speculated transaction for showing price in booking breakdown
       // NOTE: if unit type is line-item/units, quantity needs to be added.
       // The way to pass it to checkout page is through pageData.bookingData
-      const listingReload = pageData.listing;
+      const listing = pageData.listing;
       fetchSpeculatedTransaction(
         this.customPricingParams({
-          listingReload,
+          listing,
           bookingStart: bookingStartForAPI,
           bookingEnd: bookingEndForAPI,
           selectedQuantity,
@@ -234,7 +234,7 @@ export class CheckoutPageComponent extends Component {
     // const selectedQuantityLineItem = speculatedTransaction.attributes.lineItems.find(
     //   item => item.code === LINE_ITEM_SELECTED_QUANTITY
     // );
-    const selectedQuantity = bookingData.quantity;
+    const selectedQuantity = this.state.pageData.bookingData.quantity;
 
     // Create order aka transaction
     // NOTE: if unit type is line-item/units, quantity needs to be added.

@@ -18,13 +18,29 @@ const SaleActionButtonsMaybe = props => {
     declineSaleError,
     onAcceptSale,
     onDeclineSale,
+    startDate
   } = props;
 
-  /*the same date validation in other sale button components needs to be implemented
-  here so that the pprovider can accept/decline bookings up to 11pm on the
+  /*The pprovider can accept/decline bookings up to 11pm on the
   eve of the booking start date*/
+  const realStartingDate = new Date(startDate);
+  realStartingDate.setDate(realStartingDate.getDate() + 1);
 
-  const buttonsDisabled = acceptInProgress || declineInProgress;
+  const currentDate = new Date();
+
+  const getHoursToStart = (start, now) => {
+    return Math.abs(start - now) / 36e5;
+  };
+
+  const cantCancelBooking = _ => {
+    let cantCancel = false;
+    const hoursToStart = getHoursToStart(realStartingDate, currentDate);
+    console.log(hoursToStart)
+    if (hoursToStart < 19) cantCancel = true;
+    return cantCancel;
+  };
+
+  const buttonsDisabled = acceptInProgress || declineInProgress || cantCancelBooking();
 
   const acceptErrorMessage = acceptSaleError ? (
     <p className={css.actionError}>

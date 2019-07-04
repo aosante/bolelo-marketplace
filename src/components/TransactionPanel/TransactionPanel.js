@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import {
   txIsAccepted,
@@ -286,8 +286,8 @@ export class TransactionPanelComponent extends Component {
     const unitTranslationKey = isNightly
       ? 'TransactionPanel.perNight'
       : isDaily
-      ? 'TransactionPanel.perDay'
-      : 'TransactionPanel.perUnit';
+        ? 'TransactionPanel.perDay'
+        : 'TransactionPanel.perUnit';
 
     const price = currentListing.attributes.price;
     const bookingSubTitle = price
@@ -306,6 +306,7 @@ export class TransactionPanelComponent extends Component {
         declineSaleError={declineSaleError}
         onAcceptSale={() => onAcceptSale(currentTransaction.id)}
         onDeclineSale={() => onDeclineSale(currentTransaction.id)}
+        startDate={startDate}
       />
     );
 
@@ -430,23 +431,27 @@ export class TransactionPanelComponent extends Component {
                 onSubmit={this.onMessageSubmit}
               />
             ) : (
-              <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
-            )}
+                <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
+              )}
 
             {stateData.showCancelButton ? (
               <div className={css.mobileActionButtons}>{cancelButton}</div>
             ) : null}
 
             {stateData.showSaleButtons ? (
-              <div className={css.mobileActionButtons}>{saleButtons}</div>
+              <div className={css.mobileActionButtons}>
+                {saleButtons}
+                <p className={css.policyNote}>
+                  <FormattedMessage id="TransactionPanel.providerRequestNote" />
+                </p>
+              </div>
             ) : null}
 
             {stateData.showCancelBookingButton ? (
               <div className={css.mobileActionButtons}>
                 {cancelBookingButton}
                 <p className={css.policyNote}>
-                  *Rentals can be cancelled for a full refund by 6pm on the eve of the booking start
-                  date. After that, entire fee is forfeited.
+                  <FormattedMessage id="TransactionPanel.customerCancelBookingNote" />
                 </p>{' '}
               </div>
             ) : null}
@@ -455,8 +460,7 @@ export class TransactionPanelComponent extends Component {
               <div className={css.mobileActionButtons}>
                 {providerCancelBookingButton}
                 <p className={css.policyNote}>
-                  *You can cancel bookings by 6pm on the eve of the booking start date. You may not
-                  cancel a booking after that deadline.
+                  <FormattedMessage id="TransactionPanel.providerCancelBookingNote" />
                 </p>{' '}
               </div>
             ) : null}
@@ -503,7 +507,12 @@ export class TransactionPanelComponent extends Component {
               />
 
               {stateData.showSaleButtons ? (
-                <div className={css.desktopActionButtons}>{saleButtons}</div>
+                <div className={css.desktopActionButtons}>
+                  {saleButtons}
+                  <p className={css.policyNote}>
+                    <FormattedMessage id="TransactionPanel.providerRequestNote" />
+                  </p>
+                </div>
               ) : null}
               {stateData.showCancelButton ? (
                 <div className={css.desktopActionButtons}>{cancelButton}</div>
@@ -512,8 +521,7 @@ export class TransactionPanelComponent extends Component {
                 <div className={css.desktopActionButtons}>
                   {cancelBookingButton}{' '}
                   <p className={css.policyNote}>
-                    *Rentals can be cancelled for a full refund by 6pm on the eve of the booking
-                    start date. After that, entire fee is forfeited.
+                    <FormattedMessage id="TransactionPanel.customerCancelBookingNote" />
                   </p>{' '}
                 </div>
               ) : null}
@@ -521,8 +529,7 @@ export class TransactionPanelComponent extends Component {
                 <div className={css.desktopActionButtons}>
                   {providerCancelBookingButton}{' '}
                   <p className={css.policyNote}>
-                    *You can cancel bookings by 6pm on the eve of the booking start date. You may
-                    not cancel a booking after that deadline.
+                    <FormattedMessage id="TransactionPanel.providerCancelBookingNote" />
                   </p>{' '}
                 </div>
               ) : null}

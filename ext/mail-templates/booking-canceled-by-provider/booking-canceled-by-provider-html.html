@@ -5,7 +5,7 @@
 {{date date format="MMM d, YYYY"}}
 {{~/inline~}}
 
-<!-- sent to the provider when an accepted booking is cancelled -->
+<!-- sent to the customer when an accepted booking is cancelled -->
 <html>
 <!-- done -->
 <!-- proofreading pending -->
@@ -20,9 +20,9 @@
   </p>
 
   <p>
-    The amount of {{> format-money money=payin-total}} will be refunded to you. If you wish to know the reason for the
-    cancellation, please
-    contact {{provider.display-name}} through the {{marketplace.name}} platform.
+    The amount of {{> format-money money=payin-total}} will be refunded to you. If you wish to
+    know the reason for the cancellation, please contact {{provider.display-name}} through the
+    {{marketplace.name}} platform.
   </p>
 
   {{/with}}

@@ -81,7 +81,6 @@ export class CheckoutPageComponent extends Component {
    * @return a params object for custom pricing bookings
    */
   customPricingParams(params) {
-
     const { bookingStart, bookingEnd, listing, selectedQuantity, ...rest } = params;
 
     const { amount, currency } = listing.attributes.price;
@@ -215,7 +214,6 @@ export class CheckoutPageComponent extends Component {
   }
 
   handleSubmit(values) {
-    const { bookingData } = this.props;
     if (this.state.submitting) {
       return;
     }

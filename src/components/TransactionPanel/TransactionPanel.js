@@ -192,7 +192,7 @@ export class TransactionPanelComponent extends Component {
       fetchTimeSlotsError,
       onCancelRequest,
       onCancelBooking,
-      onCancelBookingProvider
+      onCancelBookingProvider,
     } = this.props;
 
     /*transaction has the start and end dates, which can be used to enable or disable 
@@ -208,8 +208,6 @@ export class TransactionPanelComponent extends Component {
     const currentCustomer = ensureUser(currentTransaction.customer);
     const isCustomer = transactionRole === 'customer';
     const isProvider = transactionRole === 'provider';
-
-    console.log(currentTransaction);
 
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;
@@ -240,7 +238,7 @@ export class TransactionPanelComponent extends Component {
           showDetailCardHeadings: isCustomer,
           showAddress: isCustomer,
           showCancelBookingButton: isCustomer && !isCustomerBanned,
-          showProviderCancelBookingButton: isProvider && !isCustomerBanned
+          showProviderCancelBookingButton: isProvider && !isCustomerBanned,
         };
       } else if (txIsDeclined(tx)) {
         return {
@@ -288,8 +286,8 @@ export class TransactionPanelComponent extends Component {
     const unitTranslationKey = isNightly
       ? 'TransactionPanel.perNight'
       : isDaily
-        ? 'TransactionPanel.perDay'
-        : 'TransactionPanel.perUnit';
+      ? 'TransactionPanel.perDay'
+      : 'TransactionPanel.perUnit';
 
     const price = currentListing.attributes.price;
     const bookingSubTitle = price
@@ -432,8 +430,8 @@ export class TransactionPanelComponent extends Component {
                 onSubmit={this.onMessageSubmit}
               />
             ) : (
-                <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
-              )}
+              <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
+            )}
 
             {stateData.showCancelButton ? (
               <div className={css.mobileActionButtons}>{cancelButton}</div>
@@ -457,7 +455,8 @@ export class TransactionPanelComponent extends Component {
               <div className={css.mobileActionButtons}>
                 {providerCancelBookingButton}
                 <p className={css.policyNote}>
-                  *You can cancel bookings by 6pm on the eve of the booking start date. You may not cancel a booking after that deadline.
+                  *You can cancel bookings by 6pm on the eve of the booking start date. You may not
+                  cancel a booking after that deadline.
                 </p>{' '}
               </div>
             ) : null}
@@ -522,7 +521,8 @@ export class TransactionPanelComponent extends Component {
                 <div className={css.desktopActionButtons}>
                   {providerCancelBookingButton}{' '}
                   <p className={css.policyNote}>
-                    *You can cancel bookings by 6pm on the eve of the booking start date. You may not cancel a booking after that deadline.
+                    *You can cancel bookings by 6pm on the eve of the booking start date. You may
+                    not cancel a booking after that deadline.
                   </p>{' '}
                 </div>
               ) : null}

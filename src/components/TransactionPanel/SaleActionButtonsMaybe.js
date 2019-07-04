@@ -20,6 +20,10 @@ const SaleActionButtonsMaybe = props => {
     onDeclineSale,
   } = props;
 
+  /*the same date validation in other sale button components needs to be implemented
+  here so that the pprovider can accept/decline bookings up to 11pm on the
+  eve of the booking start date*/
+
   const buttonsDisabled = acceptInProgress || declineInProgress;
 
   const acceptErrorMessage = acceptSaleError ? (

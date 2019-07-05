@@ -137,6 +137,7 @@ export { default as SearchResultsPanel } from './SearchResultsPanel/SearchResult
 export { default as SelectMultipleFilter } from './SelectMultipleFilter/SelectMultipleFilter';
 export { default as SelectSingleFilter } from './SelectSingleFilter/SelectSingleFilter';
 export { default as UserCard } from './UserCard/UserCard';
+export { default as BackgroundCarousel } from './BackgroundCarousel/BackgroundCarousel';
 
 //////////////////////////////////////////////
 // Page sections and modal content wrappers //

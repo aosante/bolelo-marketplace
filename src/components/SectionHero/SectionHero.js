@@ -3,6 +3,7 @@ import { string } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { NamedLink } from '../../components';
+import { BackgroundCarousel } from '../../components';
 
 import css from './SectionHero.css';
 
@@ -12,7 +13,7 @@ const SectionHero = props => {
   const classes = classNames(rootClassName || css.root, className);
 
   return (
-    <div className={classes}>
+    <div >
       <div className={css.heroContent}>
         <h1 className={css.heroMainTitle}>
           <FormattedMessage id="SectionHero.title" />
@@ -30,6 +31,7 @@ const SectionHero = props => {
         >
           <FormattedMessage id="SectionHero.browseButton" />
         </NamedLink>
+        <BackgroundCarousel/>
       </div>
     </div>
   );

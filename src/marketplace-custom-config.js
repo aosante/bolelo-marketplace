@@ -62,3 +62,7 @@ export const dateRangeFilterConfig = {
 //   { key: '7to9', label: '7 to 9' },
 //   { key: '10plus', label: '10 plus' },
 // ];
+// Activate keyword filter on search page
+export const keywordFilterConfig = {
+  active: true,
+};

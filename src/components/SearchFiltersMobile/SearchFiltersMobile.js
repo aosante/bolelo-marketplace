@@ -11,6 +11,7 @@ import { createResourceLocatorString } from '../../util/routes';
 import {
   ModalInMobile,
   Button,
+  KeywordFilter,
   PriceFilter,
   SelectMultipleFilter,
   BookingDateRangeFilter,
@@ -33,6 +34,7 @@ class SearchFiltersMobileComponent extends Component {
     this.handleSelectMultiple = this.handleSelectMultiple.bind(this);
     this.handlePrice = this.handlePrice.bind(this);
     this.handleDateRange = this.handleDateRange.bind(this);
+    this.handleKeyword = this.handleKeyword.bind(this);
     this.initialValue = this.initialValue.bind(this);
     this.initialValues = this.initialValues.bind(this);
     this.initialPriceRangeValue = this.initialPriceRangeValue.bind(this);
@@ -117,6 +119,15 @@ class SearchFiltersMobileComponent extends Component {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   }
 
+  handleKeyword(urlParam, keywords) {
+    const { urlQueryParams, history } = this.props;
+    const queryParams = urlParam
+      ? { ...urlQueryParams, [urlParam]: keywords }
+      : omit(urlQueryParams, urlParam);
+
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  }
+
   // Reset all filter query parameters
   resetAll(e) {
     const { urlQueryParams, history, filterParamNames } = this.props;
@@ -183,6 +194,7 @@ class SearchFiltersMobileComponent extends Component {
       amenitiesFilter,
       priceFilter,
       dateRangeFilter,
+      keywordFilter,
       intl,
     } = this.props;
 
@@ -256,12 +268,30 @@ class SearchFiltersMobileComponent extends Component {
     const dateRangeFilterElement =
       dateRangeFilter && dateRangeFilter.config.active ? (
         <BookingDateRangeFilter
-          id="SearchFilters.dateRangeFilter"
+          id="SearchFiltersMobile.dateRangeFilter"
           urlParam={dateRangeFilter.paramName}
           onSubmit={this.handleDateRange}
           liveEdit
           showAsPopup={false}
           initialValues={initialDateRange}
+        />
+      ) : null;
+
+    const initialKeyword = this.initialValue(keywordFilter.paramName);
+    const keywordLabel = intl.formatMessage({
+      id: 'SearchFiltersMobile.keywordLabel',
+    });
+    const keywordFilterElement =
+      keywordFilter && keywordFilter.config.active ? (
+        <KeywordFilter
+          id={'SearchFiltersMobile.keywordFilter'}
+          name="keyword"
+          urlParam={keywordFilter.paramName}
+          label={keywordLabel}
+          onSubmit={this.handleKeyword}
+          liveEdit
+          showAsPopup={false}
+          initialValues={initialKeyword}
         />
       ) : null;
 
@@ -297,6 +327,8 @@ class SearchFiltersMobileComponent extends Component {
           </div>
           {this.state.isFiltersOpenOnMobile ? (
             <div className={css.filtersWrapper}>
+              {keywordFilterElement}
+              {categoryFilterElement}
               {amenitiesFilterElement}
               {priceFilterElement}
               {dateRangeFilterElement}

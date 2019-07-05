@@ -81,6 +81,7 @@ export class CheckoutPageComponent extends Component {
    * @return a params object for custom pricing bookings
    */
   customPricingParams(params) {
+
     const { bookingStart, bookingEnd, listing, selectedQuantity, ...rest } = params;
 
     const { amount, currency } = listing.attributes.price;
@@ -110,10 +111,10 @@ export class CheckoutPageComponent extends Component {
 
     const selectedQuantityLineItem = selectedQuantity
       ? {
-        code: LINE_ITEM_SELECTED_QUANTITY,
-        unitPrice: new Money(modifiedAmount / 2, currency),
-        quantity: 2,
-      }
+          code: LINE_ITEM_SELECTED_QUANTITY,
+          unitPrice: new Money(modifiedAmount / 2, currency),
+          quantity: 2,
+        }
       : null;
 
     const selectedQuantityLineItemMaybe = selectedQuantityLineItem
@@ -310,7 +311,6 @@ export class CheckoutPageComponent extends Component {
       isTransactionInitiateListingNotFoundError(initiateOrderError);
 
     const isLoading = !this.state.dataLoaded || speculateTransactionInProgress;
-    
 
     const { listing, bookingDates, enquiredTransaction, bookingData } = this.state.pageData;
     const currentTransaction = ensureTransaction(speculatedTransaction, {}, null);
@@ -346,7 +346,6 @@ export class CheckoutPageComponent extends Component {
       });
       return <NamedRedirect name="ListingPage" params={params} />;
     }
-
 
     // Show breakdown only when transaction and booking are loaded
     // (i.e. have an id)
@@ -496,8 +495,8 @@ export class CheckoutPageComponent extends Component {
     const unitTranslationKey = isNightly
       ? 'CheckoutPage.perNight'
       : isDaily
-        ? 'CheckoutPage.perDay'
-        : 'CheckoutPage.perUnit';
+      ? 'CheckoutPage.perDay'
+      : 'CheckoutPage.perUnit';
 
     const price = currentListing.attributes.price;
     const formattedPrice = formatMoney(intl, price);

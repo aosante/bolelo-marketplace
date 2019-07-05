@@ -28,8 +28,6 @@ const SaleProviderCancelButtonMaybe = props => {
     return Math.abs(start - now) / 36e5;
   };
 
-  /*Provider can cancel up until 11pm on the eve of the booking start date,
-  so the comparing value is 19 since 6pm on the start day minus 19 hrs is equal to 11pm*/
   const cantCancelBooking = _ => {
     let cantCancel = false;
     const hoursToStart = getHoursToStart(realStartingDate, currentDate);

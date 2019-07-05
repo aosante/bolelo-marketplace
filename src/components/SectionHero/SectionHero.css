@@ -51,7 +51,7 @@
 }
 
 .heroContent {
-  margin: 0 24px 0 24px;
+  margin: 159px 0px 0 180px !important;
 
   @media (--viewportMedium) {
     margin: 0 7.5vw 0 7.5vw;

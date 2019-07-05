@@ -248,8 +248,7 @@ h3 {
 }
 
 .legalMatters {
-  /* Get extra space from parent element (which is using flexbox) */
-  flex-grow: 1;
+  
 
   /* Layout */
   display: flex;

@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import BackgroundSlider from 'react-background-slider';
 
 import css from './BackgroundCarousel.css';
@@ -12,20 +12,16 @@ import image6 from '../../assets/carousel6.jpg';
 import image7 from '../../assets/carousel7.jpg';
 import image8 from '../../assets/carousel8.jpg';
 
-
 const BackgroundCarousel = props => {
-
-    return (
-        <div className={css.opacityImage}>
-            <BackgroundSlider
-                images={[image1, image2, image3, image4, image5, image6, image7, image8]}
-                duration={8}
-                transition={2}
-            />
-        </div>
-    );
+  return (
+    <div className={css.opacityImage}>
+      <BackgroundSlider
+        images={[image1, image2, image3, image4, image5, image6, image7, image8]}
+        duration={6}
+        transition={1.5}
+      />
+    </div>
+  );
 };
-
-
 
 export default BackgroundCarousel;

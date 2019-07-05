@@ -51,11 +51,11 @@
 }
 
 .heroContent {
-
-  margin: 0 24px 0 24px;
+  margin: 100px 24px 0 24px;
+  z-index: 22;
 
   @media (--viewportMedium) {
-    margin: 0 7.5vw 0 7.5vw;
+    margin: 5em 7.5vw 0 7.5vw;
   }
 
   /* Special viewport for adjusting the heroContent's placement */

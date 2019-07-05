@@ -8,22 +8,28 @@
 <!-- sent to the customer when an accepted booking is cancelled -->
 <html>
 <!-- done -->
-<!-- proofreading pending -->
 
 <body>
-  <h1>The booking for {{listing.title}} has been cancelled</h1>
 
   {{#with transaction}}
+  <h1>The booking for {{listing.title}} has been cancelled</h1>
+
   <p>
     {{provider.display-name}} has canceled the booking for {{listing.title}} from
     {{> format-date date=booking.start}} to {{> format-date date=booking.end}}.
   </p>
 
+  {{#each tx-line-items}}
+  {{#contains include-for "provider"}}
+  {{#eq "line-item/day" code}}
   <p>
     The amount of {{> format-money money=payin-total}} will be refunded to you. If you wish to
     know the reason for the cancellation, please contact {{provider.display-name}} through the
     {{marketplace.name}} platform.
   </p>
+  {{/eq}}
+  {{/contains}}
+  {{/each}}
 
   {{/with}}
 

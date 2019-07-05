@@ -8,12 +8,12 @@
 
 <html>
 <!-- done -->
-<!-- proofreading pending -->
 
 <body>
-  <h1>Congratulations {{customer.display-name}}!</h1>
 
   {{#with transaction}}
+  <h1>Congratulations {{customer.display-name}}!</h1>
+
   <p>Your BOLELO transaction for {{listing.title}} from {{> format-date date=booking.start}} to
     {{> format-date date=booking.end}} is now approved & confirmed. Please contact {{provider.display-name}} through the
     {{marketplace.name}} platform if you see any discrepancies.</p>
@@ -63,8 +63,8 @@
     <li>If applicable, ask to demonstrate its function. {{provider.display-name}} will likely take a photo/video with
       a time stamp at its full operation to verify that everything is in working condition before releasing the item.
     </li>
-    <li>You must confirm receipt of the item and agree on the return date, time and location through the platform's
-      console.</li>
+    <li>You must confirm receipt of the item and agree on the return date, time and location through the
+      {{marketplace.name}} platform and/or in person.</li>
   </ol>
 
   <h4>PAYMENT</h4>

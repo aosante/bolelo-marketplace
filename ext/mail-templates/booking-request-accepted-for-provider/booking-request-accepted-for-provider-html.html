@@ -8,12 +8,12 @@
 <!-- sent to the provider when he/she accepts a booking request -->
 <html>
 <!-- done -->
-<!-- proofreading pending -->
 
 <body>
-  <h1>Congratulations {{provider.display-name}}!</h1>
 
   {{#with transaction}}
+  <h1>Congratulations {{provider.display-name}}!</h1>
+
   <p>Your BOLELO transaction for {{listing.title}} from {{> format-date date=booking.start}} to
     {{> format-date date=booking.end}} is now confirmed. Please contact {{customer.display-name}} through the
     {{marketplace.name}} platform if you see any discrepancies.</p>

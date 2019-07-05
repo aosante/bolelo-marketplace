@@ -15,15 +15,21 @@
 
   {{#with transaction}}
   <p>
-    {{customer.display-name}} has canceled the booking request for {{listing.title}} from
+    {{customer.display-name}} has cancelled the booking request for {{listing.title}} from
     {{> format-date date=booking.start}} to {{> format-date date=booking.end}}.
   </p>
 
+  {{#each tx-line-items}}
+  {{#contains include-for "provider"}}
+  {{#eq "line-item/day" code}}
   <p>
     The amount of {{> format-money money=payin-total}} will not be charged from
     {{customer.display-name}}. If you wish to know the reason for the request cancellation,
     please contact {{customer.display-name}} through the {{marketplace.name}} platform.
   </p>
+  {{/eq}}
+  {{/contains}}
+  {{/each}}
 
   {{/with}}
 

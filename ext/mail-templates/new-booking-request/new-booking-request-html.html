@@ -6,8 +6,7 @@
 {{~/inline~}}
 
 <html>
-<!-- semi-done -->
-<!-- proofreading pending -->
+<!-- done -->
 
 <body>
   {{#with transaction}}
@@ -70,19 +69,21 @@
   <!-- this needs to be modified to say that the booking request expires after 48hrs of being made -->
   <p>
     You must approve or decline this booking request within 48 hours or booking request will expire and be automatically
-    cancelled.
+    cancelled. If the request wqas made 48 hours or less before the booking start date, then you have until 11 pm on the
+    eve of the booking start date to accept or decline the request.
   </p>
 
   <p>
     <a href="{{ marketplace.url }}/sale/{{url-encode id}}/details">Accept or decline the booking</a>
   </p>
 
+  <h4>CONTACT</h4>
+  <p>If you wish to contact {{customer.display-name}}, you can do so through {{marketplace.name}} platform.</p>
+
   {{/with}}
 
   <hr />
 
-  <h4>CONTACT</h4>
-  <p>If you wish to contact {{customer.display-name}}, you can do so through the platform's chat.</p>
 
   <p>
     You have received this email notification because you are a member of {{marketplace.name}}.

@@ -15,63 +15,21 @@ import {
 
 import css from './Footer.css';
 
-const renderSocialMediaLinks = intl => {
-  const { siteFacebookPage, siteInstagramPage, siteTwitterHandle } = config;
-  const siteTwitterPage = twitterPageURL(siteTwitterHandle);
-
-  const goToFb = intl.formatMessage({ id: 'Footer.goToFacebook' });
-  const goToInsta = intl.formatMessage({ id: 'Footer.goToInstagram' });
-  const goToTwitter = intl.formatMessage({ id: 'Footer.goToTwitter' });
-
-  const fbLink = siteFacebookPage ? ( 
-    <ExternalLink key="linkToFacebook" href={siteFacebookPage} className={css.icon} title={goToFb}>
-      <IconSocialMediaFacebook />
-    </ExternalLink>
-  ) : null;
-
-  const twitterLink = siteTwitterPage ? (
-    <ExternalLink
-      key="linkToTwitter"
-      href={siteTwitterPage}
-      className={css.icon}
-      title={goToTwitter}
-    >
-      <IconSocialMediaTwitter />
-    </ExternalLink>
-  ) : null;
-
-  const instragramLink = siteInstagramPage ? (
-    <ExternalLink
-      key="linkToInstagram"
-      href={siteInstagramPage}
-      className={css.icon}
-      title={goToInsta}
-    >
-      <IconSocialMediaInstagram />
-    </ExternalLink>
-  ) : null;
-  return [fbLink, twitterLink, instragramLink].filter(v => v != null);
-};
 
 const Footer = props => {
   const { rootClassName, className, intl } = props;
-  const socialMediaLinks = renderSocialMediaLinks(intl);
   const classes = classNames(rootClassName || css.root, className);
 
   return (
     <div className={classes}>
       <div className={css.topBorderWrapper}>
         <div className={css.content}>
-          <div className={css.someLiksMobile}>{socialMediaLinks}</div>
           <div className={css.links}>
             <div className={css.organization} id="organization">
               <NamedLink name="LandingPage" className={css.logoLink}>
                 <Logo format="desktop" className={css.logo} />
               </NamedLink>
               <div className={css.organizationInfo}>
-                <p className={css.organizationDescription}>
-                  <FormattedMessage id="Footer.organizationDescription" />
-                </p>
                 <p className={css.organizationCopyright}>
                   <NamedLink name="LandingPage" className={css.copyrightLink}>
                     <FormattedMessage id="Footer.copyright" />
@@ -100,11 +58,6 @@ const Footer = props => {
                 <li className={css.listItem}>
                   <NamedLink name="HelpPage" className={css.link}>
                     <FormattedMessage id="Footer.toHelpPage" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink name="AboutPage" to={{ hash: '#contact' }} className={css.link}>
-                    <FormattedMessage id="Footer.toContactPage" />
                   </NamedLink>
                 </li>
               </ul>
@@ -175,7 +128,6 @@ const Footer = props => {
               </ul>
             </div>
             <div className={css.extraLinks}>
-              <div className={css.someLinks}>{socialMediaLinks}</div>
               <div className={css.legalMatters}>
                 <ul className={css.tosAndPrivacy}>
                   <li>

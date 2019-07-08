@@ -19,17 +19,13 @@
     {{> format-date date=booking.start}} to {{> format-date date=booking.end}}.
   </p>
 
-  {{#each tx-line-items}}
-  {{#contains include-for "provider"}}
-  {{#eq "line-item/day" code}}
   <p>
-    The amount of {{> format-money money=payin-total}} will be refunded to
+    The transaction's total amount will be refunded to
     {{customer.display-name}}. If you wish to know the reason for the cancellation, please
     contact {{customer.display-name}} through the {{marketplace.name}} platform.
   </p>
-  {{/eq}}
-  {{/contains}}
-  {{/each}}
+
+  <p>You can see the transaction details <a href="{{ marketplace.url }}/sale/{{url-encode id}}/details">here</a></p>
 
 
   {{/with}}

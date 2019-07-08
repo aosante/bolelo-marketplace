@@ -10,12 +10,12 @@
 
 <body>
   {{#with transaction}}
-  <h1>Congratulations {{provider.display-name}}!</h1>
+  <h1>Congratulations {{ provider.display-name }}!</h1>
 
   <h3>
-    You have received a booking request from {{customer.display-name}} from
+    You have received a booking request from {{ customer.display-name }} from
     {{> format-date date=booking.start}} to {{> format-date date=booking.end}} for the following
-    item: {{listing.title}}
+    item: {{ listing.title }}
   </h3>
 
   <table>
@@ -33,7 +33,9 @@
           {{> format-money money=unit-price}} &times; {{number quantity}}
           {{inflect quantity "day" "days"}} &times; item quantity
         </td>
-        <td style="text-align: right; padding-left: 20px">{{> format-money money=payin-total}}</td>
+        <td style="text-align: right; padding-left: 20px">
+          {{> format-money money=payin-total}}
+        </td>
         {{/eq}}
         {{#eq "line-item/provider-commission" code}}
         <td>{{ marketplace.name }} fee:</td>
@@ -56,21 +58,25 @@
   </table>
 
   <h4>PAYMENT</h4>
-  <p>The borrower has made only a Pre-authorization of payment.
-    To ensure the integrity of the BOLELO process, funds will only be released to you once the booking is
-    approved by the lender and delivery is finalized.
+  <p>
+    The borrower has made only a Pre-authorization of payment. To ensure the integrity of the
+    BOLELO process, funds will only be released to you once the booking is approved by the lender
+    and delivery is finalized.
   </p>
 
   <h4>CANCEL</h4>
-  <p>Please note, {{customer.display-name}} may cancel this booking until 6 pm on the eve of the booking start date
-    and receive a full refund. {{customer.display-name}} will forfeit 100% of the fee if this deadline is missed.
+  <p>
+    Please note, {{ customer.display-name }} may cancel this booking until 6 pm on the eve of
+    the booking start date and receive a full refund. {{ customer.display-name }} will forfeit
+    100% of the fee if this deadline is missed.
   </p>
 
   <!-- this needs to be modified to say that the booking request expires after 48hrs of being made -->
   <p>
-    You must approve or decline this booking request within 48 hours or booking request will expire and be automatically
-    cancelled. If the request wqas made 48 hours or less before the booking start date, then you have until 11 pm on the
-    eve of the booking start date to accept or decline the request.
+    You must approve or decline this booking request within 48 hours or booking request will
+    expire and be automatically cancelled. If the request was made 48 hours or less before the
+    booking start date, then you have until 11 pm on the eve of the booking start date to accept
+    or decline the request.
   </p>
 
   <p>
@@ -78,16 +84,18 @@
   </p>
 
   <h4>CONTACT</h4>
-  <p>If you wish to contact {{customer.display-name}}, you can do so through {{marketplace.name}} platform.</p>
+  <p>
+    If you wish to contact {{ customer.display-name }}, you can do so through the
+    {{ marketplace.name }} platform.
+  </p>
 
   {{/with}}
 
   <hr />
 
-
   <p>
-    You have received this email notification because you are a member of {{marketplace.name}}.
-    If you no longer wish to receive these emails, please contact the {{marketplace.name}} team.
+    You have received this email notification because you are a member of {{ marketplace.name }}.
+    If you no longer wish to receive these emails, please contact the {{ marketplace.name }} team.
   </p>
 </body>
 

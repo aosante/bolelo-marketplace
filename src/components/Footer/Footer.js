@@ -2,14 +2,8 @@ import React from 'react';
 import { string } from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import { twitterPageURL } from '../../util/urlHelpers';
-import config from '../../config';
 import {
-  IconSocialMediaFacebook,
-  IconSocialMediaInstagram,
-  IconSocialMediaTwitter,
   Logo,
-  ExternalLink,
   NamedLink,
 } from '../../components';
 

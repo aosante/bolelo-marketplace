@@ -31,8 +31,8 @@ const SectionHero = props => {
         >
           <FormattedMessage id="SectionHero.browseButton" />
         </NamedLink>
-        <BackgroundCarousel/>
       </div>
+      <BackgroundCarousel className={css.carouselContent} />
     </div>
   );
 };

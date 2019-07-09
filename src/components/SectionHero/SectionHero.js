@@ -28,8 +28,8 @@ const SectionHero = _ => {
         >
           <FormattedMessage id="SectionHero.browseButton" />
         </NamedLink>
-        <BackgroundCarousel />
       </div>
+      <BackgroundCarousel className={css.carouselContent} />
     </div>
   );
 };

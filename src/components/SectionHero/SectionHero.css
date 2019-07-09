@@ -51,8 +51,11 @@
 }
 
 .heroContent {
-  margin: 100px 24px 0 24px;
-  z-index: 22;
+  margin: 0 24px 0 24px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 10;
 
   @media (--viewportMedium) {
     margin: 5em 7.5vw 0 7.5vw;
@@ -110,4 +113,8 @@
     display: block;
     width: 260px;
   }
+}
+
+.carouselContent {
+  position: absolute;
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import BackgroundSlideshow from 'react-background-slideshow';
 import 'react-multi-carousel/lib/styles.css';

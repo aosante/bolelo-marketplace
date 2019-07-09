@@ -2,22 +2,12 @@ import React from 'react';
 import { string } from 'prop-types';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import classNames from 'classnames';
-import { twitterPageURL } from '../../util/urlHelpers';
-import config from '../../config';
-import {
-  IconSocialMediaFacebook,
-  IconSocialMediaInstagram,
-  IconSocialMediaTwitter,
-  Logo,
-  ExternalLink,
-  NamedLink,
-} from '../../components';
+import { Logo, NamedLink } from '../../components';
 
 import css from './Footer.css';
 
-
 const Footer = props => {
-  const { rootClassName, className, intl } = props;
+  const { rootClassName, className } = props;
   const classes = classNames(rootClassName || css.root, className);
 
   return (

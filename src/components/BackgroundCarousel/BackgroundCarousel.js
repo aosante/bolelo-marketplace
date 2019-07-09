@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import BackgroundSlideshow from 'react-background-slideshow';
 import 'react-multi-carousel/lib/styles.css';
@@ -11,17 +11,15 @@ import image6 from '../../assets/carousel6.jpg';
 import image7 from '../../assets/carousel7.jpg';
 import image8 from '../../assets/carousel8.jpg';
 
-class BackgroundCarousel extends Component {
-  render() {
-    if (window !== 'undefined') {
-      return (
-        <BackgroundSlideshow
-          images={[image1, image2, image3, image4, image5, image6, image7, image8]}
-          animationDelay={6000}
-        />
-      );
-    }
+const BackgroundCarousel = _ => {
+  if (window !== 'undefined') {
+    return (
+      <BackgroundSlideshow
+        images={[image1, image2, image3, image4, image5, image6, image7, image8]}
+        animationDelay={6000}
+      />
+    );
   }
-}
+};
 
 export default BackgroundCarousel;

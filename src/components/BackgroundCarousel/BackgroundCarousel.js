@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BackgroundSlideshow from 'react-background-slideshow';
+import css from './BackgroundCarousel.css';
 import 'react-multi-carousel/lib/styles.css';
 import image1 from '../../assets/carousel1.jpg';
 import image2 from '../../assets/carousel2.jpg';
@@ -16,6 +17,7 @@ const BackgroundCarousel = _ => {
     <BackgroundSlideshow
       images={[image1, image2, image3, image4, image5, image6, image7, image8]}
       animationDelay={6000}
+      className={css.opacityImage}
     />
   );
 };

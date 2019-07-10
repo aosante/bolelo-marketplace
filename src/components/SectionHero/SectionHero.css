@@ -50,15 +50,27 @@
   /* Text positioning is done with paddings */
 }
 
+.image {
+  width: 100% !important;
+  display: block !important;
+  height: 90vh;
+}
+
 .heroContent {
-  margin: 0 24px 0 24px;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
 
   @media (--viewportMedium) {
-    margin: 5em 7.5vw 0 7.5vw;
+    /* margin: 5em 7.5vw 0 7.5vw; */
   }
 
   /* Special viewport for adjusting the heroContent's placement */
@@ -69,8 +81,6 @@
 
   @media only screen and (min-width: 1367px) {
     margin: 0 auto;
-    margin-top: 110px;
-    max-width: calc(1052px + 36px + 36px);
     width: 100%;
     /* padding: 0 36px 0 36px; */
   }
@@ -117,4 +127,5 @@
 
 .carouselContent {
   position: absolute;
+  border: 2px solid red;
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import { string } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { NamedLink } from '../../components';
-import classNames from 'classnames';
+// import classNames from 'classnames';
+import Carousel from 'react-bootstrap';
 
 import image1 from '../../assets/carousel1.jpg';
 import image2 from '../../assets/carousel2.jpg';
@@ -16,9 +17,9 @@ import image3 from '../../assets/carousel3.jpg';
 import css from './SectionHero.css';
 
 const SectionHero = props => {
-  const { rootClassName, className } = props;
+  // const { rootClassName, className } = props;
 
-  const classes = classNames(rootClassName || css.root, className);
+  // const classes = classNames(rootClassName || css.root, className);
 
   return (
     <div className="carousel slide" data-ride="carousel">
@@ -42,6 +43,7 @@ const SectionHero = props => {
             <FormattedMessage id="SectionHero.browseButton" />
           </NamedLink>
         </div>
+        {/* hero content end */}
         <div className="carousel-item active">
           <img className={css.image} src={image1} alt="First slide" />
         </div>

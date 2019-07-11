@@ -9,11 +9,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import image1 from '../../assets/carousel1.jpg';
 import image2 from '../../assets/carousel2.jpg';
 import image3 from '../../assets/carousel3.jpg';
-// import image4 from '../../assets/carousel4.jpg';
-// import image5 from '../../assets/carousel5.jpg';
-// import image6 from '../../assets/carousel6.jpg';
-// import image7 from '../../assets/carousel7.jpg';
-// import image8 from '../../assets/carousel8.jpg';
+import image4 from '../../assets/carousel4.jpg';
+import image5 from '../../assets/carousel5.jpg';
+import image6 from '../../assets/carousel6.jpg';
+import image7 from '../../assets/carousel7.jpg';
+import image8 from '../../assets/carousel8.jpg';
+import image9 from '../../assets/carousel9.jpg';
 
 import css from './SectionHero.css';
 
@@ -44,35 +45,34 @@ const SectionHero = props => {
       </div>
       <Carousel controls={false} indicators={false}>
         <Carousel.Item>
-          <img
-            className={css.image}
-            src={image1}
-            alt="First slide"
-          />
+          <img className={css.image} src={image1} alt="First" />
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className={css.image}
-            src={image2}
-            alt="Third slide"
-          />
+          <img className={css.image} src={image2} alt="Second" />
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className={css.image}
-            src={image3}
-            alt="Third slide"
-          />
+          <img className={css.image} src={image3} alt="Third" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className={css.image} src={image4} alt="Fourth" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className={css.image} src={image5} alt="Fifth" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className={css.image} src={image6} alt="Sixth" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className={css.image} src={image7} alt="Seventh" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className={css.image} src={image8} alt="Eigth" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className={css.image} src={image9} alt="Ninth" />
         </Carousel.Item>
       </Carousel>
-
     </div>
-
-
-
-
-
-
   );
 };
 

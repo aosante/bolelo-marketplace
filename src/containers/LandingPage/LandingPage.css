@@ -37,7 +37,7 @@
 
   @media (--viewportLarge) {
     max-height: 800px;
-    min-height: 650px;
+    min-height: 700px;
     height: calc(70vh - var(--topbarHeightDesktop));
   }
 }

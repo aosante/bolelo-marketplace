@@ -68,11 +68,13 @@
   width: 100%;
   z-index: 2;
   background: rgba(0, 0, 0, 0.5);
-  padding: 1em;
+  padding: 3em;
   display: flex;
   flex-direction: column;
 
   @media (--viewportMedium) {
+    padding: 6em;
+    bottom: 23px;
     /* margin: 5em 7.5vw 0 7.5vw; */
   }
 
@@ -87,6 +89,11 @@
     width: 100%;
     /* padding: 0 36px 0 36px; */
   }
+
+  @media  (max-width: 768px) {
+    bottom: 65px;
+    /* padding: 0 36px 0 36px; */
+  }
 }
 
 .heroMainTitle {
@@ -99,6 +106,10 @@
   @media (--viewportMedium) {
     max-width: var(--SectionHero_desktopTitleMaxWidth);
   }
+}
+
+.carousel-control-next {
+  border-top-color: transparent !important;
 }
 
 .heroSubTitle {

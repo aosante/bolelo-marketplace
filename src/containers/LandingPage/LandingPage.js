@@ -19,8 +19,8 @@ import {
 } from '../../components';
 import { TopbarContainer } from '../../containers';
 
-import facebookImage from '../../assets/carousel1.jpg';
-import twitterImage from '../../assets/carousel1.jpg';
+import facebookImage from '../../assets/_carousel1.jpg';
+import twitterImage from '../../assets/_carousel1.jpg';
 import css from './LandingPage.css';
 import 'react-multi-carousel/lib/styles.css';
 

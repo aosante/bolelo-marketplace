@@ -32,46 +32,34 @@ const AboutPage = () => {
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>So, what do we do with all the stuff we’ve bought but rarely use?
+              <p>Why buy when you can Borrow?
+                Why buy when you only use it seldom and have no place to store it?
+                If you are like many people we meet then you too have probably thought the same thing.
               </p>
             </div>
 
             <div className={css.contentMain}>
               <h2>
-                Some of the items we probably forgot we even have.  We bought it because we needed it but now it sits in our garage, attic, shed, etc.
-                How about, this one item you really need but you are not quite ready to make the purchase?
+                So, what do we do with all the stuff we’ve bought but rarely use? Some of the items we have forgotten we even have.  We bought it because we needed it.  Now it sits in our garage, attic, shed, etc.
+                How about that one item you really need but are not quite ready to make the purchase?
+                BOLELO solves this problem with easy to use sharing platform by connecting potential Borrowers with people who are willing to Lend stuff they own.
               </h2>
 
               <p>
-                We live in a diverse, caring community of friendly neighbors who are willing to share.
-                We are all aware of our ever-changing commodity-driven culture and our need to buy everything.
-                We can promote healthy community via sharing between a neighbor to another friendly neighbor.
-                Bolelo solves these two-part problems with our easy to use sharing market place platform.
-                Bolelo links Borrowers and Lenders for a simple sharing transaction.
+                Borrowing/Lending, however, is not so easy.  Often it’s hard to find a specific item you are looking for. We also know that goodwill Borrowing/Lending with friends and neighbors is not always ideal as it could result in ruining good relationships.  You will agree that a positive transaction with friendly strangers is much better than ruined relationships from a negative experience with friends.  With BOLELO, Borrowers save $$ and Lenders make $$.
               </p>
               <p>
-                Why buy when you can Borrow?
-                Why buy when you only use seldom and have no place to store it?
+                Please send us your feedback and site improvement requests and we will do our best to meet your expectation.  Please keep in mind that we are a very small company.  We are so small that the sharks from the hit TV show Shark Tank probably would not even consider us a company, just a website 
+  Also, we hope that you will have patience with us as we learn and experience the growing pain while building the platform that meets your approval and creates an opportunity for you previously not available.
+  
               </p>
               <p>
-                It's definitely better for your wallet
-                It promotes less clutter around the house and better for our environment.
-                It can help generate extra $$ to help pay your expenses all while promoting sharing culture.
+                Our mission is simple.  We wish to make sharing a community thing by linking Borrowers and Lenders.  We dare to even say we are creating a better community and less wasteful environment that we can pass down to our children.  We hope you will share BOLELO with others.
               </p>
 
-              <h3 className={css.subtitle}>So, Just BOLELO it! </h3>
+              <p >BTW, we have chosen to donate 5% of proceeds to LB Side Kick Foundation (30-0162842), a 501 (c) 3, non-profit, based in Raleigh.  This is a small group of good people (100% volunteers) doing many great things for the community.     </p>
 
-              <p>
-                We started this site because we needed the answers to the questions above.
-                If you are like many people we meet then you too have probably thought the same.
-                We hope you will find the site to be useful.  Please share BOLELO with your friends.
-                Help us create a better community and less wasteful environment that we can pass down to our children.
-              </p>
 
-              <p>
-                We have chosen to donate 5% of proceeds to 501 (c) 3 non-profits, LBSKF (30-0162842), based in Raleigh North Carolina.
-                This is a small group of good people (all volunteers) doing many great things for the community.
-              </p>
             </div>
           </div>
         </LayoutWrapperMain>

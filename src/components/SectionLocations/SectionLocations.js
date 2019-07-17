@@ -52,7 +52,7 @@ const SectionLocations = props => {
         <span className={css.container}>
           <div>
             <span className={css.blue}>B</span>
-            <span className={css.green}>o</span>
+            <span className={css.green}>O</span>
             <span className={css.blue}>r</span>
             <span className={css.green}>r</span>
             <span className={css.blue}>o</span>
@@ -60,13 +60,13 @@ const SectionLocations = props => {
           </div>{' '}
           <div>
             <span className={css.blue}>L</span>
-            <span className={css.green}>e</span>
+            <span className={css.green}>E</span>
             <span className={css.blue}>n</span>
             <span className={css.green}>d</span>
           </div>{' '}
           <div>
             <span className={css.blue}>L</span>
-            <span className={css.green}>o</span>
+            <span className={css.green}>O</span>
             <span className={css.blue}>c</span>
             <span className={css.green}>a</span>
             <span className={css.blue}>l</span>

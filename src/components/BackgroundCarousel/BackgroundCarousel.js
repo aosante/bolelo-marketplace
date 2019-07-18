@@ -42,20 +42,6 @@ const BackgroundCarousel = _ => {
 
   return (
     <Carousel controls={false} indicators={false}>
-<<<<<<< HEAD
-        {
-          carouselImages.map((value, index) => {
-            return (
-              <Carousel.Item key={index} >
-                <img className={css.image} src={value} alt={index} />
-              </Carousel.Item>
-            )
-          })
-
-        }
-        
-      </Carousel>
-=======
       {carouselImages.map((value, index) => {
         return (
           <Carousel.Item key={index}>
@@ -64,7 +50,6 @@ const BackgroundCarousel = _ => {
         );
       })}
     </Carousel>
->>>>>>> 1de04342b3b0a4150d460359251cf4f57a99165a
   );
 };
 

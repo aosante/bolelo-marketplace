@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import 'react-multi-carousel/lib/styles.css';
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -18,16 +17,32 @@ import image11 from '../../assets/_carousel11.jpg';
 import image12 from '../../assets/_carousel12.jpg';
 import image13 from '../../assets/_carousel13.jpg';
 import image14 from '../../assets/_carousel14.jpg';
-import image15 from '../../assets/_carousel14.jpg';
+import image15 from '../../assets/_carousel15.jpg';
 
 import css from '../SectionHero/SectionHero.css';
 
 const BackgroundCarousel = _ => {
-
-  const carouselImages = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15];
+  const carouselImages = [
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image6,
+    image7,
+    image8,
+    image9,
+    image10,
+    image11,
+    image12,
+    image13,
+    image14,
+    image15,
+  ];
 
   return (
     <Carousel controls={false} indicators={false}>
+<<<<<<< HEAD
         {
           carouselImages.map((value, index) => {
             return (
@@ -40,6 +55,16 @@ const BackgroundCarousel = _ => {
         }
         
       </Carousel>
+=======
+      {carouselImages.map((value, index) => {
+        return (
+          <Carousel.Item key={index}>
+            <img className={css.image} src={value} alt={index} />
+          </Carousel.Item>
+        );
+      })}
+    </Carousel>
+>>>>>>> 1de04342b3b0a4150d460359251cf4f57a99165a
   );
 };
 

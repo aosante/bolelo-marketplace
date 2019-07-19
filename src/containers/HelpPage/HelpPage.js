@@ -32,20 +32,17 @@ const HelpPage = () => {
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>Do you have questions? Please email us at <a href="mailto: bolelo.org@gmail.com">bolelo.org@gmail.com</a> We are based in Raleigh North Carolina.</p>
+              <p>We are located in Raleigh, North Carolina.</p>
             </div>
 
             <div className={css.contentMain}>
               <p>
-                We value your feedback.  User experience is important to us so please send us your feedback and site
-                improvement requests and we will do our best to meet your expectation.  Please keep in mind that we
-                are a very small company, actually just one person, for now :).  The sharks from the hit TV show Shark
-                Tank will not even consider this a company, just a website.
+                Do you have questions?		Email us: <a href="mailto: bolelo.org@gmail.com">bolelo.org@gmail.com</a>
               </p>
               <p>
-                We hope that you will have patience with us as we learn and experience the growing pain while
-                building the site that meets your approval and creates an opportunity for you previously not available.
+                
               </p>
+              <p>Please be patient with us in case there’s a delay in response to your questions or concerns.  </p>
 
             </div>
           </div>

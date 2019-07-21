@@ -52,6 +52,9 @@ const PayoutDetailsFormComponent = props => (
 
       const accountType = values.accountType;
 
+      //USA as default
+      values.country = "US";
+
       const individualAccountLabel = intl.formatMessage({
         id: 'PayoutDetailsForm.individualAccount',
       });
@@ -138,28 +141,11 @@ const PayoutDetailsFormComponent = props => (
           {accountType ? (
             <React.Fragment>
               <div className={css.sectionContainer}>
-                <h3 className={css.subTitle}>Country</h3>
-                <FieldSelect
-                  id="country"
-                  name="country"
-                  disabled={disabled}
-                  className={css.selectCountry}
-                  autoComplete="country"
-                  label={countryLabel}
-                  validate={countryRequired}
-                >
-                  <option disabled value="">
-                    {countryPlaceholder}
-                  </option>
-                  {supportedCountries.map(c => (
-                    <option key={c} value={c}>
-                      {intl.formatMessage({ id: `PayoutDetailsForm.countryNames.${c}` })}
-                    </option>
-                  ))}
-                </FieldSelect>
+              
               </div>
 
-              {showIndividual ? (
+              {
+                showIndividual ? (
                 <PayoutDetailsIndividualAccount
                   fieldRenderProps={fieldRenderProps}
                   country={country}

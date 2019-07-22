@@ -8,7 +8,6 @@ import omit from 'lodash/omit';
 
 import {
   BookingDateRangeFilter,
-  SelectSingleFilter,
   SelectMultipleFilter,
   PriceFilter,
   KeywordFilter,
@@ -24,9 +23,9 @@ const FILTER_DROPDOWN_OFFSET = -14;
 const RADIX = 10;
 
 // resolve initial value for a single value filter
-// const initialValue = (queryParams, paramName) => {
-//   return queryParams[paramName];
-// };
+const initialValue = (queryParams, paramName) => {
+  return queryParams[paramName];
+};
 
 // resolve initial values for a multi value filter
 const initialValues = (queryParams, paramName) => {

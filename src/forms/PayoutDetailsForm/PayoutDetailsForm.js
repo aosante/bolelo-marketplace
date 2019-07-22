@@ -8,14 +8,14 @@ import classNames from 'classnames';
 import config from '../../config';
 import { propTypes } from '../../util/types';
 import { isStripeInvalidPostalCode, isStripeError } from '../../util/errors';
-import * as validators from '../../util/validators';
-import { Button, ExternalLink, FieldRadioButton, FieldSelect, Form } from '../../components';
+// import * as validators from '../../util/validators';
+import { Button, ExternalLink, FieldRadioButton, Form } from '../../components';
 
 import PayoutDetailsCompanyAccount from './PayoutDetailsCompanyAccount';
 import PayoutDetailsIndividualAccount from './PayoutDetailsIndividualAccount';
 import css from './PayoutDetailsForm.css';
 
-const supportedCountries = config.stripe.supportedCountries.map(c => c.code);
+// const supportedCountries = config.stripe.supportedCountries.map(c => c.code);
 
 export const stripeCountryConfigs = countryCode => {
   const country = config.stripe.supportedCountries.find(c => c.code === countryCode);
@@ -53,7 +53,7 @@ const PayoutDetailsFormComponent = props => (
       const accountType = values.accountType;
 
       //USA as default
-      values.country = "US";
+      values.country = 'US';
 
       const individualAccountLabel = intl.formatMessage({
         id: 'PayoutDetailsForm.individualAccount',
@@ -61,15 +61,15 @@ const PayoutDetailsFormComponent = props => (
 
       const companyAccountLabel = intl.formatMessage({ id: 'PayoutDetailsForm.companyAccount' });
 
-      const countryLabel = intl.formatMessage({ id: 'PayoutDetailsForm.countryLabel' });
-      const countryPlaceholder = intl.formatMessage({
-        id: 'PayoutDetailsForm.countryPlaceholder',
-      });
-      const countryRequired = validators.required(
-        intl.formatMessage({
-          id: 'PayoutDetailsForm.countryRequired',
-        })
-      );
+      // const countryLabel = intl.formatMessage({ id: 'PayoutDetailsForm.countryLabel' });
+      // const countryPlaceholder = intl.formatMessage({
+      //   id: 'PayoutDetailsForm.countryPlaceholder',
+      // });
+      // const countryRequired = validators.required(
+      //   intl.formatMessage({
+      //     id: 'PayoutDetailsForm.countryRequired',
+      //   })
+      // );
 
       const classes = classNames(css.root, className, {
         [css.disabled]: disabled,
@@ -140,12 +140,9 @@ const PayoutDetailsFormComponent = props => (
 
           {accountType ? (
             <React.Fragment>
-              <div className={css.sectionContainer}>
-              
-              </div>
+              <div className={css.sectionContainer} />
 
-              {
-                showIndividual ? (
+              {showIndividual ? (
                 <PayoutDetailsIndividualAccount
                   fieldRenderProps={fieldRenderProps}
                   country={country}

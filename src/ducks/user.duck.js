@@ -309,6 +309,7 @@ export const fetchCurrentUser = () => (dispatch, getState, sdk) => {
   return sdk.currentUser
     .show(params)
     .then(response => {
+      console.log(response);
       const entities = denormalisedResponseEntities(response);
       if (entities.length !== 1) {
         throw new Error('Expected a resource in the sdk.currentUser.show response');

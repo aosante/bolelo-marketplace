@@ -55,6 +55,7 @@
     "sanitize.css": "^5.0.0",
     "seedrandom": "^2.4.4",
     "semantic-ui-react": "^0.87.2",
+    "sharetempus": "^0.1.4",
     "sharetribe-flex-sdk": "^1.4.1",
     "sharetribe-scripts": "3.0.0",
     "smoothscroll-polyfill": "^0.4.0",

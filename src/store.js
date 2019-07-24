@@ -4,6 +4,9 @@ import thunk from 'redux-thunk';
 import createReducer from './reducers';
 import * as analytics from './analytics/analytics';
 import config from './config';
+// const ShareTempus = require('sharetempus')(config.sharetempusKey);
+
+// console.log(ShareTempus);
 
 /**
  * Create a new store with the given initial state. Adds Redux

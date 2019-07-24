@@ -1,8 +1,8 @@
 import React from 'react';
 import { bool, node, object, oneOf, string } from 'prop-types';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { intlShape } from 'react-intl';
 import * as validators from '../../util/validators';
-import { FieldBirthdayInput, FieldCheckbox, FieldTextInput } from '../../components';
+import { FieldBirthdayInput, FieldTextInput } from '../../components';
 
 import * as normalizePhoneNumberUS from './normalizePhoneNumberUS';
 import css from './PayoutDetailsForm.css';
@@ -19,7 +19,6 @@ const PayoutDetailsPersonalDetails = props => {
     sectionTitle,
     showEmailField,
     showOrganizationTitleField,
-    showOwnerField,
     showOwnershipPercentageField,
     showPersonalIdNumberField,
     showPhoneNumberField,
@@ -176,8 +175,6 @@ const PayoutDetailsPersonalDetails = props => {
           validate={lastNameRequired}
         />
       </div>
-
- 
 
       {showOwnershipPercentageField ? (
         <FieldTextInput

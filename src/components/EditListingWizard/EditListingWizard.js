@@ -206,15 +206,16 @@ class EditListingWizard extends Component {
   }
 
   handlePayoutSubmit(values) {
-    this.props.onPayoutDetailsSubmit(values);
-    // .then(() => {
-    //   this.setState({ showPayoutDetails: false });
-    //   this.props.onManageDisableScrolling('EditListingWizard.payoutModal', false);
-    //   this.props.onPublishListingDraft(this.state.draftId);
-    // })
-    // .catch(() => {
-    //   // do nothing
-    // });
+    this.props
+      .onPayoutDetailsSubmit(values)
+      .then(() => {
+        this.setState({ showPayoutDetails: false });
+        this.props.onManageDisableScrolling('EditListingWizard.payoutModal', false);
+        this.props.onPublishListingDraft(this.state.draftId);
+      })
+      .catch(() => {
+        // do nothing
+      });
   }
 
   render() {

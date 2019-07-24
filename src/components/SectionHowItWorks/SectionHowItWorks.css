@@ -14,6 +14,7 @@
   padding: 0.1em 0.65em;
   background-color: var(--marketplaceColor);
   color: var(--matterColorLight);
+  margin-right: 5px;
 }
 
 .steps {

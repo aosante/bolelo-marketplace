@@ -13,6 +13,7 @@ import officeImage from './images/office.jpg';
 import diyImage from './images/ladder.jpg';
 import sportsImage from './images/sports.jpg';
 import specialEventImage from './images/specialEvent.jpg';
+import miscellanyImage from './images/miscellaneous.jpg';
 
 class LocationImage extends Component {
   render() {
@@ -26,16 +27,16 @@ const locationLink = (name, image, searchQuery) => {
   const nameText = <span className={css.locationName}>{name}</span>;
   return (
     <NamedLink name="SearchPage" to={{ search: searchQuery }} className={css.location}>
-      <div className={css.imageWrapper}>
-        <div className={css.aspectWrapper}>
-          <LazyImage src={image} alt={name} className={css.locationImage} />
-        </div>
-      </div>
       <div className={css.linkText}>
         <FormattedMessage
           id="SectionLocations.listingsInLocation"
           values={{ location: nameText }}
         />
+      </div>
+      <div className={css.imageWrapper}>
+        <div className={css.aspectWrapper}>
+          <LazyImage src={image} alt={name} className={css.locationImage} />
+        </div>
       </div>
     </NamedLink>
   );
@@ -97,6 +98,11 @@ const SectionLocations = props => {
         {locationLink(
           'Special Event',
           specialEventImage,
+          's?address=North%20Carolina%2C%20USA&bounds=36.5881568%2C-75.40011900000002%2C33.7528778%2C-84.32186899999999'
+        )}
+        {locationLink(
+          'Miscellaneous',
+          miscellanyImage,
           's?address=North%20Carolina%2C%20USA&bounds=36.5881568%2C-75.40011900000002%2C33.7528778%2C-84.32186899999999'
         )}
       </div>

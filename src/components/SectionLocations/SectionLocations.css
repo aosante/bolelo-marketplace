@@ -38,11 +38,12 @@
 }
 
 .locations {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
   margin-top: 52px;
   @media (--viewportMedium) {
-    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr;
     margin-top: 57px;
   }
 }
@@ -113,11 +114,10 @@
 .linkText {
   @apply --marketplaceH2FontStyles;
   color: var(--matterColor);
-  margin-top: 15px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 
   @media (--viewportMedium) {
-    margin-top: 21px;
+    margin-bottom: 21px;
   }
 }
 

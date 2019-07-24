@@ -177,20 +177,7 @@ const PayoutDetailsPersonalDetails = props => {
         />
       </div>
 
-      {showOwnerField ? (
-        <fieldset className={css.roleField}>
-          <legend>
-            <FormattedMessage id="PayoutDetailsForm.role" />
-          </legend>
-          <FieldCheckbox
-            id={`${fieldId}.owner`}
-            className={css.textInputRow}
-            name={`${fieldId}.role`}
-            label={intl.formatMessage({ id: 'PayoutDetailsForm.owner' })}
-            value="owner"
-          />
-        </fieldset>
-      ) : null}
+ 
 
       {showOwnershipPercentageField ? (
         <FieldTextInput

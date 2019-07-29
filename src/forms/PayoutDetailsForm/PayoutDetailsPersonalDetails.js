@@ -1,6 +1,6 @@
 import React from 'react';
 import { bool, node, object, oneOf, string } from 'prop-types';
-import { intlShape } from 'react-intl';
+import { intlShape, FormattedMessage } from 'react-intl';
 import * as validators from '../../util/validators';
 import { FieldBirthdayInput, FieldTextInput } from '../../components';
 
@@ -223,16 +223,21 @@ const PayoutDetailsPersonalDetails = props => {
       </div>
 
       {showPersonalIdNumberField ? (
-        <FieldTextInput
-          id={`${fieldId}.personalIdNumber`}
-          name={`${fieldId}.personalIdNumber`}
-          disabled={disabled}
-          className={css.textInputRow}
-          type="text"
-          label={personalIdNumberLabel}
-          placeholder={personalIdNumberPlaceholder}
-          validate={personalIdNumberValid}
-        />
+        <React.Fragment>
+          <FieldTextInput
+            id={`${fieldId}.personalIdNumber`}
+            name={`${fieldId}.personalIdNumber`}
+            disabled={disabled}
+            className={css.textInputRow}
+            type="text"
+            label={personalIdNumberLabel}
+            placeholder={personalIdNumberPlaceholder}
+            validate={personalIdNumberValid}
+          />
+          <p className={css.sideNote}>
+            <FormattedMessage id="PayoutDetailsForm.ssnNote" />
+          </p>
+        </React.Fragment>
       ) : null}
 
       {showPhoneNumberField ? (

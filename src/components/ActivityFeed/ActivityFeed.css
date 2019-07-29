@@ -176,3 +176,10 @@
 
 .showOlderButton {
 }
+
+.reviewButton {
+  border-radius: 5px;
+  background-color: var(--marketplaceColor);
+  color: var(--matterColorLight);
+  border: 2px solid var(--marketplaceColor);
+}

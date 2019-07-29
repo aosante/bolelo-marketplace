@@ -156,9 +156,9 @@ const resolveTransitionMessage = (
       const reviewPeriodJustStarted = txIsDelivered(transaction);
 
       const reviewAsFirstLink = reviewPeriodJustStarted ? (
-        <InlineTextButton onClick={onOpenReviewModal}>
+        <button className={css.reviewButton} onClick={onOpenReviewModal}>
           <FormattedMessage id="ActivityFeed.leaveAReview" values={{ displayName }} />
-        </InlineTextButton>
+        </button>
       ) : null;
 
       return (
@@ -178,9 +178,9 @@ const resolveTransitionMessage = (
         const reviewPeriodIsOver = txIsReviewed(transaction);
         const userHasLeftAReview = hasUserLeftAReviewFirst(ownRole, transaction);
         const reviewAsSecondLink = !(reviewPeriodIsOver || userHasLeftAReview) ? (
-          <InlineTextButton onClick={onOpenReviewModal}>
+          <button className={css.reviewButton} onClick={onOpenReviewModal}>
             <FormattedMessage id="ActivityFeed.leaveAReviewSecond" values={{ displayName }} />
-          </InlineTextButton>
+          </button>
         ) : null;
         return (
           <FormattedMessage

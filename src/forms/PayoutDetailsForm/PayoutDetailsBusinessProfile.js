@@ -1,6 +1,6 @@
 import React from 'react';
 import { bool, string } from 'prop-types';
-import { intlShape } from 'react-intl';
+import { intlShape, FormattedMessage } from 'react-intl';
 import * as validators from '../../util/validators';
 import { FieldSelect, FieldTextInput } from '../../components';
 
@@ -52,17 +52,22 @@ const PayoutDetailsBusinessProfile = props => {
       ) : null}
 
       {showBusinessURLField ? (
-        <FieldTextInput
-          id={`${fieldId}.url`}
-          name={`${fieldId}.url`}
-          className={css.textInputRow}
-          autoComplete="url"
-          disabled={disabled}
-          label={businessUrlLabel}
-          placeholder={businessUrlPlaceholder}
-          type="text"
-          validate={businessUrlRequired}
-        />
+        <React.Fragment>
+          <FieldTextInput
+            id={`${fieldId}.url`}
+            name={`${fieldId}.url`}
+            className={css.textInputRow}
+            autoComplete="url"
+            disabled={disabled}
+            label={businessUrlLabel}
+            placeholder={businessUrlPlaceholder}
+            type="text"
+            validate={businessUrlRequired}
+          />
+          <p className={css.sideNote}>
+            <FormattedMessage id="PayoutDetailsForm.businessProfileNote" />
+          </p>
+        </React.Fragment>
       ) : null}
     </React.Fragment>
   ) : null;

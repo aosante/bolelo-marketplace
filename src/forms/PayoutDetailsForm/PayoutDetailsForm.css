@@ -229,3 +229,8 @@
     padding-bottom: 2px;
   }
 }
+
+.sideNote {
+  color: var(--matterColorAnti);
+  font-size: 0.8em;
+}

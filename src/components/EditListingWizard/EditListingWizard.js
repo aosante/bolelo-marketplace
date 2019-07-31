@@ -25,6 +25,7 @@ import EditListingWizardTab, {
   INFO,
   LOCATION,
   QUANTITY,
+  VIDEO_LINK,
   PRICING,
   PHOTOS,
 } from './EditListingWizardTab';
@@ -45,6 +46,7 @@ export const TABS = [
   INFO,
   LOCATION,
   QUANTITY,
+  VIDEO_LINK,
   PRICING,
   ...availabilityMaybe,
   PHOTOS,
@@ -73,6 +75,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelLocation';
   } else if (tab === QUANTITY) {
     key = 'EditListingWizard.tabLabelQuantity';
+  } else if (tab === VIDEO_LINK) {
+    key = 'EditListingWizard.tabLabelVideoLink';
   } else if (tab === PRICING) {
     key = 'EditListingWizard.tabLabelPricing';
   } else if (tab === AVAILABILITY) {
@@ -126,6 +130,8 @@ const tabCompleted = (tab, listing) => {
       return !!(geolocation && publicData && publicData.location && publicData.location.address);
     case QUANTITY:
       return !!(publicData && typeof publicData.quantity !== 'undefined');
+    case VIDEO_LINK:
+      return !!(publicData && typeof publicData.videoLink !== 'undefined');
     case PRICING:
       return !!price;
     case AVAILABILITY:

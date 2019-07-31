@@ -22,6 +22,7 @@ import {
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
   EditListingPricingPanel,
+  EditListingVideoLinkPanel,
 } from '../../components';
 
 import css from './EditListingWizard.css';
@@ -36,6 +37,7 @@ export const POLICY = 'policy';
 export const INFO = 'info';
 export const LOCATION = 'location';
 export const QUANTITY = 'quantity';
+export const VIDEO_LINK = 'videoLink';
 export const PRICING = 'pricing';
 export const PHOTOS = 'photos';
 
@@ -50,6 +52,7 @@ export const SUPPORTED_TABS = [
   INFO,
   LOCATION,
   QUANTITY,
+  VIDEO_LINK,
   PRICING,
   AVAILABILITY,
   PHOTOS,
@@ -288,6 +291,20 @@ const EditListingWizardTab = props => {
       return (
         <EditListingQuantityPanel
           {...panelProps(QUANTITY)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
+    case VIDEO_LINK: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewVideoLink'
+        : 'EditListingWizard.saveEditVideoLink';
+      return (
+        <EditListingVideoLinkPanel
+          {...panelProps(VIDEO_LINK)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);

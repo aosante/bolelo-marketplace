@@ -18,14 +18,13 @@ const SaleActionButtonsMaybe = props => {
     declineSaleError,
     onAcceptSale,
     onDeclineSale,
-    startDate
+    startDate,
   } = props;
 
   /*The pprovider can accept/decline bookings up to 11pm on the
   eve of the booking start date*/
   const realStartingDate = new Date(startDate);
   realStartingDate.setDate(realStartingDate.getDate() + 1);
-
   const currentDate = new Date();
 
   const getHoursToStart = (start, now) => {
@@ -35,7 +34,6 @@ const SaleActionButtonsMaybe = props => {
   const cantCancelBooking = _ => {
     let cantCancel = false;
     const hoursToStart = getHoursToStart(realStartingDate, currentDate);
-    console.log(hoursToStart)
     if (hoursToStart < 19) cantCancel = true;
     return cantCancel;
   };

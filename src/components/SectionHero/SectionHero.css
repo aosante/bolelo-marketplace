@@ -53,12 +53,20 @@
 .image {
   width: 100% !important;
   display: block !important;
-  height: 70vh;
+  height: 75vh;
   -webkit-filter: brightness(40%);
 
-  @media (--viewportMedium) {
+  @media (min-width: 374px) and (max-width: 376px) and (min-height: 811px) and (max-height: 813px) {
+    height: 65vh;
+  }
+
+  @media (--viewportLarge) {
     height: 90vh;
   }
+}
+
+.carousel {
+  z-index: 2;
 }
 
 .heroContent {
@@ -68,11 +76,10 @@
   bottom: 0;
   right: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   padding: 3em;
   display: flex;
   flex-direction: column;
-  
 
   @media (--viewportMedium) {
     padding: 6em;
@@ -97,8 +104,6 @@
     /* padding: 0 36px 0 36px; */
   }
 }
-
-
 
 .heroMainTitle {
   @apply --marketplaceHeroTitleFontStyles;
@@ -131,7 +136,7 @@
   }
 
   @media (max-width: 360px) {
-      display: none;
+    display: none;
   }
 }
 

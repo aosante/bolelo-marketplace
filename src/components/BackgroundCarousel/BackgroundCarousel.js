@@ -41,7 +41,7 @@ const BackgroundCarousel = _ => {
   ];
 
   return (
-    <Carousel controls={false} indicators={false}>
+    <Carousel className={css.carousel} controls={false} indicators={false}>
       {carouselImages.map((value, index) => {
         return (
           <Carousel.Item key={index}>

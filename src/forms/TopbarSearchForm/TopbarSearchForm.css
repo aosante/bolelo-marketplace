@@ -20,11 +20,15 @@
 }
 
 .mobileInputRoot {
-  width: 100%;
+  width: 90%;
+  margin-left: 10px;
 }
 
 .desktopInputRoot {
   height: var(--topbarHeightDesktop);
+  border: none;
+  padding-left: 8px;
+  color: var(--matterColorAnti);
 }
 
 .mobileIcon {

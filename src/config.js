@@ -59,7 +59,6 @@ const dayCountAvailableForBooking = 90;
 const sdkClientId = process.env.REACT_APP_SHARETRIBE_SDK_CLIENT_ID;
 const sdkBaseUrl = process.env.REACT_APP_SHARETRIBE_SDK_BASE_URL;
 const sdkTransitVerbose = process.env.REACT_APP_SHARETRIBE_SDK_TRANSIT_VERBOSE === 'true';
-const sharetempusKey = process.env.REACT_APP_SAHRETEMPUS_KEY;
 
 const currency = process.env.REACT_APP_SHARETRIBE_MARKETPLACE_CURRENCY;
 
@@ -216,7 +215,6 @@ const config = {
     postalCode,
     streetAddress,
   },
-  sharetempusKey,
   siteTitle,
   siteFacebookPage,
   siteInstagramPage,

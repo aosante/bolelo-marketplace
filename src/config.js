@@ -1,4 +1,5 @@
 import * as custom from './marketplace-custom-config.js';
+import * as customInsurance from './insurance-custom-config.js';
 import defaultLocationSearches from './default-location-searches';
 import { stripePublishableKey, stripeSupportedCountries } from './stripe-config';
 import { currencyConfiguration } from './currency-config';
@@ -224,6 +225,7 @@ const config = {
   usingSSL,
   maps,
   custom,
+  customInsurance,
 };
 
 export default config;

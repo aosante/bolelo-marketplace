@@ -163,6 +163,7 @@ export { default as EditListingInfoPanel } from './EditListingInfoPanel/EditList
 export { default as EditListingPoliciesPanel } from './EditListingPoliciesPanel/EditListingPoliciesPanel';
 export { default as EditListingPricingPanel } from './EditListingPricingPanel/EditListingPricingPanel';
 export { default as EditListingVideoLinkPanel } from './EditListingVideoLinkPanel/EditListingVideoLinkPanel';
+export { default as EditListingInsurancePanel } from './EditListingInsurancePanel/EditListingInsurancePanel';
 export { default as EditListingWizard } from './EditListingWizard/EditListingWizard';
 export { default as Footer } from './Footer/Footer';
 export { default as SectionHero } from './SectionHero/SectionHero';

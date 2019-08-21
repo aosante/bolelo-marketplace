@@ -23,6 +23,7 @@ import {
   EditListingPoliciesPanel,
   EditListingPricingPanel,
   EditListingVideoLinkPanel,
+  EditListingInsurancePanel,
 } from '../../components';
 
 import css from './EditListingWizard.css';
@@ -40,6 +41,7 @@ export const QUANTITY = 'quantity';
 export const VIDEO_LINK = 'videoLink';
 export const PRICING = 'pricing';
 export const PHOTOS = 'photos';
+export const INSURANCE = 'insurance';
 
 // EditListingWizardTab component supports these tabs
 export const SUPPORTED_TABS = [
@@ -56,6 +58,7 @@ export const SUPPORTED_TABS = [
   PRICING,
   AVAILABILITY,
   PHOTOS,
+  INSURANCE,
 ];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
@@ -360,6 +363,20 @@ const EditListingWizardTab = props => {
             onCompleteEditListingWizardTab(tab, values);
           }}
           onUpdateImageOrder={onUpdateImageOrder}
+        />
+      );
+    }
+    case INSURANCE: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewInsurance'
+        : 'EditListingWizard.saveEditInsurance';
+      return (
+        <EditListingInsurancePanel
+          {...panelProps(INSURANCE)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
         />
       );
     }

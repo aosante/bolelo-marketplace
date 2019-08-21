@@ -42,7 +42,7 @@ const csp = require('./csp');
 const buildPath = path.resolve(__dirname, '..', 'build');
 const env = process.env.REACT_APP_ENV;
 const dev = process.env.REACT_APP_ENV === 'development';
-const PORT = parseInt(process.env.PORT, 10);
+const PORT = parseInt(process.env.PORT, 10) || 4000;
 const CLIENT_ID = process.env.REACT_APP_SHARETRIBE_SDK_CLIENT_ID;
 const BASE_URL = process.env.REACT_APP_SHARETRIBE_SDK_BASE_URL;
 const TRANSIT_VERBOSE = process.env.REACT_APP_SHARETRIBE_SDK_TRANSIT_VERBOSE === 'true';
@@ -116,6 +116,7 @@ app.use('/static', express.static(path.join(buildPath, 'static')));
 // server robots.txt from the root
 app.use('/robots.txt', express.static(path.join(buildPath, 'robots.txt')));
 app.use(cookieParser());
+app.use(express.json());
 
 // Use basic authentication when not in dev mode. This is
 // intentionally after the static middleware to skip basic auth for

@@ -10,6 +10,7 @@ import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
 import config from '../../config';
 import { Form, PrimaryButton, FieldDateRangeInput, FieldSelect } from '../../components';
+import { formatMoney } from '../../util/currency';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 
 import css from './BookingDatesForm.css';

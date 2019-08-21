@@ -76,6 +76,7 @@ const BookingPanel = props => {
   const { formattedPrice, priceTitle } = priceData(price, intl);
   const isBook = !!parse(location.search).book;
   let quantity;
+  let insurancePrice;
   if (listing.attributes.publicData) {
     quantity = listing.attributes.publicData.quantity;
   }
@@ -140,6 +141,7 @@ const BookingPanel = props => {
             timeSlots={timeSlots}
             fetchTimeSlotsError={fetchTimeSlotsError}
             quantity={quantity}
+            insurancePrice={insurancePrice}
           />
         ) : null}
       </ModalInMobile>

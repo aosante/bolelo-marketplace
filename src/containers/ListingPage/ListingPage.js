@@ -57,6 +57,7 @@ import css from './ListingPage.css';
 import SectionInfoMaybe from './SectionInfoMaybe';
 import SectionQuantityMaybe from './SectionQuantityMaybe';
 import SectionVideoLinkMaybe from './SectionVideoLinkMaybe';
+import SectionInsuranceMaybe from './SectionInsuranceMaybe';
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
@@ -194,7 +195,6 @@ export class ListingPageComponent extends Component {
       isPendingApprovalVariant || isDraftVariant
         ? ensureOwnListing(getOwnListing(listingId))
         : ensureListing(getListing(listingId));
-
     const listingSlug = rawParams.slug || createSlug(currentListing.attributes.title || '');
     const params = { slug: listingSlug, ...rawParams };
 
@@ -429,6 +429,7 @@ export class ListingPageComponent extends Component {
                   <SectionInfoMaybe publicData={publicData} />
                   <SectionQuantityMaybe publicData={publicData} />
                   <SectionVideoLinkMaybe publicData={publicData} />
+                  <SectionInsuranceMaybe publicData={publicData} />
                   <SectionRulesMaybe publicData={publicData} />
                   <SectionMapMaybe
                     geolocation={geolocation}
@@ -487,6 +488,7 @@ ListingPageComponent.defaultProps = {
   sendEnquiryError: null,
   categoriesConfig: config.custom.categories,
   amenitiesConfig: config.custom.amenities,
+  insuranceOptions: config.custom.insuranceOptions,
 };
 
 ListingPageComponent.propTypes = {
@@ -527,6 +529,7 @@ ListingPageComponent.propTypes = {
 
   categoriesConfig: array,
   amenitiesConfig: array,
+  insuranceOptions: array,
 };
 
 const mapStateToProps = state => {

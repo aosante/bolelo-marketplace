@@ -28,6 +28,7 @@ import EditListingWizardTab, {
   VIDEO_LINK,
   PRICING,
   PHOTOS,
+  INSURANCE,
 } from './EditListingWizardTab';
 import css from './EditListingWizard.css';
 
@@ -48,6 +49,7 @@ export const TABS = [
   QUANTITY,
   VIDEO_LINK,
   PRICING,
+  INSURANCE,
   ...availabilityMaybe,
   PHOTOS,
 ];
@@ -83,6 +85,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelAvailability';
   } else if (tab === PHOTOS) {
     key = 'EditListingWizard.tabLabelPhotos';
+  } else if (tab === INSURANCE) {
+    key = 'EditListingWizard.tabLabelInsurance';
   }
 
   return intl.formatMessage({ id: key });
@@ -138,6 +142,12 @@ const tabCompleted = (tab, listing) => {
       return !!availabilityPlan;
     case PHOTOS:
       return images && images.length > 0;
+    case INSURANCE:
+      return !!(
+        publicData &&
+        typeof publicData.categoryInsurance !== 'undefined' &&
+        typeof publicData.subcategoryInsurance !== 'undefined'
+      );
     default:
       return false;
   }

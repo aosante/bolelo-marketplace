@@ -1,5 +1,6 @@
 import { createStripeAccount } from '../../ducks/stripe.duck';
 import { fetchCurrentUser } from '../../ducks/user.duck';
+import axios from 'axios';
 
 // ================ Action types ================ //
 
@@ -53,6 +54,43 @@ export const savePayoutDetailsSuccess = () => ({
 
 export const savePayoutDetails = values => (dispatch, getState, sdk) => {
   dispatch(savePayoutDetailsRequest());
+  var insurance_id;
+  var birthDate = values.individual.birthDate;
+  const customer = {
+    email: values.individual.email,
+    legalEntity: {
+      type: values.accountType,
+      firstName: values.individual.fname,
+      lastName: values.individual.lname,
+      birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
+      ssnLast4: values.individual.personalIdNumber,
+      address: {
+        city: values.individual.address.state,
+        country: values.country,
+        line1: values.individual.address.city,
+        line2: values.individual.address.state,
+        postalCode: values.individual.address.postalCode,
+        state: values.individual.address.state,
+      },
+    },
+  };
+  //Test retrieve categories
+  //axios.get('/api/categories');
+  axios
+    .post('/api/createSTUser', customer)
+    .then(res => {
+      insurance_id = res.data.id;
+      sdk.currentUser
+        .updateProfile({
+          publicData: {
+            idInsurance: insurance_id,
+          },
+        })
+        .then(res => {
+          console.log(JSON.stringify(res));
+        });
+    })
+    .catch(err => console.error(err));
 
   return dispatch(createStripeAccount(values))
     .then(() => dispatch(savePayoutDetailsSuccess()))

@@ -41,7 +41,6 @@ export const categories = [
   { key: 'specialEvent', label: 'Special Event' },
   { key: 'miscellaneous', label: 'Miscellaneous' },
 ];
-
 // Price filter configuration
 // Note: unlike most prices this is not handled in subunits
 export const priceFilterConfig = {

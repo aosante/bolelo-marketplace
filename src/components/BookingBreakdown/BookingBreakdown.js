@@ -23,6 +23,7 @@ import LineItemProviderCommissionMaybe from './LineItemProviderCommissionMaybe';
 import LineItemProviderCommissionRefundMaybe from './LineItemProviderCommissionRefundMaybe';
 import LineItemRefundMaybe from './LineItemRefundMaybe';
 import LineItemTotalPrice from './LineItemTotalPrice';
+import LineItemInsuranceQuote from './LineItemInsuranceQuote';
 //import LineItemUnknownItemsMaybe from './LineItemUnknownItemsMaybe';
 
 import css from './BookingBreakdown.css';
@@ -37,11 +38,10 @@ export const BookingBreakdownComponent = props => {
     booking,
     intl,
     itemQuantity,
+    insuranceQuote,
   } = props;
-
   const isCustomer = userRole === 'customer';
   const isProvider = userRole === 'provider';
-
   const hasCommissionLineItem = transaction.attributes.lineItems.find(item => {
     const hasCustomerCommission = isCustomer && item.code === LINE_ITEM_CUSTOMER_COMMISSION;
     const hasProviderCommission = isProvider && item.code === LINE_ITEM_PROVIDER_COMMISSION;
@@ -55,6 +55,7 @@ export const BookingBreakdownComponent = props => {
       <LineItemUnitPriceMaybe transaction={transaction} unitType={unitType} intl={intl} />
       <LineItemQuantityMaybe itemQuantity={itemQuantity} />
       <LineItemBookingPeriod transaction={transaction} booking={booking} unitType={unitType} />
+      <LineItemInsuranceQuote insuranceQuote={insuranceQuote} intl={intl} />
       <LineItemUnitsMaybe transaction={transaction} unitType={unitType} />
 
       {/* <LineItemUnknownItemsMaybe transaction={transaction} intl={intl} /> */}

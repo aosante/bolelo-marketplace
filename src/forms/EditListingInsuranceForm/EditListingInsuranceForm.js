@@ -19,8 +19,10 @@ export const EditListingInsuranceFormComponent = props => {
     var x = insurance_categories.filter(el => {
       return el.key === category;
     });
-    var res = x[0].value;
-    setSubCategories(res);
+    if (x[0]) {
+      var res = x[0].value;
+      setSubCategories(res);
+    }
   };
   const handleOnClickCategory = e => {
     if (cont !== 1) {
@@ -90,7 +92,9 @@ export const EditListingInsuranceFormComponent = props => {
               validate={composeValidators(required(categoriesRequired))}
               onClick={handleOnClickCategory}
             >
-              <option value="">{categoriesPlaceholder}</option>
+              <option disabled value="">
+                {categoriesPlaceholder}
+              </option>
               {insurance_categories.map(c => (
                 <option key={c.key} value={c.key}>
                   {c.key}
@@ -105,7 +109,9 @@ export const EditListingInsuranceFormComponent = props => {
               validate={composeValidators(required(subcategoriesRequired))}
               onFocus={handleFocusCategories}
             >
-              <option value="">{subcategoriesPlaceholder}</option>
+              <option disabled value="">
+                {subcategoriesPlaceholder}
+              </option>
               {subCategories.map(c => (
                 <option key={c} value={c}>
                   {c}

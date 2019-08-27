@@ -12,6 +12,7 @@ import {
   LINE_ITEM_NIGHT,
   LINE_ITEM_DAY,
   LINE_ITEM_SELECTED_QUANTITY,
+  LINE_ITEM_INSURANCE_QUOTE,
 } from '../../util/types';
 import { ensureListing, ensureUser, ensureTransaction, ensureBooking } from '../../util/data';
 import { dateFromLocalToAPI } from '../../util/dates';
@@ -50,10 +51,12 @@ import config from '../../config';
 
 import { storeData, storedData, clearData } from './CheckoutPageSessionHelpers';
 import css from './CheckoutPage.css';
+import axios from 'axios';
 
 const STORAGE_KEY = 'CheckoutPage';
 const { Money } = sdkTypes;
 
+var insuranceTokenQuote;
 export class CheckoutPageComponent extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +85,6 @@ export class CheckoutPageComponent extends Component {
    */
   customPricingParams(params) {
     const { bookingStart, bookingEnd, listing, selectedQuantity, ...rest } = params;
-
     const { amount, currency } = listing.attributes.price;
 
     const unitType = config.bookingUnitType;
@@ -119,6 +121,15 @@ export class CheckoutPageComponent extends Component {
     const selectedQuantityLineItemMaybe = selectedQuantityLineItem
       ? [selectedQuantityLineItem]
       : [];
+    const insuranceQuoteLineItem = insuranceTokenQuote
+      ? {
+          code: LINE_ITEM_INSURANCE_QUOTE,
+          unitPrice: new Money(insuranceTokenQuote.quote, currency),
+          quantity: 1,
+        }
+      : null;
+
+    const insuranceQuoteLineItemMaybe = insuranceQuoteLineItem ? [insuranceQuoteLineItem] : [];
 
     return {
       listingId: listing.id,
@@ -126,6 +137,7 @@ export class CheckoutPageComponent extends Component {
       bookingEnd,
       lineItems: [
         ...selectedQuantityLineItemMaybe,
+        ...insuranceQuoteLineItemMaybe,
         {
           code: unitType,
           unitPrice: new Money(amount, currency),
@@ -161,6 +173,7 @@ export class CheckoutPageComponent extends Component {
       fetchSpeculatedTransaction,
       history,
     } = this.props;
+
     // Browser's back navigation should not rewrite data in session store.
     // Action is 'POP' on both history.back() and page refresh cases.
     // Action is 'PUSH' when user has directed through a link
@@ -187,6 +200,32 @@ export class CheckoutPageComponent extends Component {
       pageData.bookingDates.bookingStart &&
       pageData.bookingDates.bookingEnd;
 
+    if (listing.attributes.publicData.categoryInsurance) {
+      const totalPrice = pageData.bookingData.quantity * listing.attributes.price.amount;
+      const item = {
+        customer: bookingData.currentUser.attributes.profile.publicData.idInsurance,
+        renter: listing.author.attributes.profile.publicData.idInsurance,
+        currency: 'usd',
+        startDate: new Date(bookingDates.bookingStart).getTime(),
+        endDate: new Date(bookingDates.bookingEnd).getTime(),
+        product: {
+          name: listing.attributes.title,
+          category: listing.attributes.publicData.categoryInsurance,
+          subcategory: listing.attributes.publicData.subcategoryInsurance,
+          manufacturer: listing.attributes.publicData.brand,
+          value: totalPrice.toString(),
+        },
+        description: 'Policy for ' + listing.attributes.title,
+        metadata: { quantity: pageData.bookingData.quantity },
+      };
+      axios
+        .post('/api/itemInsuranceData', item)
+        .then(res => {
+          insuranceTokenQuote = res.data;
+          console.log(insuranceTokenQuote);
+        })
+        .catch(err => console.error(err));
+    }
     if (hasData) {
       //const listingId = pageData.listing.id;
       const { bookingStart, bookingEnd } = pageData.bookingDates;
@@ -196,6 +235,7 @@ export class CheckoutPageComponent extends Component {
       const bookingStartForAPI = dateFromLocalToAPI(bookingStart);
       const bookingEndForAPI = dateFromLocalToAPI(bookingEnd);
       const selectedQuantity = pageData.bookingData.quantity;
+      const insuranceQuote = insuranceTokenQuote ? insuranceTokenQuote.quote : 0;
       // Fetch speculated transaction for showing price in booking breakdown
       // NOTE: if unit type is line-item/units, quantity needs to be added.
       // The way to pass it to checkout page is through pageData.bookingData
@@ -206,6 +246,7 @@ export class CheckoutPageComponent extends Component {
           bookingStart: bookingStartForAPI,
           bookingEnd: bookingEndForAPI,
           selectedQuantity,
+          insuranceQuote,
         })
       );
     }
@@ -234,6 +275,7 @@ export class CheckoutPageComponent extends Component {
     //   item => item.code === LINE_ITEM_SELECTED_QUANTITY
     // );
     const selectedQuantity = this.state.pageData.bookingData.quantity;
+    const insuranceQuote = this.state.pageData.bookingData.insuranceQuote;
 
     // Create order aka transaction
     // NOTE: if unit type is line-item/units, quantity needs to be added.
@@ -244,6 +286,7 @@ export class CheckoutPageComponent extends Component {
       bookingStart: speculatedTransaction.booking.attributes.start,
       bookingEnd: speculatedTransaction.booking.attributes.end,
       selectedQuantity,
+      insuranceQuote,
     });
 
     console.log(requestParams);

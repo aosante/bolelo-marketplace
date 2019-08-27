@@ -5,12 +5,13 @@ import { string } from 'prop-types';
 
 import css from './BookingBreakdown.css';
 
-const LineinsuranceQuoteMaybe = ({ insuranceFee, intl }) => {
+const LineinsuranceQuoteMaybe = ({ insuranceQuote, intl }) => {
   const translationKey = 'BookingBreakdown.insuranceQuote';
-  var formattedInsuranceQuote = '$0.00';
-  if (insuranceFee) {
-    formattedInsuranceQuote = formatMoney(intl, insuranceFee);
-  }
+  var formattedInsuranceQuote;
+  console.log(insuranceQuote);
+  if (insuranceQuote) {
+    formattedInsuranceQuote = formatMoney(intl, insuranceQuote);
+  } else formattedInsuranceQuote = 'Added on request';
   return (
     <div className={css.lineItem}>
       <span className={css.itemLabel}>

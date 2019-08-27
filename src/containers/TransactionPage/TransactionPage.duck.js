@@ -366,22 +366,28 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
   dispatch(acceptSaleRequest());
 
   //retrieve token from transaction's protected data and make api request
-  let data = {}
-  sdk.transactions.show({id}).then(res => {
-    console.log(res);
-    data.token = res.data.protectedData.token;
-  }).catch(err => {
-    console.log(err);
-  })
+  // let data = {};
+  // sdk.transactions
+  //   .show({ id })
+  //   .then(res => {
+  //     console.log(res);
+  //     data.token = res.data.protectedData.token;
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
 
-  //make the call only if the item has insurance
-  if(token) {
-    axios.post('api/createPolicy', data).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err);
-    })
-  }
+  // //make the call only if the item has insurance
+  // if (data.token) {
+  //   axios
+  //     .post('api/createPolicy', data)
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 
   return sdk.transactions
     .transition({ id, transition: TRANSITION_ACCEPT, params: {} }, { expand: true })

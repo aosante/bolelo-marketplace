@@ -314,7 +314,7 @@ export const LINE_ITEM_UNITS = 'line-item/units';
 export const LINE_ITEM_CUSTOMER_COMMISSION = 'line-item/customer-commission';
 export const LINE_ITEM_PROVIDER_COMMISSION = 'line-item/provider-commission';
 export const LINE_ITEM_SELECTED_QUANTITY = 'line-item/selected-quantity';
-export const LINE_ITEM_SELECTED_INSURANCE = 'line-item/selected-insurance';
+export const LINE_ITEM_INSURANCE_QUOTE = 'line-item/insurance-quote';
 
 export const LINE_ITEMS = [
   LINE_ITEM_NIGHT,

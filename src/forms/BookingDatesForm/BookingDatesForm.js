@@ -9,12 +9,14 @@ import { required, bookingDatesRequired, composeValidators } from '../../util/va
 import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
 import config from '../../config';
-import { Form, PrimaryButton, FieldDateRangeInput, FieldSelect } from '../../components';
-import { formatMoney } from '../../util/currency';
+import { Form, PrimaryButton, FieldDateRangeInput, FieldSelectQuantity } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
+import axios from 'axios';
 
 import css from './BookingDatesForm.css';
 
+var insuranceTokenQuote;
+var insuranceQuote;
 export class BookingDatesFormComponent extends Component {
   constructor(props) {
     super(props);
@@ -47,9 +49,16 @@ export class BookingDatesFormComponent extends Component {
   }
 
   render() {
-    const { quantity, rootClassName, className, price: unitPrice, ...rest } = this.props;
+    const {
+      currentUser,
+      listing,
+      quantity,
+      rootClassName,
+      className,
+      price: unitPrice,
+      ...rest
+    } = this.props;
     const classes = classNames(rootClassName || css.root, className);
-
     if (!unitPrice) {
       return (
         <div className={classes}>
@@ -92,7 +101,6 @@ export class BookingDatesFormComponent extends Component {
           const { startDate, endDate } = values && values.bookingDates ? values.bookingDates : {};
           //function to resolve input's value from form's value object
           const selectedQuantity = values && values.additionalItems ? values.additionalItems : null;
-
           const bookingStartLabel = intl.formatMessage({
             id: 'BookingDatesForm.bookingStartTitle',
           });
@@ -125,6 +133,8 @@ export class BookingDatesFormComponent extends Component {
                   // for the quantity should be added to the form.
                   quantity: 1,
                   itemQuantity: selectedQuantity,
+                  insuranceTokenQuote: insuranceTokenQuote,
+                  insuranceQuote: insuranceQuote,
                 }
               : null;
           const bookingInfo = bookingData ? (
@@ -172,6 +182,36 @@ export class BookingDatesFormComponent extends Component {
             quantityArray.push(i + 1);
           }
 
+          const handleSelect = e => {
+            if (listing.attributes.publicData.categoryInsurance && endDate) {
+              const totalPrice = parseInt(unitPrice.amount) * parseInt(e.target.value);
+              const item = {
+                customer: currentUser.attributes.profile.publicData.idInsurance,
+                renter: listing.author.attributes.profile.publicData.idInsurance,
+                currency: 'usd',
+                startDate: new Date(startDate).getTime(),
+                endDate: new Date(endDate).getTime(),
+                product: {
+                  name: listing.attributes.title,
+                  category: listing.attributes.publicData.categoryInsurance,
+                  subcategory: listing.attributes.publicData.subcategoryInsurance,
+                  manufacturer: listing.attributes.publicData.brand,
+                  value: totalPrice.toString(),
+                },
+                description: 'Policy for ' + listing.attributes.title,
+                metadata: { quantity: e.target.value },
+              };
+
+              axios
+                .post('/api/itemInsuranceData', item)
+                .then(res => {
+                  insuranceTokenQuote = res.data;
+                })
+                .catch(err => console.error(err));
+              insuranceQuote = insuranceTokenQuote.data.quote.toString();
+            }
+          };
+
           return (
             <Form onSubmit={handleSubmit} className={classes}>
               {timeSlotsError}
@@ -197,11 +237,12 @@ export class BookingDatesFormComponent extends Component {
               />
               {quantity ? (
                 <div className={css.quantity}>
-                  <FieldSelect
+                  <FieldSelectQuantity
                     name={'additionalItems'}
                     id={`${form}.quantity`}
                     label={availableQuantityLabel}
                     validate={quantityRequired}
+                    changeQuantity={handleSelect}
                   >
                     <option disabled value="">
                       {availableQuantityPlaceholder}
@@ -211,7 +252,7 @@ export class BookingDatesFormComponent extends Component {
                         {c}
                       </option>
                     ))}
-                  </FieldSelect>
+                  </FieldSelectQuantity>
                 </div>
               ) : null}
               {bookingInfo}

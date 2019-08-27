@@ -54,6 +54,7 @@ const BookingPanel = props => {
     className,
     titleClassName,
     listing,
+    currentUser,
     isOwnListing,
     unitType,
     onSubmit,
@@ -67,7 +68,6 @@ const BookingPanel = props => {
     location,
     intl,
   } = props;
-
   const price = listing.attributes.price;
   const hasListingState = !!listing.attributes.state;
   const isClosed = hasListingState && listing.attributes.state === LISTING_STATE_CLOSED;
@@ -76,11 +76,9 @@ const BookingPanel = props => {
   const { formattedPrice, priceTitle } = priceData(price, intl);
   const isBook = !!parse(location.search).book;
   let quantity;
-  let insurancePrice;
   if (listing.attributes.publicData) {
     quantity = listing.attributes.publicData.quantity;
   }
-
   const subTitleText = !!subTitle
     ? subTitle
     : showClosedListingHelpText
@@ -141,7 +139,8 @@ const BookingPanel = props => {
             timeSlots={timeSlots}
             fetchTimeSlotsError={fetchTimeSlotsError}
             quantity={quantity}
-            insurancePrice={insurancePrice}
+            listing={listing}
+            currentUser={currentUser}
           />
         ) : null}
       </ModalInMobile>

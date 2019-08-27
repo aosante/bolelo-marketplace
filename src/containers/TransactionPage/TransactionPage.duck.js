@@ -25,6 +25,7 @@ import {
 } from '../../util/data';
 import { addMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 import { fetchCurrentUserNotifications } from '../../ducks/user.duck';
+import axios from 'axios';
 
 const { UUID } = sdkTypes;
 
@@ -363,6 +364,24 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
     return Promise.reject(new Error('Accept or decline already in progress'));
   }
   dispatch(acceptSaleRequest());
+
+  //retrieve token from transaction's protected data and make api request
+  let data = {}
+  sdk.transactions.show({id}).then(res => {
+    console.log(res);
+    data.token = res.data.protectedData.token;
+  }).catch(err => {
+    console.log(err);
+  })
+
+  //make the call only if the item has insurance
+  if(token) {
+    axios.post('api/createPolicy', data).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err);
+    })
+  }
 
   return sdk.transactions
     .transition({ id, transition: TRANSITION_ACCEPT, params: {} }, { expand: true })

@@ -206,7 +206,7 @@ const EstimatedBreakdownMaybe = props => {
       booking={tx.booking}
       itemQuantity={itemQuantity}
       insuranceTokenQuote={insuranceTokenQuote}
-      insuranceQuote={insuranceFee}
+      insuranceFee={insuranceFee}
     />
   );
 };

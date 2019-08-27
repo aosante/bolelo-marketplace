@@ -38,7 +38,7 @@ export const BookingBreakdownComponent = props => {
     booking,
     intl,
     itemQuantity,
-    insuranceQuote,
+    insuranceFee,
   } = props;
   const isCustomer = userRole === 'customer';
   const isProvider = userRole === 'provider';
@@ -55,7 +55,7 @@ export const BookingBreakdownComponent = props => {
       <LineItemUnitPriceMaybe transaction={transaction} unitType={unitType} intl={intl} />
       <LineItemQuantityMaybe itemQuantity={itemQuantity} />
       <LineItemBookingPeriod transaction={transaction} booking={booking} unitType={unitType} />
-      <LineItemInsuranceQuote insuranceQuote={insuranceQuote} intl={intl} />
+      <LineItemInsuranceQuote insuranceFee={insuranceFee} intl={intl} />
       <LineItemUnitsMaybe transaction={transaction} unitType={unitType} />
 
       {/* <LineItemUnknownItemsMaybe transaction={transaction} intl={intl} /> */}

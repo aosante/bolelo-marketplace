@@ -177,7 +177,7 @@ const EstimatedBreakdownMaybe = props => {
     insuranceQuote,
   } = props.bookingData;
   var insuranceFee = parseInt(insuranceQuote) * parseInt(itemQuantity);
-  if (itemQuantity) {
+  if (itemQuantity && !Number.isNaN(insuranceFee)) {
     insuranceFee = new Money(insuranceFee, 'USD');
   } else insuranceFee = new Money(0, 'USD');
   const isUnits = unitType === LINE_ITEM_UNITS;

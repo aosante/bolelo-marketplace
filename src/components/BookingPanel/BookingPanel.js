@@ -103,6 +103,7 @@ const BookingPanel = props => {
     onSubmit({
       ...values,
       quantity: selectedQuantity,
+      currentUser: currentUser,
     });
   };
 

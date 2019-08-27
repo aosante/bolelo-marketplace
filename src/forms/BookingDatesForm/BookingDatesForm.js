@@ -206,10 +206,13 @@ export class BookingDatesFormComponent extends Component {
                 .post('/api/itemInsuranceData', item)
                 .then(res => {
                   insuranceTokenQuote = res.data;
+                  insuranceQuote = insuranceTokenQuote.quote;
+                  console.log(insuranceQuote);
                 })
                 .catch(err => console.error(err));
-              insuranceQuote = insuranceTokenQuote.data.quote.toString();
+              console.log('success');
             }
+            console.log(insuranceQuote);
           };
 
           return (

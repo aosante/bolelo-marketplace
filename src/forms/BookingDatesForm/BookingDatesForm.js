@@ -93,6 +93,7 @@ export class BookingDatesFormComponent extends Component {
           //function to resolve input's value from form's value object
           const selectedQuantity = values && values.additionalItems ? values.additionalItems : null;
 
+
           const bookingStartLabel = intl.formatMessage({
             id: 'BookingDatesForm.bookingStartTitle',
           });
@@ -116,16 +117,16 @@ export class BookingDatesFormComponent extends Component {
           const bookingData =
             startDate && endDate
               ? {
-                  unitType,
-                  unitPrice,
-                  startDate,
-                  endDate,
+                unitType,
+                unitPrice,
+                startDate,
+                endDate,
 
-                  // NOTE: If unitType is `line-item/units`, a new picker
-                  // for the quantity should be added to the form.
-                  quantity: 1,
-                  itemQuantity: selectedQuantity,
-                }
+                // NOTE: If unitType is `line-item/units`, a new picker
+                // for the quantity should be added to the form.
+                quantity: 1,
+                itemQuantity: selectedQuantity,
+              }
               : null;
           const bookingInfo = bookingData ? (
             <div className={css.priceBreakdownContainer}>

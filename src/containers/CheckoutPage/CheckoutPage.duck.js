@@ -114,6 +114,7 @@ export const initiateOrder = (orderParams, initialMessage) => (dispatch, getStat
     processAlias: config.bookingProcessAlias,
     params: orderParams,
   };
+  console.log(bodyParams);
   return sdk.transactions
     .initiate(bodyParams)
     .then(response => {

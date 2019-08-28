@@ -463,6 +463,7 @@ export class ListingPageComponent extends Component {
                   onManageDisableScrolling={onManageDisableScrolling}
                   timeSlots={timeSlots}
                   fetchTimeSlotsError={fetchTimeSlotsError}
+                  currentUser={currentUser}
                 />
               </div>
             </div>

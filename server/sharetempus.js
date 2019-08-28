@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ShareTempus = require('sharetempus')('sk_test_aSZmjGtnjHPNRuNe3qy8XAiY');
+const ShareTempus = require('sharetempus')(process.env.REACT_APP_SHARETEMPUS_KEY);
 
 router.post('/createSTUser', (req, res) => {
   const data = req.body;
@@ -26,7 +26,7 @@ router.get('/categories', (req, res) => {
     });
 });
 
-router.get('/itemInsuranceData', (req, res) => {
+router.post('/itemInsuranceData', (req, res) => {
   const data = req.body;
   ShareTempus.policies
     .quote(data)
@@ -38,4 +38,32 @@ router.get('/itemInsuranceData', (req, res) => {
     });
 });
 
+router.post('/createPolicy', (req, res) => {
+  const data = req.body;
+
+  ShareTempus.policies
+    .create({
+      token: data,
+    })
+    .then(r => {
+      res.send(r);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+});
+
+router.get('/getPolicy', (req, res) => {
+  const data = req.body;
+  ShareTempus.policies
+    .retrieve({
+      policy: data,
+    })
+    .then(r => {
+      res.send(r);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+});
 module.exports = router;

@@ -43,7 +43,6 @@ import { BookingBreakdown } from '../../components';
 import css from './BookingDatesForm.css';
 
 const { Money, UUID } = sdkTypes;
-
 const estimatedTotalPrice = (unitPrice, unitCount, itemQuantity) => {
   const numericPrice = convertMoneyToNumber(unitPrice);
   const numericTotalPrice = itemQuantity
@@ -79,7 +78,6 @@ const estimatedTransaction = (
     : isDaily
     ? daysBetween(bookingStart, bookingEnd)
     : quantity;
-
   const totalPrice = estimatedTotalPrice(unitPrice, unitCount, selectedQuantity);
 
   // bookingStart: "Fri Mar 30 2018 12:00:00 GMT-1100 (SST)" aka "Fri Mar 30 2018 23:00:00 GMT+0000 (UTC)"
@@ -97,7 +95,6 @@ const estimatedTransaction = (
       .startOf('day')
       .toDate()
   );
-
   const quantityLineItemTotal = selectedQuantity * unitPrice.amount;
   const quantityLineItem = {
     code: LINE_ITEM_SELECTED_QUANTITY,
@@ -107,7 +104,6 @@ const estimatedTransaction = (
     lineTotal: new Money(quantityLineItemTotal, 'USD'),
     reversal: false,
   };
-
   const quantityLineItemMaybe = selectedQuantity ? [quantityLineItem] : [];
 
   return {
@@ -157,9 +153,7 @@ const EstimatedBreakdownMaybe = props => {
   if (!canEstimatePrice) {
     return null;
   }
-  //console.log(itemQuantity);
   const tx = estimatedTransaction(unitType, startDate, endDate, unitPrice, quantity, itemQuantity);
-
   //itemQuantity is passed in to show in th booking breakkdown
   return (
     <BookingBreakdown

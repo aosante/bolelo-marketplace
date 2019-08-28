@@ -365,15 +365,29 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
   }
   dispatch(acceptSaleRequest());
 
-  //retrieve token from transaction using transactions.show which should've been stored in protected data when initiating transaction
-  //make api call to sharetempus to create policy
-  //hard code the toke in the meantime
-  let data = {};
-  sdk.transactions.show({ id }).then(res => {
-    data.token = res.data.attributes.protectedData.token;
-  }).catch(err => console.log(err));
+  //retrieve token from transaction's protected data and make api request
+  // let data = {};
+  // sdk.transactions
+  //   .show({ id })
+  //   .then(res => {
+  //     console.log(res);
+  //     data.token = res.data.protectedData.token;
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
 
-  axios.post('api/createPolicy', data).then(res => console.log(res)).catch(err => console.log(err));
+  // //make the call only if the item has insurance
+  // if (data.token) {
+  //   axios
+  //     .post('api/createPolicy', data)
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 
   return sdk.transactions
     .transition({ id, transition: TRANSITION_ACCEPT, params: {} }, { expand: true })

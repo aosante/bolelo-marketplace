@@ -10,7 +10,6 @@ import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
 import config from '../../config';
 import { Form, PrimaryButton, FieldDateRangeInput, FieldSelect } from '../../components';
-import { formatMoney } from '../../util/currency';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 
 import css from './BookingDatesForm.css';
@@ -47,9 +46,16 @@ export class BookingDatesFormComponent extends Component {
   }
 
   render() {
-    const { quantity, rootClassName, className, price: unitPrice, ...rest } = this.props;
+    const {
+      currentUser,
+      listing,
+      quantity,
+      rootClassName,
+      className,
+      price: unitPrice,
+      ...rest
+    } = this.props;
     const classes = classNames(rootClassName || css.root, className);
-
     if (!unitPrice) {
       return (
         <div className={classes}>

@@ -154,7 +154,7 @@ export class CheckoutPageComponent extends Component {
           quantity,
         },
       ],
-      protectedData: { insuranceToken: insuranceTokenQuote.token },
+      protectedData: { insuranceToken: insuranceTokenQuote ? insuranceTokenQuote.token : '' },
       ...rest,
     };
   }
@@ -258,6 +258,16 @@ export class CheckoutPageComponent extends Component {
             );
           })
           .catch(err => console.error(err));
+      } else {
+        fetchSpeculatedTransaction(
+          this.customPricingParams({
+            listing,
+            bookingStart: bookingStartForAPI,
+            bookingEnd: bookingEndForAPI,
+            selectedQuantity,
+            insuranceTokenQuote,
+          })
+        );
       }
     }
 
@@ -396,7 +406,7 @@ export class CheckoutPageComponent extends Component {
     }
     if (insuranceTokenQuote) {
       insuranceQuoteQuantity = new Money(insuranceQuote, 'USD');
-    }
+    } else insuranceQuoteQuantity = new Money(0, 'USD');
     // Show breakdown only when transaction and booking are loaded
     // (i.e. have an id)
     const breakdown =

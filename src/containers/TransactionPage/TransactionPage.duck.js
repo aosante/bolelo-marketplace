@@ -29,6 +29,7 @@ import axios from 'axios';
 
 const { UUID } = sdkTypes;
 
+var listingHasInsurance;
 const MESSAGES_PAGE_SIZE = 100;
 const CUSTOMER = 'customer';
 
@@ -75,6 +76,7 @@ export const FETCH_TIME_SLOTS_SUCCESS = 'app/TransactionPage/FETCH_TIME_SLOTS_SU
 export const FETCH_TIME_SLOTS_ERROR = 'app/TransactionPage/FETCH_TIME_SLOTS_ERROR';
 
 // ================ Reducer ================ //
+var data;
 
 const initialState = {
   fetchTransactionInProgress: false,
@@ -323,8 +325,8 @@ export const fetchTransaction = (id, txRole) => (dispatch, getState, sdk) => {
       const transactionRef = { id, type: 'transaction' };
       const denormalised = denormalisedEntities(entities, [listingRef, transactionRef]);
       const listing = denormalised[0];
+      listingHasInsurance = listing.attributes.publicData.categoryInsurance;
       const transaction = denormalised[1];
-
       // Fetch time slots for transactions that are in enquired state
       const canFetchTimeslots =
         txRole === 'customer' &&
@@ -366,28 +368,28 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
   dispatch(acceptSaleRequest());
 
   //retrieve token from transaction's protected data and make api request
-  // let data = {};
-  // sdk.transactions
-  //   .show({ id })
-  //   .then(res => {
-  //     console.log(res);
-  //     data.token = res.data.protectedData.token;
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
+  if (listingHasInsurance) {
+    sdk.transactions
+      .show({ id })
+      .then(res => {
+        data = { token: res.data.data.attributes.protectedData.insuranceToken };
 
-  // //make the call only if the item has insurance
-  // if (data.token) {
-  //   axios
-  //     .post('api/createPolicy', data)
-  //     .then(res => {
-  //       console.log(res);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
+        axios
+          .post('/api/createPolicy', data)
+          .then(r => {
+            console.log('Success');
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  //make the call only if the item has insurance
 
   return sdk.transactions
     .transition({ id, transition: TRANSITION_ACCEPT, params: {} }, { expand: true })

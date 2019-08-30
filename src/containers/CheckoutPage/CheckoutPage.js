@@ -154,6 +154,7 @@ export class CheckoutPageComponent extends Component {
           quantity,
         },
       ],
+      protectedData: { insuranceToken: insuranceTokenQuote.token },
       ...rest,
     };
   }

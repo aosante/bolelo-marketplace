@@ -74,8 +74,6 @@ export const savePayoutDetails = values => (dispatch, getState, sdk) => {
       },
     },
   };
-  //Test retrieve categories
-  //axios.get('/api/categories');
   axios
     .post('/api/createSTUser', customer)
     .then(res => {
@@ -91,7 +89,7 @@ export const savePayoutDetails = values => (dispatch, getState, sdk) => {
         });
     })
     .catch(err => console.error(err));
-
+  return console.log('lalsdlasd');
   return dispatch(createStripeAccount(values))
     .then(() => dispatch(savePayoutDetailsSuccess()))
     .catch(() => dispatch(savePayoutDetailsError()));
@@ -101,6 +99,5 @@ export const loadData = () => (dispatch, getState, sdk) => {
   // Clear state so that previously loaded data is not visible
   // in case this page load fails.
   dispatch(setInitialState());
-
   return dispatch(fetchCurrentUser());
 };

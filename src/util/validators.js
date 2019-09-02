@@ -161,7 +161,9 @@ export const validBusinessURL = message => value => {
 export const validSsnLast4 = message => value => {
   return value.length === 4 ? VALID : message;
 };
-
+export const validSsnLast9 = message => value => {
+  return value.length === 9 ? VALID : message;
+};
 export const validHKID = message => value => {
   // Accept value 000000000 for testing Stripe
   if (value.length === 9 && value.match(/([0]{9})/)) {

@@ -40,11 +40,9 @@ router.post('/itemInsuranceData', (req, res) => {
 
 router.post('/createPolicy', (req, res) => {
   const data = req.body;
-
+  console.log(data);
   ShareTempus.policies
-    .create({
-      token: data,
-    })
+    .create(data)
     .then(r => {
       res.send(r);
     })

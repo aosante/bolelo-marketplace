@@ -14,6 +14,7 @@ import {
   LINE_ITEM_NIGHT,
   LINE_ITEM_DAY,
   LINE_ITEM_SELECTED_QUANTITY,
+  LINE_ITEM_INSURANCE_QUOTE,
   propTypes,
 } from '../../util/types';
 import {
@@ -24,6 +25,7 @@ import {
 } from '../../util/data';
 import { isMobileSafari } from '../../util/userAgent';
 import { formatMoney } from '../../util/currency';
+import { types as sdkTypes } from '../../util/sdkLoader';
 import { AvatarLarge, BookingPanel, ReviewModal, UserDisplayName } from '../../components';
 import { SendMessageForm } from '../../forms';
 import config from '../../config';
@@ -49,6 +51,9 @@ import PanelHeading, {
 
 import css from './TransactionPanel.css';
 
+const { Money } = sdkTypes;
+var insuranceQuoteMoney;
+var insuranceQuote;
 // Helper function to get display names for different roles
 const displayNames = (currentUser, currentProvider, currentCustomer, intl) => {
   const authorDisplayName = <UserDisplayName user={currentProvider} intl={intl} />;
@@ -195,7 +200,7 @@ export class TransactionPanelComponent extends Component {
       onCancelBookingProvider,
     } = this.props;
 
-    /*transaction has the start and end dates, which can be used to enable or disable 
+    /*transaction has the start and end dates, which can be used to enable or disable
     booking cancellation (up to 24hrs before booking period starts). The object holding this data will be passed
     down as props to the saleCustomerCancelButtonMaybe Component*/
     const startDate = transaction.booking.attributes.start;
@@ -286,8 +291,8 @@ export class TransactionPanelComponent extends Component {
     const unitTranslationKey = isNightly
       ? 'TransactionPanel.perNight'
       : isDaily
-        ? 'TransactionPanel.perDay'
-        : 'TransactionPanel.perUnit';
+      ? 'TransactionPanel.perDay'
+      : 'TransactionPanel.perUnit';
 
     const price = currentListing.attributes.price;
     const bookingSubTitle = price
@@ -362,6 +367,10 @@ export class TransactionPanelComponent extends Component {
     ).lineTotal.amount;
     const totalAmount = daysTotal + quantityFraction;
     const itemQuantity = (totalAmount / daysTotal).toString();
+    insuranceQuote = currentTransaction.attributes.lineItems.find(
+      item => item.code === LINE_ITEM_INSURANCE_QUOTE
+    ).lineTotal.amount;
+    insuranceQuoteMoney = new Money(insuranceQuote, 'USD');
 
     return (
       <div className={classes}>
@@ -403,6 +412,7 @@ export class TransactionPanelComponent extends Component {
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
                 itemQuantity={itemQuantity}
+                insuranceQuote={insuranceQuoteMoney}
               />
             </div>
 
@@ -431,8 +441,8 @@ export class TransactionPanelComponent extends Component {
                 onSubmit={this.onMessageSubmit}
               />
             ) : (
-                <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
-              )}
+              <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
+            )}
 
             {stateData.showCancelButton ? (
               <div className={css.mobileActionButtons}>{cancelButton}</div>
@@ -504,6 +514,7 @@ export class TransactionPanelComponent extends Component {
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
                 itemQuantity={itemQuantity}
+                insuranceQuote={insuranceQuoteMoney}
               />
 
               {stateData.showSaleButtons ? (

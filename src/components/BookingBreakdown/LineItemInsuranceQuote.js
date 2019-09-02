@@ -7,6 +7,7 @@ import css from './BookingBreakdown.css';
 
 const LineinsuranceQuoteMaybe = ({ insuranceQuote, intl }) => {
   const translationKey = 'BookingBreakdown.insuranceQuote';
+  console.log(insuranceQuote);
   var formattedInsuranceQuote;
   if (insuranceQuote) {
     formattedInsuranceQuote = formatMoney(intl, insuranceQuote);

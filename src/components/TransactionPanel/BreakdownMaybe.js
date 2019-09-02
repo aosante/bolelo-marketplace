@@ -15,6 +15,7 @@ const BreakdownMaybe = props => {
     transaction,
     transactionRole,
     itemQuantity,
+    insuranceQuote,
   } = props;
   const loaded = transaction && transaction.id && transaction.booking && transaction.booking.id;
 
@@ -34,6 +35,7 @@ const BreakdownMaybe = props => {
         transaction={transaction}
         booking={transaction.booking}
         itemQuantity={itemQuantity}
+        insuranceQuote={insuranceQuote}
       />
     </div>
   ) : null;

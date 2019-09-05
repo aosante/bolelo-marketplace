@@ -373,16 +373,15 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
       .show({ id })
       .then(res => {
         data = { token: res.data.data.attributes.protectedData.insuranceToken };
-
+        console.log(data);
         axios
           .post('/api/createPolicy', data)
           .then(r => {
-            console.log('Success');
+            console.log(JSON.stringify(r));
           })
           .catch(err => {
             console.log(err);
           });
-        console.log(data);
       })
       .catch(err => {
         console.log(err);

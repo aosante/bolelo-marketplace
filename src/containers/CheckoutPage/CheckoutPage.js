@@ -227,8 +227,8 @@ export class CheckoutPageComponent extends Component {
       if (listing.attributes.publicData.categoryInsurance) {
         const totalPrice = pageData.bookingData.quantity * listing.attributes.price.amount;
         const item = {
-          customer: bookingData.currentUser.attributes.profile.publicData.idInsurance,
-          renter: listing.author.attributes.profile.publicData.idInsurance,
+          customer: listing.author.attributes.profile.publicData.idInsurance,
+          renter: bookingData.currentUser.attributes.profile.publicData.idInsurance,
           currency: 'usd',
           startDate: new Date(bookingDates.bookingStart).getTime(),
           endDate: new Date(bookingDates.bookingEnd).getTime(),

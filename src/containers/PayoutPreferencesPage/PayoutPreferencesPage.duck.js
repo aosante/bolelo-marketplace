@@ -1,6 +1,7 @@
 import { createStripeAccount } from '../../ducks/stripe.duck';
 import { fetchCurrentUser } from '../../ducks/user.duck';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 // ================ Action types ================ //
 
@@ -53,7 +54,6 @@ export const savePayoutDetailsSuccess = () => ({
 // ================ Thunks ================ //
 
 export const savePayoutDetails = values => (dispatch, getState, sdk) => {
-  dispatch(savePayoutDetailsRequest());
   var insurance_id;
   var birthDate = values.individual.birthDate;
   const customer = {
@@ -78,21 +78,25 @@ export const savePayoutDetails = values => (dispatch, getState, sdk) => {
     .post('/api/createSTUser', customer)
     .then(res => {
       insurance_id = res.data.id;
-      sdk.currentUser
-        .updateProfile({
-          publicData: {
-            idInsurance: insurance_id,
-          },
-        })
-        .then(res => {
-          console.log(JSON.stringify(res));
-        });
+      if (insurance_id) {
+        sdk.currentUser
+          .updateProfile({
+            publicData: {
+              idInsurance: insurance_id,
+            },
+          })
+          .then(res => {
+            console.log(res);
+          });
+        dispatch(savePayoutDetailsRequest());
+        dispatch(createStripeAccount(values))
+          .then(() => dispatch(savePayoutDetailsSuccess()))
+          .catch(() => dispatch(savePayoutDetailsError()));
+      } else {
+        swal('Ups!', 'The email address already exist', 'error');
+      }
     })
-    .catch(err => console.error(err));
-  return console.log('lalsdlasd');
-  return dispatch(createStripeAccount(values))
-    .then(() => dispatch(savePayoutDetailsSuccess()))
-    .catch(() => dispatch(savePayoutDetailsError()));
+    .catch(console.log('error'));
 };
 
 export const loadData = () => (dispatch, getState, sdk) => {

@@ -367,9 +367,13 @@ export class TransactionPanelComponent extends Component {
     ).lineTotal.amount;
     const totalAmount = daysTotal + quantityFraction;
     const itemQuantity = (totalAmount / daysTotal).toString();
-    insuranceQuote = currentTransaction.attributes.lineItems.find(
-      item => item.code === LINE_ITEM_INSURANCE_QUOTE
-    ).lineTotal.amount;
+    if (
+      currentTransaction.attributes.lineItems.find(item => item.code === LINE_ITEM_INSURANCE_QUOTE)
+    ) {
+      insuranceQuote = currentTransaction.attributes.lineItems.find(
+        item => item.code === LINE_ITEM_INSURANCE_QUOTE
+      ).lineTotal.amount;
+    } else insuranceQuote = 0;
     insuranceQuoteMoney = new Money(insuranceQuote, 'USD');
 
     return (

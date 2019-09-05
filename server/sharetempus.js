@@ -11,7 +11,7 @@ router.post('/createSTUser', (req, res) => {
       res.send(r);
     })
     .catch(err => {
-      console.log(err);
+      res.send(err);
     });
 });
 
@@ -40,7 +40,6 @@ router.post('/itemInsuranceData', (req, res) => {
 
 router.post('/createPolicy', (req, res) => {
   const data = req.body;
-  console.log(data);
   ShareTempus.policies
     .create(data)
     .then(r => {

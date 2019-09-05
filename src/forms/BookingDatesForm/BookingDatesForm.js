@@ -11,9 +11,11 @@ import { propTypes } from '../../util/types';
 import config from '../../config';
 import { Form, PrimaryButton, FieldDateRangeInput, FieldSelect } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
+import swal from 'sweetalert';
 
 import css from './BookingDatesForm.css';
 
+var customer;
 export class BookingDatesFormComponent extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ export class BookingDatesFormComponent extends Component {
   // focus on that input, otherwise continue with the
   // default handleSubmit function.
   handleFormSubmit(e) {
+    console.log(customer.attributes.profile.publicData.idInsurance);
     const { startDate, endDate } = e.bookingDates || {};
     if (!startDate) {
       e.preventDefault();
@@ -40,6 +43,8 @@ export class BookingDatesFormComponent extends Component {
     } else if (!endDate) {
       e.preventDefault();
       this.setState({ focusedInput: END_DATE });
+    } else if (!customer.attributes.profile.publicData.idInsurance) {
+      swal('Ups!', "Complete your account setting's payment details first", 'error');
     } else {
       this.props.onSubmit(e);
     }
@@ -55,6 +60,7 @@ export class BookingDatesFormComponent extends Component {
       price: unitPrice,
       ...rest
     } = this.props;
+    customer = currentUser;
     const classes = classNames(rootClassName || css.root, className);
     if (!unitPrice) {
       return (

@@ -6,6 +6,7 @@ import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { Form, Button, FieldTextInput } from '../../components';
+import { required, composeValidators } from '../../util/validators';
 
 import css from './EditListingBrandForm.css';
 
@@ -31,6 +32,9 @@ export const EditListingBrandFormComponent = props => (
       });
       const brandPlaceholderMessage = intl.formatMessage({
         id: 'EditListingBrandForm.brandPlaceholder',
+      });
+      const brandRequiredMesssage = intl.formatMessage({
+        id: 'EditListingQuantityForm.brandRequired',
       });
 
       const modelLabelMessage = intl.formatMessage({
@@ -69,6 +73,7 @@ export const EditListingBrandFormComponent = props => (
             type="textarea"
             label={brandLabelMessage}
             placeholder={brandPlaceholderMessage}
+            validate={composeValidators(required(brandRequiredMesssage))}
           />
 
           <FieldTextInput

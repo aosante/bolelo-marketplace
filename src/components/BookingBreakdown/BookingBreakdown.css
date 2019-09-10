@@ -49,7 +49,8 @@
 
 .itemLabel {
   flex: 1;
-  margin-top: 1px; /* align with baseline */
+  margin-top: 1px;
+  /* align with baseline */
 }
 
 .itemValue {
@@ -114,5 +115,23 @@
   @media (--viewportLarge) {
     margin-top: 4px;
     margin-bottom: 22px;
+  }
+}
+
+.smallPrint {
+  @apply --marketplaceTinyFontStyles;
+  color: var(--matterColorAnti);
+  text-align: center;
+  margin: auto 24px 20px 24px;
+  flex-shrink: 0;
+
+  @media (--viewportMedium) {
+    margin-top: auto;
+    margin-bottom: 20px;
+  }
+
+  @media (--viewportLarge) {
+    margin-top: 4px;
+    margin-bottom: 21px;
   }
 }

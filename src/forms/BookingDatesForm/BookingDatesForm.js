@@ -44,7 +44,7 @@ export class BookingDatesFormComponent extends Component {
       e.preventDefault();
       this.setState({ focusedInput: END_DATE });
     } else if (!customer.attributes.profile.publicData.idInsurance) {
-      swal('Ups!', "Complete your account setting's payment details first", 'error');
+      swal('Oops!', "Complete your account setting's payment details first", 'error');
     } else {
       this.props.onSubmit(e);
     }

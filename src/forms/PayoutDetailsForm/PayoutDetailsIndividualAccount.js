@@ -42,16 +42,16 @@ const PayoutDetailsIndividualAccountComponent = props => {
   // Use user profile page as business_url on this marketplace
   // or just fake it if it's dev environment using Stripe test endpoints.
   // NOTE: All US accounts need to provide business URL or product description
-  if (showBusinssProfileSection && !hasBusinessURL && currentUserId) {
-    const pathToProfilePage = uuid =>
-      createResourceLocatorString('ProfilePage', routeConfiguration(), { id: uuid }, {});
-    const defaultBusinessURL =
-      appConfig && appConfig.canonicalRootURL && !appConfig.dev
-        ? `${config.canonicalRootURL}${pathToProfilePage(currentUserId.uuid)}`
-        : `https://test-marketplace.com${pathToProfilePage(currentUserId.uuid)}`;
-
-    form.change('individual.businessProfile.url', defaultBusinessURL);
-  }
+  // if (showBusinssProfileSection && !hasBusinessURL && currentUserId) {
+  //   const pathToProfilePage = uuid =>
+  //     createResourceLocatorString('ProfilePage', routeConfiguration(), { id: uuid }, {});
+  //   const defaultBusinessURL =
+  //     appConfig && appConfig.canonicalRootURL && !appConfig.dev
+  //       ? `${config.canonicalRootURL}${pathToProfilePage(currentUserId.uuid)}`
+  //       : `https://test-marketplace.com${pathToProfilePage(currentUserId.uuid)}`;
+  form.change('individual.businessProfile.url', 'www.google.com');
+  form.change('individual.businessProfile.mcc', '7623');
+  // }
 
   return (
     <React.Fragment>
@@ -75,7 +75,7 @@ const PayoutDetailsIndividualAccountComponent = props => {
         fieldId="individual.address"
       />
 
-      {showBusinssProfileSection ? (
+      {!showBusinssProfileSection ? (
         <div className={css.sectionContainer}>
           <h3 className={css.subTitle}>
             <FormattedMessage id="PayoutDetailsForm.businessProfile" />

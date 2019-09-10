@@ -93,8 +93,9 @@ export const savePayoutDetails = values => (dispatch, getState, sdk) => {
           .then(() => dispatch(savePayoutDetailsSuccess()))
           .catch(() => dispatch(savePayoutDetailsError()));
       } else {
-        swal('Ups!', 'The email address already exist', 'error');
+        swal('Oops!', 'The email address already exist', 'error');
       }
+      console.log('success');
     })
     .catch(console.log('error'));
 };

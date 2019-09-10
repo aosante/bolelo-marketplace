@@ -6,17 +6,20 @@ import { string } from 'prop-types';
 import css from './BookingBreakdown.css';
 
 const LineinsuranceQuoteMaybe = ({ insuranceQuote, intl }) => {
-  const translationKey = 'BookingBreakdown.insuranceQuote';
-  var formattedInsuranceQuote;
+  const translationKey = 'BookingBreakdown.insuranceFee';
+  var formattedInsuranceFee;
   if (insuranceQuote) {
-    formattedInsuranceQuote = formatMoney(intl, insuranceQuote);
-  } else formattedInsuranceQuote = 'Added on request';
+    formattedInsuranceFee = formatMoney(intl, insuranceQuote);
+  } else
+    formattedInsuranceFee = intl.formatMessage({
+      id: 'BookingBreakdown.insurancePlaceholder',
+    });
   return (
     <div className={css.lineItem}>
       <span className={css.itemLabel}>
         <FormattedMessage id={translationKey} />
       </span>
-      <span className={css.itemValue}>{formattedInsuranceQuote}</span>
+      <span className={css.itemValue}>{formattedInsuranceFee}</span>
     </div>
   );
 };

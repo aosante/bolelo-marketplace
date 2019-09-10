@@ -89,6 +89,9 @@ export const BookingBreakdownComponent = props => {
         isProvider={isProvider}
         intl={intl}
       />
+      <p className={css.smallPrint}>
+        <FormattedMessage id={'BookingBreakdown.insuranceAddedOnRequest'} />
+      </p>
 
       <hr className={css.totalDivider} />
       <LineItemTotalPrice transaction={transaction} isProvider={isProvider} intl={intl} />

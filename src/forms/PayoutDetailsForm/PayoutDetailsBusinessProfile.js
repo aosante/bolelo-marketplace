@@ -2,7 +2,7 @@ import React from 'react';
 import { bool, string } from 'prop-types';
 import { intlShape, FormattedMessage } from 'react-intl';
 import * as validators from '../../util/validators';
-import { FieldSelect, FieldTextInput } from '../../components';
+import { FieldTextInput } from '../../components';
 
 import merchantCategoryCodesUS from './merchantCategoryCodesUS';
 import css from './PayoutDetailsForm.css';
@@ -12,9 +12,9 @@ const PayoutDetailsBusinessProfile = props => {
 
   const isBusinessProfileNeeded = showBusinessURLField || showMCCForUSField;
   const mccLabel = intl.formatMessage({ id: 'PayoutDetailsForm.businessMCCForUSLabel' });
-  const mccPlaceholder = intl.formatMessage({
-    id: 'PayoutDetailsForm.businessMCCForUSPlaceholder',
-  });
+  // const mccPlaceholder = intl.formatMessage({
+  //   id: 'PayoutDetailsForm.businessMCCForUSPlaceholder',
+  // });
   const mccRequired = validators.required(
     intl.formatMessage({ id: 'PayoutDetailsForm.businessMCCForUSRequired' })
   );
@@ -28,28 +28,24 @@ const PayoutDetailsBusinessProfile = props => {
     intl.formatMessage({ id: 'PayoutDetailsForm.businessURLRequired' })
   );
 
-  return isBusinessProfileNeeded ? (
+  return !isBusinessProfileNeeded ? (
     <React.Fragment>
       {showMCCForUSField ? (
-        <FieldSelect
+        <FieldTextInput
           id={`${fieldId}.mcc`}
           name={`${fieldId}.mcc`}
-          className={css.selectMCC}
+          className={css.textInputRow}
           autoComplete="mcc"
           disabled={disabled}
           label={mccLabel}
+          placeholder={merchantCategoryCodesUS[0].label}
+          type="text"
           validate={mccRequired}
-        >
-          <option disabled value="">
-            {mccPlaceholder}
-          </option>
-          {merchantCategoryCodesUS.map(merchantCategory => (
-            <option key={merchantCategory.category} value={merchantCategory.mcc}>
-              {merchantCategory.label}
-            </option>
-          ))}
-        </FieldSelect>
-      ) : null}
+        />
+      ) : /* <option key={merchantCategoryCodesUS[0].category} value={merchantCategoryCodesUS[0].mcc}>
+            {merchantCategoryCodesUS[0].label}
+          </option> */
+      null}
 
       {showBusinessURLField ? (
         <React.Fragment>

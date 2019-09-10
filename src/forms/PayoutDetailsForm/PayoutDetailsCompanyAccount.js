@@ -30,7 +30,8 @@ const CompanyAccountComponent = props => {
     !!companyConfig.personalIdNumberRequired || !!companyConfig.ssnLast4Required;
   const showPersonalPhoneNumberField = !!companyConfig.personalPhone;
   const showOwnerFields = !!companyConfig.owners;
-
+  form.change('company.businessProfile.url', 'www.google.com');
+  form.change('company.businessProfile.mcc', '7623');
   return (
     <React.Fragment>
       {country ? (

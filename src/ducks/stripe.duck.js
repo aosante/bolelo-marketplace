@@ -496,6 +496,7 @@ export const createStripeAccount = payoutDetails => (dispatch, getState, sdk) =>
   const stripe = window.Stripe(config.stripe.publishableKey);
 
   if (payoutDetails.accountType === 'individual') {
+    console.log(stripe);
     return dispatch(createStripeIndividualAccount(payoutDetails, stripe));
   } else {
     return dispatch(createStripeCompanyAccount(payoutDetails, stripe));

@@ -55,25 +55,49 @@ export const savePayoutDetailsSuccess = () => ({
 
 export const savePayoutDetails = values => (dispatch, getState, sdk) => {
   var insurance_id;
-  var birthDate = values.individual.birthDate;
-  const customer = {
-    email: values.individual.email,
-    legalEntity: {
-      type: values.accountType,
-      firstName: values.individual.fname,
-      lastName: values.individual.lname,
-      birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
-      ssnLast4: values.individual.personalIdNumber,
-      address: {
-        city: values.individual.address.state,
-        country: values.country,
-        line1: values.individual.address.city,
-        line2: values.individual.address.state,
-        postalCode: values.individual.address.postalCode,
-        state: values.individual.address.state,
+  var customer;
+  if (values.individual) {
+    var birthDate = values.individual.birthDate;
+    customer = {
+      email: values.individual.email,
+      legalEntity: {
+        type: values.accountType,
+        firstName: values.individual.fname,
+        lastName: values.individual.lname,
+        birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
+        ssnLast4: values.individual.personalIdNumber,
+        address: {
+          city: values.individual.address.state,
+          country: values.country,
+          line1: values.individual.address.city,
+          line2: values.individual.address.state,
+          postalCode: values.individual.address.postalCode,
+          state: values.individual.address.state,
+        },
       },
-    },
-  };
+    };
+  } else {
+    var birthDate = values.accountOpener.birthDate;
+    customer = {
+      email: values.accountOpener.email,
+      legalEntity: {
+        type: values.accountType,
+        firstName: values.accountOpener.fname,
+        lastName: values.accountOpener.lname,
+        birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
+        ssnLast4: values.accountOpener.personalIdNumber,
+        address: {
+          city: values.company.address.state,
+          country: values.country,
+          line1: values.company.address.city,
+          line2: values.company.address.state,
+          postalCode: values.company.address.postalCode,
+          state: values.company.address.state,
+        },
+      },
+    };
+  }
+
   axios
     .post('/api/createSTUser', customer)
     .then(res => {

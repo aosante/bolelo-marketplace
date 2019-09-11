@@ -22,6 +22,7 @@ import { TopbarContainer } from '../../containers';
 import { savePayoutDetails, loadData } from './PayoutPreferencesPage.duck';
 
 import css from './PayoutPreferencesPage.css';
+import PayoutDetailsUpdateBankAccount from '../../forms/PayoutDetailsForm/PayoutDetailsUpdateBankAccount';
 
 export const PayoutPreferencesPageComponent = props => {
   const {
@@ -93,6 +94,18 @@ export const PayoutPreferencesPageComponent = props => {
       currentUserId={ensuredCurrentUser.id}
     />
   ) : null;
+  // ) : (
+  //   <PayoutDetailsUpdateBankAccount
+  //     disabled={formDisabled}
+  //     inProgress={payoutDetailsSaveInProgress}
+  //     ready={payoutDetailsSaved}
+  //     submitButtonText={intl.formatMessage({ id: 'PayoutPreferencesPage.submitButtonText' })}
+  //     createStripeAccountError={createStripeAccountError}
+  //     onChange={onPayoutDetailsFormChange}
+  //     onSubmit={onPayoutDetailsFormSubmit}
+  //     currentUserId={ensuredCurrentUser.id}
+  //   />
+  // );
 
   return (
     <Page title={title} scrollingDisabled={scrollingDisabled}>

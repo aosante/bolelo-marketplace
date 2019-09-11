@@ -145,6 +145,8 @@ const httpAgent = new http.Agent({ keepAlive: true });
 const httpsAgent = new https.Agent({ keepAlive: true });
 
 const sharetempus = require('./sharetempus');
+const sendMail = require('./mailSender');
+app.use('/api', sendMail);
 app.use('/api', sharetempus);
 
 app.get('*', (req, res) => {

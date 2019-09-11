@@ -1,4 +1,4 @@
-import { createStripeAccount } from '../../ducks/stripe.duck';
+import { createStripeAccount, updateStripeAccount } from '../../ducks/stripe.duck';
 import { fetchCurrentUser } from '../../ducks/user.duck';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -116,12 +116,23 @@ export const savePayoutDetails = values => (dispatch, getState, sdk) => {
         dispatch(createStripeAccount(values))
           .then(() => dispatch(savePayoutDetailsSuccess()))
           .catch(() => dispatch(savePayoutDetailsError()));
+        dispatch(updateStripeAccount('000123456789'))
+          .then(() => console.log('success'))
+          .catch(() => console.log('not success'));
       } else {
         swal('Oops!', 'The email address already exist', 'error');
       }
       console.log('success');
     })
     .catch(console.log('error'));
+
+  // dispatch(savePayoutDetailsRequest());
+  // dispatch(createStripeAccount(values))
+  //   .then(() => dispatch(savePayoutDetailsSuccess()))
+  //   .catch(() => dispatch(savePayoutDetailsError()));
+  // dispatch(updateStripeAccount('000123456789'))
+  //   .then(() => console.log('success'))
+  //   .catch(() => console.log('not success'));
 };
 
 export const loadData = () => (dispatch, getState, sdk) => {

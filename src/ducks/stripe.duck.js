@@ -1,6 +1,8 @@
 import config from '../config';
 import { storableError } from '../util/errors';
 import * as log from '../util/log';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 // ================ Action types ================ //
 
@@ -487,7 +489,35 @@ export const createStripeIndividualAccount = (payoutDetails, stripe) => (
       throw e;
     });
 };
-
+export const updateStripeAccount = payoutDetails => (dispatch, getState, sdk) => {
+  const bankAccount = { country: 'US', currency: 'usd', account_number: payoutDetails };
+  axios
+    .post('/api/updateBankAccount', bankAccount)
+    .then(res => {
+      const token = res.id;
+      if (token) {
+        sdk.stripeAccount
+          .create(
+            {
+              bankAccountToken: token,
+            },
+            {
+              expand: true,
+            }
+          )
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      } else {
+        swal('Oops!', "There's something wrong", 'error');
+      }
+      console.log('success');
+    })
+    .catch(console.log('error'));
+};
 export const createStripeAccount = payoutDetails => (dispatch, getState, sdk) => {
   if (typeof window === 'undefined' || !window.Stripe) {
     throw new Error('Stripe must be loaded for submitting PayoutPreferences');
@@ -496,10 +526,11 @@ export const createStripeAccount = payoutDetails => (dispatch, getState, sdk) =>
   const stripe = window.Stripe(config.stripe.publishableKey);
 
   if (payoutDetails.accountType === 'individual') {
-    console.log(stripe);
-    return dispatch(createStripeIndividualAccount(payoutDetails, stripe));
+    return console.log(payoutDetails);
+    // return dispatch(createStripeIndividualAccount(payoutDetails, stripe));
   } else {
-    return dispatch(createStripeCompanyAccount(payoutDetails, stripe));
+    return console.log(payoutDetails);
+    // return dispatch(createStripeCompanyAccount(payoutDetails, stripe));
   }
 };
 

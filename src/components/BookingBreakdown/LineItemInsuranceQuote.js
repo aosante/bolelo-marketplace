@@ -8,19 +8,28 @@ import css from './BookingBreakdown.css';
 const LineinsuranceQuoteMaybe = ({ insuranceQuote, intl }) => {
   const translationKey = 'BookingBreakdown.insuranceFee';
   var formattedInsuranceFee;
+  var formattedInsuranceFeeMessage;
   if (insuranceQuote) {
     formattedInsuranceFee = formatMoney(intl, insuranceQuote);
-  } else
+    formattedInsuranceFeeMessage = '';
+  } else {
     formattedInsuranceFee = intl.formatMessage({
       id: 'BookingBreakdown.insurancePlaceholder',
     });
+    formattedInsuranceFeeMessage = intl.formatMessage({
+      id: 'BookingBreakdown.insuranceAddedOnRequest',
+    });
+  }
   return (
-    <div className={css.lineItem}>
-      <span className={css.itemLabel}>
-        <FormattedMessage id={translationKey} />
-      </span>
-      <span className={css.itemValue}>{formattedInsuranceFee}</span>
-    </div>
+    <React.Fragment>
+      <div className={css.lineItem}>
+        <span className={css.itemLabel}>
+          <FormattedMessage id={translationKey} />
+        </span>
+        <span className={css.itemValue}>{formattedInsuranceFee}</span>
+      </div>
+      <p className={css.smallPrint}>{formattedInsuranceFeeMessage}</p>
+    </React.Fragment>
   );
 };
 

@@ -30,6 +30,7 @@ import axios from 'axios';
 const { UUID } = sdkTypes;
 
 var listingHasInsurance;
+var policyId;
 const MESSAGES_PAGE_SIZE = 100;
 const CUSTOMER = 'customer';
 
@@ -373,11 +374,10 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
       .show({ id })
       .then(res => {
         data = { token: res.data.data.attributes.protectedData.insuranceToken };
-        console.log(data);
         axios
           .post('/api/createPolicy', data)
           .then(r => {
-            console.log(JSON.stringify(r));
+            policyId = { policy: r.data.id, destination: 'webmaster@sharetempus.com' };
           })
           .catch(err => {
             console.log(err);
@@ -481,6 +481,14 @@ export const cancelBooking = id => (dispatch, getState, sdk) => {
         return Promise.reject(new Error('Booking cancellation already in progress'));
       }
       dispatch(cancelRental());
+      axios
+        .post('/api/sendMail', policyId)
+        .then(r => {
+          console.log('success********************' + r);
+        })
+        .catch(err => {
+          console.log(err);
+        });
       return sdk.transactions
         .transition({ id, transition: TRANSITION_CUSTOMER_CANCEL, params: {} }, { expand: true })
         .then(response => {
@@ -515,6 +523,14 @@ export const cancelBookingProvider = id => (dispatch, getState, sdk) => {
         return Promise.reject(new Error('Booking cancellation already in progress'));
       }
       dispatch(cancelRental());
+      axios
+        .post('/api/sendMail', policyId)
+        .then(r => {
+          console.log(r);
+        })
+        .catch(err => {
+          console.log(err);
+        });
       return sdk.transactions
         .transition({ id, transition: TRANSITION_PROVIDER_CANCEL, params: {} }, { expand: true })
         .then(response => {

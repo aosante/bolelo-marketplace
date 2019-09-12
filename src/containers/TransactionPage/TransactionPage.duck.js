@@ -562,7 +562,6 @@ export const cancelBookingProvider = (id, transaction) => (dispatch, getState, s
               policy: res.data.data.attributes.publicData.policy,
               destination: res.data.data.attributes.publicData.destination,
             };
-            console.log(mailData);
             if (mailData.policy) {
               axios
                 .post('/api/sendMail', mailData)

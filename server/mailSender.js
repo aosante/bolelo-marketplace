@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/sendMail', (req, res) => {
-  sendMail()
+  console.log(req.body);
+  sendMail(req.body)
     .then(r => {
       res.send(r);
     })

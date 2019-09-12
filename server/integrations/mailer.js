@@ -20,8 +20,8 @@ const sendMail = async mail => {
       from: '"Jaime Liu" <jaime.liu@proximitycr.com>', // sender address
       to: mail.destination, // list of receivers
       subject: 'Cancelation request of Insurance', // Subject line
-      text: mail.body, // plain text body
-      html: '<b>Policy=' + mail.body + '</b>', // html body
+      text: mail.policy, // plain text body
+      html: '<b>Policy=' + mail.policy + '</b>', // html body
     });
 
     console.log('Message sent: %s', info.messageId);

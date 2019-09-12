@@ -383,7 +383,7 @@ export const acceptSale = (id, transaction) => (dispatch, getState, sdk) => {
             const policyId = r.data.id;
             const listingNewData = {
               id: new UUID(currentListing.id.uuid),
-              publicData: { policy: policyId, destination: 'liuli2297@gmail.com' },
+              publicData: { policy: policyId, destination: 'bolelomailsender@gmail.com' },
             };
             const params = {
               expand: true,

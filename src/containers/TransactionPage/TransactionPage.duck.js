@@ -22,6 +22,8 @@ import {
   updatedEntities,
   denormalisedEntities,
   denormalisedResponseEntities,
+  ensureListing,
+  ensureTransaction,
 } from '../../util/data';
 import { addMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 import { fetchCurrentUserNotifications } from '../../ducks/user.duck';
@@ -30,7 +32,6 @@ import axios from 'axios';
 const { UUID } = sdkTypes;
 
 var listingHasInsurance;
-var policyId;
 const MESSAGES_PAGE_SIZE = 100;
 const CUSTOMER = 'customer';
 
@@ -362,7 +363,9 @@ export const fetchTransaction = (id, txRole) => (dispatch, getState, sdk) => {
     });
 };
 
-export const acceptSale = id => (dispatch, getState, sdk) => {
+export const acceptSale = (id, transaction) => (dispatch, getState, sdk) => {
+  const currentTransaction = ensureTransaction(transaction);
+  const currentListing = ensureListing(currentTransaction.listing);
   if (acceptOrDeclineInProgress(getState())) {
     return Promise.reject(new Error('Accept or decline already in progress'));
   }
@@ -377,7 +380,17 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
         axios
           .post('/api/createPolicy', data)
           .then(r => {
-            policyId = { policy: r.data.id, destination: 'webmaster@sharetempus.com' };
+            const policyId = r.data.id;
+            const listingNewData = {
+              id: new UUID(currentListing.id.uuid),
+              publicData: { policy: policyId, destination: 'liuli2297@gmail.com' },
+            };
+            const params = {
+              expand: true,
+            };
+            sdk.ownListings.update(listingNewData, params).then(res => {
+              console.log(res);
+            });
           })
           .catch(err => {
             console.log(err);
@@ -388,7 +401,7 @@ export const acceptSale = id => (dispatch, getState, sdk) => {
       });
   }
 
-  //make the call only if the item has insurance
+  //   //make the call only if the item has insurance
 
   return sdk.transactions
     .transition({ id, transition: TRANSITION_ACCEPT, params: {} }, { expand: true })
@@ -467,7 +480,9 @@ export const cancelRequest = id => (dispatch, getState, sdk) => {
   });
 };
 
-export const cancelBooking = id => (dispatch, getState, sdk) => {
+export const cancelBooking = (id, transaction) => (dispatch, getState, sdk) => {
+  const currentTransaction = ensureTransaction(transaction);
+  const currentListing = ensureListing(currentTransaction.listing);
   swal({
     title: 'Are you sure? This action cannot be undone',
     text:
@@ -481,14 +496,28 @@ export const cancelBooking = id => (dispatch, getState, sdk) => {
         return Promise.reject(new Error('Booking cancellation already in progress'));
       }
       dispatch(cancelRental());
-      axios
-        .post('/api/sendMail', policyId)
-        .then(r => {
-          console.log('success********************' + r);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      if (listingHasInsurance) {
+        sdk.listings
+          .show({ id: currentListing.id.uuid })
+          .then(res => {
+            const mailData = {
+              policy: res.data.data.attributes.publicData.policy,
+              destination: res.data.data.attributes.publicData.destination,
+            };
+            console.log(mailData);
+            if (mailData.policy) {
+              axios
+                .post('/api/sendMail', mailData)
+                .then(r => {
+                  console.log(r);
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }
+          })
+          .catch(err => console.log(err));
+      }
       return sdk.transactions
         .transition({ id, transition: TRANSITION_CUSTOMER_CANCEL, params: {} }, { expand: true })
         .then(response => {
@@ -509,7 +538,9 @@ export const cancelBooking = id => (dispatch, getState, sdk) => {
   });
 };
 
-export const cancelBookingProvider = id => (dispatch, getState, sdk) => {
+export const cancelBookingProvider = (id, transaction) => (dispatch, getState, sdk) => {
+  const currentTransaction = ensureTransaction(transaction);
+  const currentListing = ensureListing(currentTransaction.listing);
   swal({
     title: 'Are you sure? This action cannot be undone',
     text:
@@ -523,14 +554,27 @@ export const cancelBookingProvider = id => (dispatch, getState, sdk) => {
         return Promise.reject(new Error('Booking cancellation already in progress'));
       }
       dispatch(cancelRental());
-      axios
-        .post('/api/sendMail', policyId)
-        .then(r => {
-          console.log(r);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      if (listingHasInsurance) {
+        sdk.ownListings
+          .show({ id: currentListing.id.uuid })
+          .then(res => {
+            const mailData = {
+              policy: res.data.data.attributes.publicData.policy,
+              destination: res.data.data.attributes.publicData.destination,
+            };
+            if (mailData.policy) {
+              axios
+                .post('/api/sendMail', mailData)
+                .then(r => {
+                  console.log(r);
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }
+          })
+          .catch(err => console.log(err));
+      }
       return sdk.transactions
         .transition({ id, transition: TRANSITION_PROVIDER_CANCEL, params: {} }, { expand: true })
         .then(response => {

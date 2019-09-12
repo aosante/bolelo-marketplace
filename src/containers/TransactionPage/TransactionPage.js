@@ -40,7 +40,7 @@ import css from './TransactionPage.css';
 
 const PROVIDER = 'provider';
 const CUSTOMER = 'customer';
-
+var transactionData;
 // TransactionPage handles data loading for Sale and Order views to transaction pages in Inbox.
 export const TransactionPageComponent = props => {
   const {
@@ -83,7 +83,7 @@ export const TransactionPageComponent = props => {
     cancelBookingInProgress,
     cancelBookingError,
   } = props;
-
+  transactionData = transaction;
   const currentTransaction = ensureTransaction(transaction);
   const currentListing = ensureListing(currentTransaction.listing);
 
@@ -168,10 +168,10 @@ export const TransactionPageComponent = props => {
       <FormattedMessage id={`${fetchErrorMessage}`} />
     </p>
   ) : (
-      <p className={css.loading}>
-        <FormattedMessage id={`${loadingMessage}`} />
-      </p>
-    );
+    <p className={css.loading}>
+      <FormattedMessage id={`${loadingMessage}`} />
+    </p>
+  );
 
   const initialMessageFailed = !!(
     initialMessageFailedToTransaction &&
@@ -219,8 +219,8 @@ export const TransactionPageComponent = props => {
       cancelBookingError={cancelBookingError}
     />
   ) : (
-      loadingOrFailedFetching
-    );
+    loadingOrFailedFetching
+  );
 
   return (
     <Page
@@ -362,11 +362,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAcceptSale: transactionId => dispatch(acceptSale(transactionId)),
+    onAcceptSale: transactionId => dispatch(acceptSale(transactionId, transactionData)),
     onDeclineSale: transactionId => dispatch(declineSale(transactionId)),
     onCancelRequest: transactionId => dispatch(cancelRequest(transactionId)),
-    onCancelBooking: transactionId => dispatch(cancelBooking(transactionId)),
-    onCancelBookingProvider: transactionId => dispatch(cancelBookingProvider(transactionId)),
+    onCancelBooking: transactionId => dispatch(cancelBooking(transactionId, transactionData)),
+    onCancelBookingProvider: transactionId =>
+      dispatch(cancelBookingProvider(transactionId, transactionData)),
     onShowMoreMessages: txId => dispatch(fetchMoreMessages(txId)),
     onSendMessage: (txId, message) => dispatch(sendMessage(txId, message)),
     onManageDisableScrolling: (componentId, disableScrolling) =>

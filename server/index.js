@@ -146,10 +146,10 @@ const httpsAgent = new https.Agent({ keepAlive: true });
 
 const sharetempus = require('./sharetempus');
 const mailer = require('./mailSender');
-const stripe = require('./stripe');
+// const stripe = require('./stripe');
 app.use('/api', mailer);
 app.use('/api', sharetempus);
-app.use('/api', +stripe);
+// app.use('/api', stripe);
 
 app.get('*', (req, res) => {
   if (req.url.startsWith('/static/')) {

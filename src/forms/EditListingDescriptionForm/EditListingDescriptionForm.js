@@ -73,6 +73,9 @@ const EditListingDescriptionFormComponent = props => (
           <FormattedMessage id="EditListingDescriptionForm.showListingFailed" />
         </p>
       ) : null;
+      const keywordExplanation = intl.formatMessage({
+        id: 'EditListingDescriptionForm.keywordExplanation',
+      });
 
       const classes = classNames(css.root, className);
       const submitReady = updated && pristine;
@@ -95,7 +98,7 @@ const EditListingDescriptionFormComponent = props => (
             validate={composeValidators(required(titleRequiredMessage), maxLength60Message)}
             autoFocus
           />
-
+          <p className={css.sideNote}>{keywordExplanation}</p>
           <FieldTextInput
             id="description"
             name="description"

@@ -64,3 +64,9 @@
     margin-top: 100px;
   }
 }
+
+
+.sideNote {
+  color: var(--matterColorAnti);
+  font-size: 0.8em;
+}

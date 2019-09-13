@@ -525,13 +525,12 @@ export const createStripeAccount = payoutDetails => (dispatch, getState, sdk) =>
 
   const stripe = window.Stripe(config.stripe.publishableKey);
 
-  if (payoutDetails.accountType === 'individual') {
-    return console.log(payoutDetails);
-    // return dispatch(createStripeIndividualAccount(payoutDetails, stripe));
-  } else {
-    return console.log(payoutDetails);
-    // return dispatch(createStripeCompanyAccount(payoutDetails, stripe));
-  }
+  // if (payoutDetails.accountType === 'individual') {
+  return dispatch(createStripeIndividualAccount(payoutDetails, stripe));
+  // } else {
+  //   return console.log(payoutDetails);
+  //   return dispatch(createStripeCompanyAccount(payoutDetails, stripe));
+  // }
 };
 
 export const createStripePaymentToken = params => dispatch => {

@@ -27,8 +27,10 @@ export default function payoutPreferencesPageReducer(state = initialState, actio
       return { ...state, payoutDetailsSaveInProgress: true };
     case SAVE_PAYOUT_DETAILS_ERROR:
       return { ...state, payoutDetailsSaveInProgress: false };
-    case SAVE_PAYOUT_DETAILS_SUCCESS:
+    case SAVE_PAYOUT_DETAILS_SUCCESS: {
+      window.location.reload();
       return { ...state, payoutDetailsSaveInProgress: false, payoutDetailsSaved: true };
+    }
 
     default:
       return state;
@@ -56,52 +58,53 @@ export const savePayoutDetailsSuccess = () => ({
 export const savePayoutDetails = values => (dispatch, getState, sdk) => {
   var insurance_id;
   var customer;
-  if (values.individual) {
-    var birthDate = values.individual.birthDate;
-    customer = {
-      email: values.individual.email,
-      legalEntity: {
-        type: values.accountType,
-        firstName: values.individual.fname,
-        lastName: values.individual.lname,
-        birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
-        ssnLast4: values.individual.personalIdNumber,
-        address: {
-          city: values.individual.address.state,
-          country: values.country,
-          line1: values.individual.address.city,
-          line2: values.individual.address.state,
-          postalCode: values.individual.address.postalCode,
-          state: values.individual.address.state,
-        },
+  // if (values.individual) {
+  var birthDate = values.individual.birthDate;
+  customer = {
+    email: values.individual.email,
+    legalEntity: {
+      type: 'individual',
+      firstName: values.individual.fname,
+      lastName: values.individual.lname,
+      birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
+      ssnLast4: values.individual.personalIdNumber,
+      address: {
+        city: values.individual.address.state,
+        country: values.country,
+        line1: values.individual.address.city,
+        line2: values.individual.address.state,
+        postalCode: values.individual.address.postalCode,
+        state: values.individual.address.state,
       },
-    };
-  } else {
-    var birthDate = values.accountOpener.birthDate;
-    customer = {
-      email: values.accountOpener.email,
-      legalEntity: {
-        type: values.accountType,
-        firstName: values.accountOpener.fname,
-        lastName: values.accountOpener.lname,
-        birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
-        ssnLast4: values.accountOpener.personalIdNumber,
-        address: {
-          city: values.company.address.state,
-          country: values.country,
-          line1: values.company.address.city,
-          line2: values.company.address.state,
-          postalCode: values.company.address.postalCode,
-          state: values.company.address.state,
-        },
-      },
-    };
-  }
+    },
+  };
+  // } else {
+  //   var birthDate = values.accountOpener.birthDate;
+  //   customer = {
+  //     email: values.accountOpener.email,
+  //     legalEntity: {
+  //       type: values.accountType,
+  //       firstName: values.accountOpener.fname,
+  //       lastName: values.accountOpener.lname,
+  //       birthdate: new Date(`${birthDate.month}/${birthDate.day}/${birthDate.year}`).getTime(),
+  //       ssnLast4: values.accountOpener.personalIdNumber,
+  //       address: {
+  //         city: values.company.address.state,
+  //         country: values.country,
+  //         line1: values.company.address.city,
+  //         line2: values.company.address.state,
+  //         postalCode: values.company.address.postalCode,
+  //         state: values.company.address.state,
+  //       },
+  //     },
+  //   };
+  // }
 
   axios
     .post('/api/createSTUser', customer)
     .then(res => {
       insurance_id = res.data.id;
+      console.log(res);
       if (insurance_id) {
         sdk.currentUser
           .updateProfile({
@@ -116,9 +119,9 @@ export const savePayoutDetails = values => (dispatch, getState, sdk) => {
         dispatch(createStripeAccount(values))
           .then(() => dispatch(savePayoutDetailsSuccess()))
           .catch(() => dispatch(savePayoutDetailsError()));
-        dispatch(updateStripeAccount('000123456789'))
-          .then(() => console.log('success'))
-          .catch(() => console.log('not success'));
+        // dispatch(updateStripeAccount('000123456789'))
+        //   .then(() => console.log('success'))
+        //   .catch(() => console.log('not success'));
       } else {
         swal('Oops!', 'The email address already exist', 'error');
       }

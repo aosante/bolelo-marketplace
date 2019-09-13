@@ -8,15 +8,22 @@ import css from './SectionRulesMaybe.css';
 const SectionVideoLinkMaybe = props => {
   const { className, rootClassName, publicData } = props;
   const classes = classNames(rootClassName || css.root, className);
+  const srcURL =
+    publicData && publicData.videoLink ? publicData.videoLink.replace('watch?v=', 'embed/') : null;
   return publicData && publicData.videoLink ? (
     <div className={classes}>
       <h2 className={css.title}>
         <FormattedMessage id="ListingPage.videoLinkTitle" />
       </h2>
       <p className={css.rules}>
-        <a href={publicData.videoLink} rel="noopener noreferrer" target="_blank">
-          {publicData.videoLink}
-        </a>
+        <iframe
+          width="560"
+          height="315"
+          src={srcURL}
+          frameBorder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
       </p>
     </div>
   ) : null;

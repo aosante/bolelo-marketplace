@@ -78,6 +78,13 @@ export const EditListingInsuranceFormComponent = props => {
           </p>
         ) : null;
 
+        const insuranceExplanation = intl.formatMessage({
+          id: 'EditListingInsuranceForm.insuranceExplanation',
+        });
+        const insuranceCoverageInfo = intl.formatMessage({
+          id: 'EditListingInsuranceForm.insuranceCoverageInfo',
+        });
+
         const classes = classNames(css.root, className);
         const submitReady = updated && pristine;
         const submitInProgress = updateInProgress;
@@ -118,6 +125,8 @@ export const EditListingInsuranceFormComponent = props => {
                 </option>
               ))}
             </FieldSelect>
+
+            <p className={css.sideNote}>{insuranceCoverageInfo}</p>
           </React.Fragment>
         );
 
@@ -136,6 +145,7 @@ export const EditListingInsuranceFormComponent = props => {
               <option value="false">No</option>
               <option value="true">Yes</option>
             </select>
+            <p className={css.sideNote}>{insuranceExplanation}</p>
             {wantsInsurance ? insuranceForm : null}
             <Button
               className={css.submitButton}

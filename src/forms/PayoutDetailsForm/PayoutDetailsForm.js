@@ -50,7 +50,8 @@ const PayoutDetailsFormComponent = props => (
 
       const { country } = values;
 
-      const accountType = values.accountType;
+      /* const accountType = values.accountType; */
+      const accountType = 'individual';
 
       //USA as default
       values.country = 'US';
@@ -77,10 +78,10 @@ const PayoutDetailsFormComponent = props => (
 
       const submitInProgress = inProgress;
       const submitDisabled = pristine || invalid || disabled || submitInProgress;
-      const showAsRequired = pristine;
+      /* const showAsRequired = pristine;
 
       const showIndividual = country && accountType && accountType === 'individual';
-      const showCompany = country && accountType && accountType === 'company';
+      const showCompany = country && accountType && accountType === 'company'; */
 
       let error = null;
 
@@ -117,7 +118,7 @@ const PayoutDetailsFormComponent = props => (
       return config.stripe.publishableKey ? (
         <Form className={classes} onSubmit={handleSubmit}>
           <div className={css.sectionContainer}>
-            <h3 className={css.subTitle}>
+            {/* <h3 className={css.subTitle}>
               <FormattedMessage id="PayoutDetailsForm.accountTypeTitle" />
             </h3>
             <div className={css.radioButtonRow}>
@@ -135,25 +136,25 @@ const PayoutDetailsFormComponent = props => (
                 value="company"
                 showAsRequired={showAsRequired}
               />
-            </div>
+            </div> */}
           </div>
 
           {accountType ? (
             <React.Fragment>
               <div className={css.sectionContainer} />
 
-              {showIndividual ? (
-                <PayoutDetailsIndividualAccount
-                  fieldRenderProps={fieldRenderProps}
-                  country={country}
-                  currentUserId={currentUserId}
-                />
-              ) : showCompany ? (
+              {/* {showIndividual ? ( */}
+              <PayoutDetailsIndividualAccount
+                fieldRenderProps={fieldRenderProps}
+                country={country}
+                currentUserId={currentUserId}
+              />
+              {/* ) : showCompany ? (
                 <PayoutDetailsCompanyAccount
                   fieldRenderProps={fieldRenderProps}
                   country={country}
                 />
-              ) : null}
+              ) : null} */}
 
               {error}
 

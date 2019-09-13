@@ -70,3 +70,9 @@
 .radioButtonRow> :first-child {
   margin-right: 36px;
 }
+
+
+.sideNote {
+  color: var(--matterColorAnti);
+  font-size: 0.8em;
+}

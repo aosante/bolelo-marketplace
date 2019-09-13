@@ -9,9 +9,9 @@ import config from '../../config';
 import { propTypes } from '../../util/types';
 import { isStripeInvalidPostalCode, isStripeError } from '../../util/errors';
 // import * as validators from '../../util/validators';
-import { Button, ExternalLink, FieldRadioButton, Form } from '../../components';
+import { Button, ExternalLink, /*FieldRadioButton,*/ Form } from '../../components';
 
-import PayoutDetailsCompanyAccount from './PayoutDetailsCompanyAccount';
+// import PayoutDetailsCompanyAccount from './PayoutDetailsCompanyAccount';
 import PayoutDetailsIndividualAccount from './PayoutDetailsIndividualAccount';
 import css from './PayoutDetailsForm.css';
 
@@ -55,12 +55,12 @@ const PayoutDetailsFormComponent = props => (
 
       //USA as default
       values.country = 'US';
-
+      /*
       const individualAccountLabel = intl.formatMessage({
         id: 'PayoutDetailsForm.individualAccount',
       });
 
-      const companyAccountLabel = intl.formatMessage({ id: 'PayoutDetailsForm.companyAccount' });
+      const companyAccountLabel = intl.formatMessage({ id: 'PayoutDetailsForm.companyAccount' }); */
 
       // const countryLabel = intl.formatMessage({ id: 'PayoutDetailsForm.countryLabel' });
       // const countryPlaceholder = intl.formatMessage({

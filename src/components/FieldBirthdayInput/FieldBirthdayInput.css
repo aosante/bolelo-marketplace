@@ -1,7 +1,6 @@
 @import '../../marketplace.css';
 
-.fieldRoot {
-}
+.fieldRoot {}
 
 .inputRoot {
   display: flex;
@@ -39,4 +38,10 @@
 
 .selectError {
   border-bottom-color: var(--failColor);
+}
+
+
+.sideNote {
+  color: var(--matterColorAnti);
+  font-size: 0.8em;
 }

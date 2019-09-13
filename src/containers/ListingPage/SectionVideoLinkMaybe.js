@@ -17,6 +17,7 @@ const SectionVideoLinkMaybe = props => {
       </h2>
       <p className={css.rules}>
         <iframe
+          title="VideoFrame"
           width="560"
           height="315"
           src={srcURL}

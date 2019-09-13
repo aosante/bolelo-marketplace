@@ -3,9 +3,9 @@ import { bool, object, shape } from 'prop-types';
 import { compose } from 'redux';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import config from '../../config';
-import routeConfiguration from '../../routeConfiguration';
+// import routeConfiguration from '../../routeConfiguration';
 import { propTypes } from '../../util/types';
-import { createResourceLocatorString } from '../../util/routes';
+// import { createResourceLocatorString } from '../../util/routes';
 
 import { stripeCountryConfigs } from './PayoutDetailsForm';
 import PayoutDetailsAddress from './PayoutDetailsAddress';
@@ -15,7 +15,7 @@ import PayoutDetailsBusinessProfile from './PayoutDetailsBusinessProfile';
 import css from './PayoutDetailsForm.css';
 
 const PayoutDetailsIndividualAccountComponent = props => {
-  const { fieldRenderProps, currentUserId, intl, appConfig } = props;
+  const { fieldRenderProps, /*currentUserId,*/ intl /*, appConfig*/ } = props;
   const { disabled, form, values } = fieldRenderProps;
   const { country } = values;
 
@@ -33,11 +33,11 @@ const PayoutDetailsIndividualAccountComponent = props => {
   const showMCCForUSField = !!individualConfig.mccForUS;
   const showBusinssProfileSection = showBusinessURLField || showMCCForUSField;
 
-  const hasBusinessURL =
-    values &&
-    values.individual &&
-    values.individual.businessProfile &&
-    values.individual.businessProfile.url;
+  // const hasBusinessURL =
+  //   values &&
+  //   values.individual &&
+  //   values.individual.businessProfile &&
+  //   values.individual.businessProfile.url;
 
   // Use user profile page as business_url on this marketplace
   // or just fake it if it's dev environment using Stripe test endpoints.

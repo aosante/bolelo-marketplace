@@ -141,80 +141,85 @@ class BirthdayInputComponent extends Component {
     const yearPlaceholder = intl.formatMessage({ id: 'PayoutDetailsForm.birthdayYearPlaceholder' });
 
     return (
-      <div className={css.inputRoot}>
-        <div className={css.selectWrapper}>
-          {dateLabel}
-          <select
-            autoComplete="bday-day"
-            disabled={disabled}
-            id={dateId}
-            value={selectedValue(this.state.selected.day)}
-            className={classNames(selectClassName || css.select, {
-              [css.notSet]: !parseNum(this.state.selected.day),
-            })}
-            onFocus={() => this.handleSelectFocus()}
-            onBlur={() => this.handleSelectBlur()}
-            onChange={e => this.handleSelectChange('day', e.target.value)}
-          >
-            <option disabled value="">
-              {datePlaceholder}
-            </option>
-            {days.map(d => (
-              <option key={d} value={d}>
-                {pad(d)}
-              </option>
-            ))}
-          </select>
+      <React.Fragment>
+        <div>
+          <p className={css.sideNote}>Birth Date</p>
         </div>
-        <div className={css.selectWrapper}>
-          {monthLabel}
-          <select
-            autoComplete="bday-month"
-            disabled={disabled}
-            id={monthId}
-            value={selectedValue(this.state.selected.month)}
-            className={classNames(selectClassName || css.select, {
-              [css.notSet]: !parseNum(this.state.selected.month),
-            })}
-            onFocus={() => this.handleSelectFocus()}
-            onBlur={() => this.handleSelectBlur()}
-            onChange={e => this.handleSelectChange('month', e.target.value)}
-          >
-            <option disabled value="">
-              {monthPlaceholder}
-            </option>
-            {months.map(m => (
-              <option key={m} value={m}>
-                {pad(m)}
+        <div className={css.inputRoot}>
+          <div className={css.selectWrapper}>
+            {monthLabel}
+            <select
+              autoComplete="bday-month"
+              disabled={disabled}
+              id={monthId}
+              value={selectedValue(this.state.selected.month)}
+              className={classNames(selectClassName || css.select, {
+                [css.notSet]: !parseNum(this.state.selected.month),
+              })}
+              onFocus={() => this.handleSelectFocus()}
+              onBlur={() => this.handleSelectBlur()}
+              onChange={e => this.handleSelectChange('month', e.target.value)}
+            >
+              <option disabled value="">
+                {monthPlaceholder}
               </option>
-            ))}
-          </select>
-        </div>
-        <div className={css.selectWrapper}>
-          {yearLabel}
-          <select
-            autoComplete="bday-year"
-            disabled={disabled}
-            id={yearId}
-            value={selectedValue(this.state.selected.year)}
-            className={classNames(selectClassName || css.select, {
-              [css.notSet]: !parseNum(this.state.selected.year),
-            })}
-            onFocus={() => this.handleSelectFocus()}
-            onBlur={() => this.handleSelectBlur()}
-            onChange={e => this.handleSelectChange('year', e.target.value)}
-          >
-            <option disabled value="">
-              {yearPlaceholder}
-            </option>
-            {years.map(y => (
-              <option key={y} value={y}>
-                {y}
+              {months.map(m => (
+                <option key={m} value={m}>
+                  {pad(m)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={css.selectWrapper}>
+            {dateLabel}
+            <select
+              autoComplete="bday-day"
+              disabled={disabled}
+              id={dateId}
+              value={selectedValue(this.state.selected.day)}
+              className={classNames(selectClassName || css.select, {
+                [css.notSet]: !parseNum(this.state.selected.day),
+              })}
+              onFocus={() => this.handleSelectFocus()}
+              onBlur={() => this.handleSelectBlur()}
+              onChange={e => this.handleSelectChange('day', e.target.value)}
+            >
+              <option disabled value="">
+                {datePlaceholder}
               </option>
-            ))}
-          </select>
+              {days.map(d => (
+                <option key={d} value={d}>
+                  {pad(d)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={css.selectWrapper}>
+            {yearLabel}
+            <select
+              autoComplete="bday-year"
+              disabled={disabled}
+              id={yearId}
+              value={selectedValue(this.state.selected.year)}
+              className={classNames(selectClassName || css.select, {
+                [css.notSet]: !parseNum(this.state.selected.year),
+              })}
+              onFocus={() => this.handleSelectFocus()}
+              onBlur={() => this.handleSelectBlur()}
+              onChange={e => this.handleSelectChange('year', e.target.value)}
+            >
+              <option disabled value="">
+                {yearPlaceholder}
+              </option>
+              {years.map(y => (
+                <option key={y} value={y}>
+                  {y}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

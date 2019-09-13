@@ -22,7 +22,7 @@ import { TopbarContainer } from '../../containers';
 import { savePayoutDetails, loadData } from './PayoutPreferencesPage.duck';
 
 import css from './PayoutPreferencesPage.css';
-import PayoutDetailsUpdateBankAccount from '../../forms/PayoutDetailsForm/PayoutDetailsUpdateBankAccount';
+// import PayoutDetailsUpdateBankAccount from '../../forms/PayoutDetailsForm/PayoutDetailsUpdateBankAccount';
 
 export const PayoutPreferencesPageComponent = props => {
   const {

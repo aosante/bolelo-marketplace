@@ -1,4 +1,4 @@
-import { createStripeAccount, updateStripeAccount } from '../../ducks/stripe.duck';
+import { createStripeAccount /*, updateStripeAccount*/ } from '../../ducks/stripe.duck';
 import { fetchCurrentUser } from '../../ducks/user.duck';
 import axios from 'axios';
 import swal from 'sweetalert';

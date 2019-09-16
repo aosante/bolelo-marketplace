@@ -203,8 +203,8 @@ export class TransactionPanelComponent extends Component {
     /*transaction has the start and end dates, which can be used to enable or disable
     booking cancellation (up to 24hrs before booking period starts). The object holding this data will be passed
     down as props to the saleCustomerCancelButtonMaybe Component*/
-    const startDate = transaction.booking.attributes.start;
-    const createdAtDate = transaction.attributes.createdAt;
+    const startDate = transaction.booking ? transaction.booking.attributes.start : null;
+    const createdAtDate = transaction.booking ? transaction.attributes.createdAt : null;
     //I also need to send the createdAt attribute that comes from transaction
 
     const currentTransaction = ensureTransaction(transaction);
@@ -361,10 +361,17 @@ export class TransactionPanelComponent extends Component {
     const classes = classNames(rootClassName || css.root, className);
     const daysTotal = currentTransaction.attributes.lineItems.find(
       item => item.code === LINE_ITEM_DAY
-    ).lineTotal.amount;
+    )
+      ? currentTransaction.attributes.lineItems.find(item => item.code === LINE_ITEM_DAY).lineTotal
+          .amount
+      : null;
     const quantityFraction = currentTransaction.attributes.lineItems.find(
       item => item.code === LINE_ITEM_SELECTED_QUANTITY
-    ).lineTotal.amount;
+    )
+      ? currentTransaction.attributes.lineItems.find(
+          item => item.code === LINE_ITEM_SELECTED_QUANTITY
+        ).lineTotal.amount
+      : null;
     const totalAmount = daysTotal + quantityFraction;
     const itemQuantity = (totalAmount / daysTotal).toString();
     if (

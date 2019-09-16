@@ -500,7 +500,7 @@
   "PasswordChangeForm.confirmChangesTitle": "Confirm your changes",
   "PasswordChangeForm.genericFailure": "Whoops, something went wrong. Please refresh the page and try again.",
   "PasswordChangeForm.newPasswordLabel": "New password",
-  "PasswordChangeForm.newPasswordPlaceholder": "Enter your new password",
+  "PasswordChangeForm.newPasswordPlaceholder": "Need to change your password? Enter it here",
   "PasswordChangeForm.newPasswordRequired": "A new password is required",
   "PasswordChangeForm.passwordFailed": "Please double-check your current password",
   "PasswordChangeForm.passwordLabel": "Current password",

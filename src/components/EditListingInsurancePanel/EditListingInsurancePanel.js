@@ -34,15 +34,14 @@ const EditListingInsurancePanel = props => {
   ) : (
     <FormattedMessage id="EditListingInsurancePanel.createListingTitle" />
   );
-
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
       <EditListingInsuranceForm
         className={css.form}
         initialValues={{
-          categoryInsurance: publicData.categoryInsurance,
-          subcategory: publicData.subcategoryInsurance,
+          categoryInsurance: '',
+          subcategoryInsurance: '',
         }}
         onSubmit={values => {
           const { categoryInsurance = '', subcategoryInsurance = '' } = values;

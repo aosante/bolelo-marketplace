@@ -5,7 +5,7 @@ import { Form as FinalForm } from 'react-final-form';
 import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
-import { Form, Button, FieldSelect } from '../../components';
+import { Form, Button, FieldSelect, FieldSelectCategory } from '../../components';
 import { required, composeValidators } from '../../util/validators';
 import { insurance_categories } from '../../insurance-custom-config';
 
@@ -13,28 +13,18 @@ import css from './EditListingInsuranceForm.css';
 export const EditListingInsuranceFormComponent = props => {
   var [subCategories, setSubCategories] = useState([]);
   var [category, setCategory] = useState('Select category');
-  var cont = 1;
   const [wantsInsurance, setWantsInsurance] = useState(false);
-  const handleFocusCategories = e => {
+  const handleOnChangeCategory = e => {
     var x = insurance_categories.filter(el => {
-      return el.key === category;
+      return el.key === e.target.value;
     });
     if (x[0]) {
       var res = x[0].value;
       setSubCategories(res);
     }
   };
-  const handleOnClickCategory = e => {
-    if (cont !== 1) {
-      setCategory(e.target.value);
-      cont = 1;
-    } else {
-      cont = cont + 1;
-    }
-  };
   const handleChange = e => {
     setWantsInsurance(e.target.value === 'true' ? true : false);
-    console.log(wantsInsurance);
   };
   return (
     <FinalForm
@@ -92,12 +82,12 @@ export const EditListingInsuranceFormComponent = props => {
 
         const insuranceForm = (
           <React.Fragment>
-            <FieldSelect
+            <FieldSelectCategory
               className={css.category}
               name="categoryInsurance"
               id="categoryInsurance"
               validate={composeValidators(required(categoriesRequired))}
-              onClick={handleOnClickCategory}
+              changeCategory={handleOnChangeCategory}
             >
               <option disabled value="">
                 {categoriesPlaceholder}
@@ -107,14 +97,13 @@ export const EditListingInsuranceFormComponent = props => {
                   {c.key}
                 </option>
               ))}
-            </FieldSelect>
+            </FieldSelectCategory>
 
             <FieldSelect
               className={css.category}
               name="subcategoryInsurance"
               id="subcategoryInsurance"
               validate={composeValidators(required(subcategoriesRequired))}
-              onFocus={handleFocusCategories}
             >
               <option disabled value="">
                 {subcategoriesPlaceholder}

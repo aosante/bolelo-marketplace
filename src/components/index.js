@@ -92,6 +92,7 @@ export { default as FieldRadioButton } from './FieldRadioButton/FieldRadioButton
 export { default as FieldReviewRating } from './FieldReviewRating/FieldReviewRating';
 export { default as FieldSelect } from './FieldSelect/FieldSelect';
 export { default as FieldSelectQuantity } from './FieldSelect/FieldSelectQuantity';
+export { default as FieldSelectCategory } from './FieldSelect/FieldSelectCategory';
 export { default as FieldTextInput } from './FieldTextInput/FieldTextInput';
 // Fields that use other Fields
 export { default as FieldBoolean } from './FieldBoolean/FieldBoolean';

@@ -16,7 +16,8 @@ import { LISTING_STATE_DRAFT, LISTING_STATE_PENDING_APPROVAL, propTypes } from '
 import { ensureOwnListing } from '../../util/data';
 import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 import { manageDisableScrolling, isScrollingDisabled } from '../../ducks/UI.duck';
-import { stripeAccountClearError, createStripeAccount } from '../../ducks/stripe.duck';
+import { stripeAccountClearError } from '../../ducks/stripe.duck';
+import { savePayoutDetails } from '../PayoutPreferencesPage/PayoutPreferencesPage.duck';
 import { EditListingWizard, NamedRedirect, Page } from '../../components';
 import { TopbarContainer } from '../../containers';
 
@@ -279,7 +280,7 @@ const mapDispatchToProps = dispatch => ({
   onManageDisableScrolling: (componentId, disableScrolling) =>
     dispatch(manageDisableScrolling(componentId, disableScrolling)),
   onPayoutDetailsFormChange: () => dispatch(stripeAccountClearError()),
-  onPayoutDetailsSubmit: values => dispatch(createStripeAccount(values)),
+  onPayoutDetailsSubmit: values => dispatch(savePayoutDetails(values)),
   onUpdateImageOrder: imageOrder => dispatch(updateImageOrder(imageOrder)),
   onRemoveListingImage: imageId => dispatch(removeListingImage(imageId)),
   onChange: () => dispatch(clearUpdatedTab()),

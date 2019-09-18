@@ -545,6 +545,9 @@ export class CheckoutPageComponent extends Component {
             alt={intl.formatMessage({ id: 'CheckoutPage.goToLandingPage' })}
             format="desktop"
           />
+        <span className={css.homeLabel}>
+          <FormattedMessage id="TopbarDesktop.homeLabel" />
+        </span>
         </NamedLink>
       </div>
     );

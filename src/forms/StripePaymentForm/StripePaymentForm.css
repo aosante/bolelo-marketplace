@@ -116,3 +116,23 @@
 .missingStripeKey {
   color: var(--failColor);
 }
+
+.termsText {
+  @apply --marketplaceModalHelperText;
+  margin-bottom: 12px;
+  text-align: center;
+
+  @media (--viewportMedium) {
+    margin-bottom: 16px;
+  }
+}
+.termsLink {
+  @apply --marketplaceModalHelperLink;
+  color:#161616!important;
+
+  &:hover {
+    text-decoration: underline!important;
+    cursor: pointer;
+    color:#0056b3!important;
+  }
+}

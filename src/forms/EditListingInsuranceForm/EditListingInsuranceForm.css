@@ -76,3 +76,8 @@
   color: var(--matterColorAnti);
   font-size: 0.8em;
 }
+
+.insuranceLink {
+  color: blue !important;
+  text-decoration: underline !important;
+}

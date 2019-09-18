@@ -57,7 +57,7 @@ export const BookingBreakdownComponent = props => {
       <LineItemBookingPeriod transaction={transaction} booking={booking} unitType={unitType} />
       <LineItemInsuranceQuote insuranceQuote={insuranceQuote} intl={intl} />
       <LineItemUnitsMaybe transaction={transaction} unitType={unitType} />
-
+      
       {/* <LineItemUnknownItemsMaybe transaction={transaction} intl={intl} /> */}
 
       <LineItemSubTotalMaybe
@@ -96,6 +96,7 @@ export const BookingBreakdownComponent = props => {
           <FormattedMessage id="BookingBreakdown.commissionFeeNote" />
         </span>
       ) : null}
+      
     </div>
   );
 };

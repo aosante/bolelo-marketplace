@@ -68,3 +68,7 @@ li{
   margin-top: 48px;
   margin-bottom: 24px;
 }
+.link {
+  color: blue !important;
+  text-decoration: underline !important;
+}

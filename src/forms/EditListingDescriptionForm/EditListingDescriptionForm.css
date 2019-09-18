@@ -70,3 +70,8 @@
   color: var(--matterColorAnti);
   font-size: 0.8em;
 }
+
+.notElegibleItemLink {
+  color: blue !important;
+  text-decoration: underline !important;
+}

@@ -7,10 +7,18 @@ import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { maxLength, required, composeValidators } from '../../util/validators';
 import { Form, Button, FieldTextInput } from '../../components';
+import swal from 'sweetalert';
 
 import css from './EditListingDescriptionForm.css';
 
 const TITLE_MAX_LENGTH = 60;
+const handleElegibleItemInfoLink = e => {
+  swal(
+    'INFO',
+    'Heres’s a list of items that are prohibited from our site:\nFirearms, fireworks or weapons of any kind, people or animal, medical devices, alcohol, tobacco, drugs and drug paraphernalia, items promoting illegal activity and highly regulated items, pornography and mature content, items that violate third party intellectual property rights, food or other perishables, items stolen, condemned or subject to legal investigation.',
+    'info'
+  );
+};
 
 const EditListingDescriptionFormComponent = props => (
   <FinalForm
@@ -87,6 +95,13 @@ const EditListingDescriptionFormComponent = props => (
           {errorMessageCreateListingDraft}
           {errorMessageUpdateListing}
           {errorMessageShowListing}
+          <p>
+            Please see the{' '}
+            <a onClick={handleElegibleItemInfoLink} className={css.notElegibleItemLink}>
+              list
+            </a>{' '}
+            of items that are not eligible for BOLELO listing
+          </p>
           <FieldTextInput
             id="title"
             name="title"

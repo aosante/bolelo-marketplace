@@ -8,6 +8,7 @@ import { propTypes } from '../../util/types';
 import { Form, Button, FieldSelect, FieldSelectCategory } from '../../components';
 import { required, composeValidators } from '../../util/validators';
 import { insurance_categories } from '../../insurance-custom-config';
+import swal from 'sweetalert';
 
 import css from './EditListingInsuranceForm.css';
 export const EditListingInsuranceFormComponent = props => {
@@ -25,6 +26,13 @@ export const EditListingInsuranceFormComponent = props => {
   };
   const handleChange = e => {
     setWantsInsurance(e.target.value === 'true' ? true : false);
+  };
+  const handleClickInsuranceExplanation = e => {
+    swal(
+      'INFO',
+      'We are NOT able to offer a protection plan on the motorized blades, including but not limited to chain saws, table saws, reciprocating saws. Also, aircraft of any kind, powered watercraft of any kind (including boats and jet skis), Autos of any kind (cars, trucks, snowmobiles, ATV, RV) and heavy construction related items most frequently involving earthwork operations. Above link has a detailed list of assets not eligible for coverage.',
+      'info'
+    );
   };
   return (
     <FinalForm
@@ -134,7 +142,12 @@ export const EditListingInsuranceFormComponent = props => {
               <option value="false">No</option>
               <option value="true">Yes</option>
             </select>
-            <p className={css.sideNote}>{insuranceExplanation}</p>
+            <p className={css.sideNote}>
+              {insuranceExplanation}
+              <a className={css.insuranceLink} onClick={handleClickInsuranceExplanation}>
+                here.
+              </a>
+            </p>
             {wantsInsurance ? insuranceForm : null}
             <Button
               className={css.submitButton}

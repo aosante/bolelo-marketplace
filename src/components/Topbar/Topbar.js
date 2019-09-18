@@ -175,9 +175,9 @@ class TopbarComponent extends Component {
     const initialSearchFormValues = {
       location: locationFieldsPresent
         ? {
-          search: address,
-          selectedPlace: { address, origin, bounds },
-        }
+            search: address,
+            selectedPlace: { address, origin, bounds },
+          }
         : null,
     };
 
@@ -200,6 +200,9 @@ class TopbarComponent extends Component {
             title={intl.formatMessage({ id: 'Topbar.logoIcon' })}
           >
             <Logo format="mobile" />
+            <span className={css.homeLabel}>
+              <FormattedMessage id="TopbarDesktop.homeLabel" />
+            </span>
           </NamedLink>
           <Button
             rootClassName={css.searchMenu}

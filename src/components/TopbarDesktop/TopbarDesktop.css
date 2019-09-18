@@ -198,6 +198,7 @@
     transform: scale(0);
     opacity: 0;
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
@@ -362,4 +363,12 @@
       background-color: var(--matterColorDark);
     }
   }
+}
+
+.homeLabel {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  float: right;
+  margin-top: 25px;
 }

@@ -25,7 +25,7 @@ import {
   HelpPage,
   BorrowerAgreementPage,
   LenderAgreementPage,
-  FaqPage
+  FaqPage,
 } from './containers';
 
 // routeConfiguration needs to initialize containers first
@@ -332,7 +332,7 @@ const routeConfiguration = () => {
       auth: true,
       authPage: 'LoginPage',
       component: props => <EmailVerificationPage {...props} />,
-      loadData: EmailVerificationPage.loadData,
+      // loadData: EmailVerificationPage.loadData,
     },
   ];
 };

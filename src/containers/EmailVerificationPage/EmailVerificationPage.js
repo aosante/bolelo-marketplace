@@ -34,8 +34,10 @@ import css from './EmailVerificationPage.css';
   the unwanted result of the `parse` method is that it automatically
   parses the token to number.
 */
-const parseVerificationToken = search => {
-  const urlParams = parse(search);
+const parseVerificationToken = location => {
+  const urlParams = parse(location.search);
+  // const parseVerificationToken = search => {
+  //   const urlParams = parse(search);
   const verificationToken = urlParams.t;
 
   if (verificationToken) {
@@ -59,14 +61,15 @@ export const EmailVerificationPageComponent = props => {
     id: 'EmailVerificationPage.title',
   });
 
-  const initialValues = {
-    verificationToken: parseVerificationToken(location ? location.search : null),
-  };
+  const initialValues = { verificationToken: parseVerificationToken(location) };
+  // const initialValues = {
+  //   verificationToken: parseVerificationToken(location ? location.search : null),
+  // };
 
-  const user = ensureCurrentUser(currentUser);
-  if (user && user.attributes.emailVerified) {
-    return <NamedRedirect name="LandingPage" />;
-  }
+  // const user = ensureCurrentUser(currentUser);
+  // if (user && user.attributes.emailVerified) {
+  //   return <NamedRedirect name="LandingPage" />;
+  // }
 
   return (
     <Page title={title} scrollingDisabled={scrollingDisabled} referrer="origin">
@@ -77,11 +80,13 @@ export const EmailVerificationPageComponent = props => {
         <LayoutWrapperMain className={css.layoutWrapperMain}>
           <div className={css.root}>
             <div className={css.content}>
-              {user.id ? (
+              {currentUser ? (
+                /* {user.id ? ( */
                 <EmailVerificationForm
                   initialValues={initialValues}
                   onSubmit={submitVerification}
-                  currentUser={user}
+                  currentUser={currentUser}
+                  /*currentUser={user}*/
                   inProgress={emailVerificationInProgress}
                   verificationError={verificationError}
                 />
@@ -154,9 +159,9 @@ const EmailVerificationPage = compose(
   injectIntl
 )(EmailVerificationPageComponent);
 
-EmailVerificationPage.loadData = (params, search) => {
-  const token = parseVerificationToken(search);
-  return verify(token);
-};
+// EmailVerificationPage.loadData = (params, search) => {
+//   const token = parseVerificationToken(search);
+//   return verify(token);
+// };
 
 export default EmailVerificationPage;

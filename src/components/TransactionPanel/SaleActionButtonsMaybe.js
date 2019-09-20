@@ -34,7 +34,9 @@ const SaleActionButtonsMaybe = props => {
   const cantCancelBooking = _ => {
     let cantCancel = false;
     const hoursToStart = getHoursToStart(realStartingDate, currentDate);
-    if (hoursToStart < 19) cantCancel = true;
+    if (realStartingDate < currentDate || hoursToStart < 19) {
+      cantCancel = true;
+    }
     return cantCancel;
   };
 

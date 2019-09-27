@@ -206,6 +206,11 @@ export class BookingDatesFormComponent extends Component {
                   bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
                 )}
               />
+              <p className={css.smallPrint}>
+                "Note: It's a "day" transaction NOT 24 hour. The fee is calculated based on the
+                number of days selected. Communicate with Borrower/Lender and agree on the exact
+                pickup and return time/date."
+              </p>
               {quantity ? (
                 <div className={css.quantity}>
                   <FieldSelect

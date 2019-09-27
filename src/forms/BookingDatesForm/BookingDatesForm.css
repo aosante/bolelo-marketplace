@@ -30,6 +30,7 @@
 
   margin-top: 5px;
   margin-bottom: 14px;
+
   @media (--viewportMedium) {
     margin-top: 5px;
     margin-bottom: 26px;
@@ -108,3 +109,20 @@
     margin: 0 0 0 10px;
   }
 } */
+.smallPrint {
+  @apply --marketplaceTinyFontStyles;
+  color: var(--matterColorAnti);
+  text-align: center;
+  margin: auto 24px 20px 24px;
+  flex-shrink: 0;
+
+  @media (--viewportMedium) {
+    margin-top: auto;
+    margin-bottom: 20px;
+  }
+
+  @media (--viewportLarge) {
+    margin-top: 4px;
+    margin-bottom: 21px;
+  }
+}

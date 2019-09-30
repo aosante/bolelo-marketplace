@@ -60,7 +60,7 @@ Also, we hope that you will have patience with us as we learn and experience the
                 Our mission is simple.  We wish to make sharing a community thing by linking Borrowers and Lenders.  We dare to even say we are creating a better community and less wasteful environment that we can pass down to our children.  We hope you will share BOLELO with others.
               </p>
 
-              <p >BTW, we have chosen to donate 5% of proceeds to LB Side Kick Foundation (30-0162842), a 501 (c) 3, non-profit, based in Raleigh.  This is a small group of good people (100% volunteers) doing many great things for the community.     </p>
+              <p >BTW, we have chosen to donate 5% of proceeds to LB Side Kick Foundation (30-0162842), a 501 (c) 3, non-profit, based in Raleigh.  This is a small group of good people (100% volunteers) doing many great things for the community.</p>
 
             </div>
           </div>

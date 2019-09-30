@@ -197,6 +197,12 @@ export class AuthenticationPageComponent extends Component {
 
         <div className={css.bottomWrapper}>
           <p className={css.modalHelperText}>
+            Did you already verify the email?{' '}
+            <a className={css.modalHelperLink} href="javascript:location.reload();">
+              Click Here
+            </a>
+          </p>
+          <p className={css.modalHelperText}>
             {sendVerificationEmailInProgress ? (
               <FormattedMessage id="AuthenticationPage.sendingEmail" />
             ) : (

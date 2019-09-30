@@ -27,12 +27,18 @@ export const EditListingInsuranceFormComponent = props => {
   const handleChange = e => {
     setWantsInsurance(e.target.value === 'true' ? true : false);
   };
+  const el = document.createElement('div');
+  el.innerHTML =
+    "<a class=EditListingInsuranceForm_moreInfoLink__1PlN6 href='https://www.dropbox.com/s/i68nzrldf6lrucc/Sharing%20Economy%20Rental%20and%20or%20Bailment%20Agreement.docx?dl=0' target='_blank'>More info</a>";
   const handleClickInsuranceExplanation = e => {
-    swal(
-      'INFO',
-      'We are NOT able to offer a protection plan on the motorized blades, including but not limited to chain saws, table saws, reciprocating saws. Also, aircraft of any kind, powered watercraft of any kind (including boats and jet skis), Autos of any kind (cars, trucks, snowmobiles, ATV, RV) and heavy construction related items most frequently involving earthwork operations. Above link has a detailed list of assets not eligible for coverage.',
-      'info'
-    );
+    swal({
+      title: 'INFO',
+      text:
+        'We are NOT able to offer a protection plan on the motorized blades, including but not limited to chain saws, table saws, reciprocating saws. Also, aircraft of any kind, powered watercraft of any kind (including boats and jet skis), Autos of any kind (cars, trucks, snowmobiles, ATV, RV) and heavy construction related items most frequently involving earthwork operations. For a detailed list of assets not eligible for coverage and more information click on more info',
+      icon: 'info',
+      closeOnClickOutside: false,
+      content: el,
+    });
   };
   return (
     <FinalForm
@@ -145,7 +151,7 @@ export const EditListingInsuranceFormComponent = props => {
             <p className={css.sideNote}>
               {insuranceExplanation}
               <a className={css.insuranceLink} onClick={handleClickInsuranceExplanation}>
-                here.
+                Click here.
               </a>
             </p>
             {wantsInsurance ? insuranceForm : null}

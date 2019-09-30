@@ -54,7 +54,7 @@ If you are like many people we meet then you too have probably thought the same 
               Borrowing/Lending, however, is not so easy.  Often it’s hard to find a specific item you are looking for. We also know that goodwill Borrowing/Lending with friends and neighbors is not always ideal as it could result in ruining good relationships.  You will agree that a positive transaction with friendly strangers is much better than ruined relationships from a negative experience with friends.  With BOLELO, Borrowers save $$ and Lenders make $$.
               </p>
               <p>
-              Please send us your feedback and site improvement requests and we will do our best to meet your expectation.  Please keep in mind that we are a very small company.  We are so small that the sharks from the hit TV show Shark Tank probably would not even consider us a company, just a website &#128522;
+              Please send us your feedback and site improvement requests and we will do our best to meet your expectation.  Please keep in mind that we are a very small company.  We are so small that the sharks from the hit TV show Shark Tank probably would not even consider us a company, just a website <span role="img" aria-label="smiley-face">🙂</span>
 Also, we hope that you will have patience with us as we learn and experience the growing pain while building the platform that meets your approval and creates an opportunity for you previously not available.
 </p>
 

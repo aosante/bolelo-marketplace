@@ -247,7 +247,7 @@ class StripePaymentForm extends Component {
         {initialMessage}
         <div className={css.submitContainer}>
           <p className={css.paymentInfo}>{paymentInfo}</p>
-          <p className={css.termsText}>By sending request, you agree to the <a target="_blank" href="https://www.dropbox.com/s/i68nzrldf6lrucc/Sharing%20Economy%20Rental%20and%20or%20Bailment%20Agreement.docx?dl=0" className={css.termsLink}>Bailment Agreement for Product Damage Protection</a></p>
+          <p className={css.termsText}>By sending request, you agree to the <a rel="noopener noreferrer" target="_blank" href="https://www.dropbox.com/s/i68nzrldf6lrucc/Sharing%20Economy%20Rental%20and%20or%20Bailment%20Agreement.docx?dl=0" className={css.termsLink}>Bailment Agreement for Product Damage Protection</a></p>
         <PrimaryButton
             className={css.submitButton}
             type="submit"

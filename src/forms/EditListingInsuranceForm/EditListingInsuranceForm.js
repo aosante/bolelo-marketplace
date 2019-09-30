@@ -13,7 +13,6 @@ import swal from 'sweetalert';
 import css from './EditListingInsuranceForm.css';
 export const EditListingInsuranceFormComponent = props => {
   var [subCategories, setSubCategories] = useState([]);
-  var [category, setCategory] = useState('Select category');
   const [wantsInsurance, setWantsInsurance] = useState(false);
   const handleOnChangeCategory = e => {
     var x = insurance_categories.filter(el => {

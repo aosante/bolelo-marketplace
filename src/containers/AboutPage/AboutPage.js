@@ -62,7 +62,6 @@ Also, we hope that you will have patience with us as we learn and experience the
 
               <p >BTW, we have chosen to donate 5% of proceeds to LB Side Kick Foundation (30-0162842), a 501 (c) 3, non-profit, based in Raleigh.  This is a small group of good people (100% volunteers) doing many great things for the community.     </p>
 
-
             </div>
           </div>
         </LayoutWrapperMain>

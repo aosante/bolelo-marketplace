@@ -140,6 +140,11 @@ const Footer = props => {
                       <FormattedMessage id="Footer.lenderAgreement" />
                     </NamedLink>
                   </li> 
+                  {/* <li>
+                    <a href="https://www.dropbox.com/s/i68nzrldf6lrucc/Sharing%20Economy%20Rental%20and%20or%20Bailment%20Agreement.docx?dl=0" className={css.legalLink}>
+                      Insurance Agreement
+                    </a>
+                  </li> */}
                 </ul>
               </div>
             </div>

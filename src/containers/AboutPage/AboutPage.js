@@ -54,7 +54,7 @@ const AboutPage = () => {
   
               </p>
               <p>
-              Please send us your feedback and site improvement requests and we will do our best to meet your expectation.  Please keep in mind that we are a very small company.  We are so small that the sharks from the hit TV show Shark Tank probably would not even consider us a company, just a website <span role="img" aria-label="smiley-face">🙂</span>
+              Please send us your feedback and site improvement requests and we will do our best to meet your expectation.  Please keep in mind that we are a very small company.  We are so small that the sharks from the hit TV show Shark Tank probably would not even consider us a company, just a website &#128522;
 Also, we hope that you will have patience with us as we learn and experience the growing pain while building the platform that meets your approval and creates an opportunity for you previously not available.
 </p>
                 Our mission is simple.  We wish to make sharing a community thing by linking Borrowers and Lenders.  We dare to even say we are creating a better community and less wasteful environment that we can pass down to our children.  We hope you will share BOLELO with others.

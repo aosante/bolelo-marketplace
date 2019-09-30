@@ -37,7 +37,7 @@ const HelpPage = () => {
 
             <div className={css.contentMain}>
               <p>
-                Do you have questions?		Email us: <a href="mailto: bolelo.org@gmail.com">bolelo.org@gmail.com</a>
+                Do you have questions?		Email us: <a href="mailto: GoodNeighbor@BOLELO.org">GoodNeighbor@BOLELO.org</a>
               </p>
               <p>
                 

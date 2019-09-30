@@ -175,7 +175,7 @@ const PrivacyPolicy = props => {
         bolelo.org welcomes your questions or comments regarding this Statement of Privacy. If you believe 
         that bolelo.org has not adhered to this Statement, please contact bolelo.org at:
       </p>
-      <span>Email Address:  bolelo.org@gmail.com </span>
+      <span>Email Address: GoodNeighbor@BOLELO.org </span>
     </div>
   );
 };

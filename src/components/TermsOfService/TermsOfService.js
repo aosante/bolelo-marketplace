@@ -248,7 +248,7 @@ const TermsOfService = props => {
       </p>
       <h2>Contact Us </h2>
       <p>Bolelo.org welcomes your questions or comments regarding the Terms: </p>
-      <span>Email Address:  bolelo.org@gmail.com </span>
+      <span>Email Address:  GoodNeighbor@BOLELO.org </span>
 
     </div>
   );

@@ -34,8 +34,12 @@ export class BookingDatesFormComponent extends Component {
   // In case start or end date for the booking is missing
   // focus on that input, otherwise continue with the
   // default handleSubmit function.
+  
   handleFormSubmit(e) {
     const { startDate, endDate } = e.bookingDates || {};
+    const currentDate = new Date();
+    console.log(startDate);
+    console.log(currentDate);
     if (!startDate) {
       e.preventDefault();
       this.setState({ focusedInput: START_DATE });
@@ -44,11 +48,12 @@ export class BookingDatesFormComponent extends Component {
       this.setState({ focusedInput: END_DATE });
     } else if (!customer.attributes.profile.publicData.idInsurance) {
       swal('Oops!', "Complete your account setting's payment details first", 'error');
-    } else {
+    } else if(startDate.getDate() == currentDate.getDate()){
+      swal('Info',"If you are making a 'same day booking request' please be sure to contact the Lender and confirm availability prior to sending the request. The same-day booking request can NOT be canceled",'info').then((value)=>{this.props.onSubmit(e)});
+    }else{
       this.props.onSubmit(e);
     }
   }
-
   render() {
     const {
       currentUser,

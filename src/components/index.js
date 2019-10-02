@@ -152,6 +152,7 @@ export { default as PrivacyPolicy } from './PrivacyPolicy/PrivacyPolicy';
 export { default as TermsOfService } from './TermsOfService/TermsOfService';
 export { default as BorrowerAgreement } from './BorrowerAgreement/BorrowerAgreement';
 export { default as LenderAgreement } from './LenderAgreement/LenderAgreement';
+export { default as InsuranceAgreement } from './InsuranceAgreement/InsuranceAgreement';
 export { default as EditListingAvailabilityPanel } from './EditListingAvailabilityPanel/EditListingAvailabilityPanel';
 export { default as EditListingDescriptionPanel } from './EditListingDescriptionPanel/EditListingDescriptionPanel';
 export { default as EditListingCategoriesPanel } from './EditListingCategoriesPanel/EditListingCategoriesPanel';

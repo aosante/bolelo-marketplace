@@ -10,7 +10,7 @@ import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import config from '../../config';
 import { propTypes } from '../../util/types';
-import { Form, PrimaryButton, FieldTextInput } from '../../components';
+import { Form, PrimaryButton, FieldTextInput, NamedLink } from '../../components';
 
 import css from './StripePaymentForm.css';
 
@@ -247,7 +247,11 @@ class StripePaymentForm extends Component {
         {initialMessage}
         <div className={css.submitContainer}>
           <p className={css.paymentInfo}>{paymentInfo}</p>
-          <p className={css.termsText}>By sending request, you agree to the <a target="_blank" href="https://www.dropbox.com/s/i68nzrldf6lrucc/Sharing%20Economy%20Rental%20and%20or%20Bailment%20Agreement.docx?dl=0" className={css.termsLink}>Bailment Agreement for Product Damage Protection</a></p>
+          <p className={css.termsText}>By sending request, you agree to the  
+            <NamedLink name="InsuranceAgreementPage" className={css.termsLink}>
+                      <FormattedMessage id="Footer.insuranceAgreement" />
+            </NamedLink>
+          </p>
         <PrimaryButton
             className={css.submitButton}
             type="submit"

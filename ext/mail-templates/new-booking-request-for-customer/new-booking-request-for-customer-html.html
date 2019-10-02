@@ -6,76 +6,91 @@
 {{~/inline~}}
 <!-- sent to the customer when he/she sends a new booking request -->
 <html>
-<!-- done -->
+  <!-- done -->
 
-<body>
-  {{#with transaction}}
-  <h1>Congratulations {{customer.display-name}}!</h1>
+  <body>
+    {{#with transaction}}
+    <h1>Congratulations {{ customer.display - name }}!</h1>
 
-  <h3>
-    Your booking request from {{> format-date date=booking.start}} to {{> format-date date=booking.end}} for
-    {{ listing.title }} has been sent.
-  </h3>
+    <h3>
+      Your booking request from {{> format-date date=booking.start}} to
+      {{> format-date date=booking.end}} for {{ listing.title }} has been sent. You should contact
+      the Lender if your booking takes too long in getting approved.
+    </h3>
 
-  <table>
-    <thead>
-      <tr>
-        <th style="text-align: left;">Item Booking Request details</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each tx-line-items}}
-      {{#contains include-for "customer"}}
-      <tr>
-        {{#eq "line-item/day" code}}
-        <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "day" "days"}} &times;
-          item quantity</td>
-        <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
-        {{/eq}}
-        {{#eq "line-item/night" code}}
-        <td>{{> format-money money=unit-price}} &times; {{number quantity}} {{inflect quantity "night" "nights"}}
-          &times; item quantity</td>
-        <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
-        {{/eq}}
-      </tr>
-      {{/contains}}
-      {{/each}}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th style="text-align: left;">Payment total</th>
-        <th style="text-align: left; padding-left: 20px;">{{> format-money money=payin-total}}</th>
-      </tr>
-    </tfoot>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left;">Item Booking Request details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each tx-line-items}}
+        {{#contains include-for "customer"}}
+        <tr>
+          {{#eq "line-item/day" code}}
+          <td>
+            {{> format-money money=unit-price}} &times; {{number quantity}}
+            {{inflect quantity "day" "days"}} &times; item quantity
+          </td>
+          <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
+          {{/eq}}
+          {{#eq "line-item/night" code}}
+          <td>
+            {{> format-money money=unit-price}} &times; {{number quantity}}
+            {{inflect quantity "night" "nights"}} &times; item quantity
+          </td>
+          <td style="padding-left: 20px;">{{> format-money money=payin-total}}</td>
+          {{/eq}}
+        </tr>
+        {{/contains}}
+        {{/each}}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th style="text-align: left;">Payment total</th>
+          <th style="text-align: left; padding-left: 20px;">
+            {{> format-money money=payin-total}}
+          </th>
+        </tr>
+      </tfoot>
+    </table>
 
-  <h4>PAYMENT</h4>
-  <p>You have made a Pre-authorization of payment.
-    To ensure the integrity of the BOLELO process, funds will only be released to {{provider.display-name}} once the
-    booking request has been approved & delivery is finalized.
-  </p>
-  <p>You will receive a confirmation email when {{provider.display-name}} approves your booking request.</p>
+    <h4>PAYMENT</h4>
+    <p>
+      You have made a Pre-authorization of payment. To ensure the integrity of the BOLELO process,
+      funds will only be released to {{ provider.display - name }} once the booking request has been
+      approved & delivery is finalized.
+    </p>
+    <p>
+      You will receive a confirmation email when {{ provider.display - name }} approves your booking
+      request.
+    </p>
 
-  <h4>CANCEL</h4>
-  <p>To receive a full refund, you must <a href="{{ marketplace.url }}/sale/{{url-encode id}}/details">CANCEL</a> the
-    booking by 6pm on the eve of the booking start date. You will forfeit 100% of the fee if you miss this deadline.</p>
+    <h4>CANCEL</h4>
+    <p>
+      To receive a full refund, you must
+      <a href="{{ marketplace.url }}/sale/{{url-encode id}}/details">CANCEL</a> the booking by 6pm
+      on the eve of the booking start date. You will forfeit 100% of the fee if you miss this
+      deadline.
+    </p>
 
-  <h4>CONTACT</h4>
-  <p>Contact {{provider.display-name}} through the {{marketplace.name}} platform if you have any questions.</p>
+    <h4>CONTACT</h4>
+    <p>
+      Contact {{ provider.display - name }} through the {{ marketplace.name }} platform if you have
+      any questions.
+    </p>
 
-  <p>Do you need to cancel this booking?</p>
-  <a href="{{ marketplace.url }}/sale/{{url-encode id}}/details">CANCEL</a>
+    <p>Do you need to cancel this booking?</p>
+    <a href="{{ marketplace.url }}/sale/{{url-encode id}}/details">CANCEL</a>
 
+    {{/with}}
 
-  {{/with}}
+    <hr />
 
-  <hr />
-
-
-  <p>
-    You have received this email notification because you are a member of {{ marketplace.name }}.
-    If you no longer wish to receive these emails, please contact the {{ marketplace.name }} team.
-  </p>
-</body>
-
+    <p>
+      You have received this email notification because you are a member of {{ marketplace.name }}.
+      If you no longer wish to receive these emails, please contact the {{ marketplace.name }} team.
+    </p>
+  </body>
 </html>

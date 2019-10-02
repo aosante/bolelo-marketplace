@@ -25,4 +25,5 @@ export { default as TransactionPage } from './TransactionPage/TransactionPage';
 export { default as HelpPage } from './HelpPage/HelpPage';
 export { default as BorrowerAgreementPage } from './BorrowerAgreementPage/BorrowerAgreementPage';
 export { default as LenderAgreementPage } from './LenderAgreementPage/LenderAgreementPage';
+export { default as InsuranceAgreementPage } from './InsuranceAgreementPage/InsuranceAgreementPage';
 export { default as FaqPage } from './FaqPage/FaqPage';

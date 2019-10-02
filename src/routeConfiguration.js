@@ -25,6 +25,7 @@ import {
   HelpPage,
   BorrowerAgreementPage,
   LenderAgreementPage,
+  InsuranceAgreementPage,
   FaqPage,
 } from './containers';
 
@@ -272,6 +273,11 @@ const routeConfiguration = () => {
       path: '/lender-agreement',
       name: 'LenderAgreementPage',
       component: props => <LenderAgreementPage {...props} />,
+    },
+    {
+      path: '/insurance-agreement',
+      name: 'InsuranceAgreementPage',
+      component: props => <InsuranceAgreementPage {...props} />,
     },
     {
       path: '/help',

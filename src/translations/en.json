@@ -265,7 +265,7 @@
   "EditListingPricingPanel.createListingTitle": "What is your daily unit price?",
   "EditListingPricingPanel.listingPriceCurrencyInvalid": "Listing currency is different from the marketplace currency. You cannot edit the price.",
   "EditListingPricingPanel.title": "Edit the pricing of {listingTitle}",
-  "EditListingInsurancePanel.title": "Would you like insurance?",
+  "EditListingInsurancePanel.title": "Would you like to require the borrower to purchase insurance for this item?",
   "EditListingWizard.saveEditDescription": "Save description",
   "EditListingWizard.saveEditCategories": "Save categories",
   "EditListingWizard.saveEditLocation": "Save location",

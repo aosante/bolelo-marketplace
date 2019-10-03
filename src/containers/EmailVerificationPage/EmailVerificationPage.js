@@ -8,7 +8,7 @@ import { propTypes } from '../../util/types';
 import { verify } from '../../ducks/EmailVerification.duck';
 import { isScrollingDisabled } from '../../ducks/UI.duck';
 import { parse } from '../../util/urlHelpers';
-import { ensureCurrentUser } from '../../util/data';
+// import { ensureCurrentUser } from '../../util/data';
 import {
   Page,
   LayoutSingleColumn,
@@ -16,7 +16,7 @@ import {
   LayoutWrapperMain,
   LayoutWrapperFooter,
   Footer,
-  NamedRedirect,
+  // NamedRedirect,
 } from '../../components';
 import { EmailVerificationForm } from '../../forms';
 import { TopbarContainer } from '../../containers';

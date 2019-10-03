@@ -15,7 +15,7 @@ const handleInsuranceInfo = e => {
     title: 'INFO',
     html:
       '<p style="text-align:left">We are NOT able to offer a protection plan on the motorized blades, including but not limited to chain saws, table saws, reciprocating saws. Also, aircraft of any kind, powered watercraft of any kind (including boats and jet skis), Autos of any kind (cars, trucks, snowmobiles, ATV, RV) and heavy construction related items most frequently involving earthwork operations. For a detailed list of assets not eligible for coverage and more information ' +
-      "<a class=FaqPage_link__3MGaC href='https://www.dropbox.com/s/i68nzrldf6lrucc/Sharing%20Economy%20Rental%20and%20or%20Bailment%20Agreement.docx?dl=0' target='_blank'>click here</a></p>",
+      "<a class=FaqPage_link__3MGaC href='/insurance-agreement' target='_blank'>click here</a></p>",
     icon: 'info',
     closeOnClickOutside: false,
   });

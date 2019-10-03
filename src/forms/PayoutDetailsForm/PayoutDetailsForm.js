@@ -39,7 +39,7 @@ const PayoutDetailsFormComponent = props => (
         disabled,
         handleSubmit,
         inProgress,
-        intl,
+        // intl,
         invalid,
         pristine,
         ready,

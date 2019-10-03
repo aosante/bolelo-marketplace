@@ -48,7 +48,7 @@ export class BookingDatesFormComponent extends Component {
       this.setState({ focusedInput: END_DATE });
     } else if (!customer.attributes.profile.publicData.idInsurance) {
       swal('Oops!', "Complete your account setting's payment details first", 'error');
-    } else if (startDate.getDate() == currentDate.getDate()) {
+    } else if (startDate.getDate() === currentDate.getDate()) {
       swal(
         'Info',
         "If you are making a 'same day booking request' please be sure to contact the Lender and confirm availability prior to sending the request. The same-day booking request can NOT be canceled",
